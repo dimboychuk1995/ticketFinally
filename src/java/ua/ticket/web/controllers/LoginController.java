@@ -4,10 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,9 +27,9 @@ public class LoginController extends HttpServlet {
             Statement stmt = conn.createStatement();
             ){
             
-            String sql = "SELECT login FROM tickets.users " + 
-                    "WHERE login ='" + userLogin+ "' "+
-                    "AND password ='" + userPassword+ "' ";
+            String sql = "SELECT login FROM tickets.users "
+                    + "WHERE login ='" + userLogin+ "' "
+                    + "AND password ='" + userPassword+ "' ";
             
             rs = stmt.executeQuery(sql);
             
@@ -43,6 +41,12 @@ public class LoginController extends HttpServlet {
             
         }catch(SQLException ex){
             Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try {
+                rs.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
@@ -53,7 +57,7 @@ public class LoginController extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException{
         checkLogin(request, response);
     }
 
