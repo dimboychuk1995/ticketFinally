@@ -23,3 +23,7 @@ and open the template in the editor.
 .id_none{
     display: none;
 }
+
+.form-control{
+    width: 150px;
+}

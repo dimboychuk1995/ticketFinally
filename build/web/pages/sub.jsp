@@ -50,8 +50,16 @@
             </div> 
             
             <div class="add_sub">
-                <form method="POST">
-                    
+                <form role="form form_add" action="../SubscriptionController" method="POST">
+                    <div class="form-group">
+                        <input class="form-control" type="text" id="PIP" name="PIP" value="" placeholder="ПІП"/> 
+                        <select class="form-control" name="season">
+                            <option id="season">2015-2016</option>
+                            <option id="season">2016-2017</option>
+                        </select>  
+                        <input class="form-control" type="text" id="placeId" name="placeId" value="" placeholder="placeID" />
+                    </div>
+                    <button id="btn_add" value="delete" type="submit" class="btn btn-success">Додати</button>  
                 </form>
             </div>
             

@@ -110,6 +110,8 @@ public class SubscriptionController extends HttpServlet{
                     + "', placeId = " + placeId
                     + " where id=" + id;
             
+            System.out.println(sql);
+            
             stmt.executeUpdate(sql);
             
             response.sendRedirect("pages/sub.jsp");
@@ -142,13 +144,48 @@ public class SubscriptionController extends HttpServlet{
         }
     }
     
+    protected void addSubscription(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        String PIP = request.getParameter("PIP");
+        String season = request.getParameter("season");
+        String placeId = request.getParameter("placeId");
+
+        System.out.println("method add");
+        
+        try(Connection conn = Database.getConnection();
+            Statement stmt = conn.createStatement();
+            ){
+            
+            String sql = "INSERT INTO `tickets`.`subscription`"
+                    + "(`PIP`, `season`, `placeId`)"
+                    + "VALUES"
+                    + "('" + PIP 
+                    + "','" + season
+                    + "','" + placeId
+                    + "');";
+            
+            System.out.println(sql);
+            
+            stmt.executeUpdate(sql);
+            
+            
+            response.sendRedirect("pages/sub.jsp");
+            
+        }catch(SQLException ex){
+            Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         if(request.getParameterMap().size() == 4){
             updateSubscription(request, response);
-        } else{
+        } else if(request.getParameterMap().size() == 1){
             deleteSubscription(request, response);   
+        } else{
+            addSubscription(request, response);
         }
     }
     @Override
@@ -156,8 +193,10 @@ public class SubscriptionController extends HttpServlet{
             throws ServletException, IOException {
         if(request.getParameterMap().size() == 4){
             updateSubscription(request, response);
-        } else{
+        } else if(request.getParameterMap().size() == 1){
             deleteSubscription(request, response);   
+        } else{
+            addSubscription(request, response);
         }
     }
     
