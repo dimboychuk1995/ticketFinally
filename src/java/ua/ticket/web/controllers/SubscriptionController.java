@@ -15,8 +15,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ApplicationScoped;
@@ -100,31 +98,44 @@ public class SubscriptionController extends HttpServlet{
         String season = request.getParameter("season");
         String placeId = request.getParameter("placeId");
         
-        String[] v = request.getParameterValues("id");
-        for(String s : v){
-            System.out.println(s);
-        }
+        System.out.println("method update");
         
-       
         try(Connection conn = Database.getConnection();
             Statement stmt = conn.createStatement();
             ){
             
             String sql = "update tickets.subscription "
                     + "set PIP = '" + PIP
-                    + "', season = " + season
-                    + ", placeId = " + placeId
+                    + "', season = '" + season
+                    + "', placeId = " + placeId
                     + " where id=" + id;
-            
-            
-            System.out.println(sql);
             
             stmt.executeUpdate(sql);
             
+            response.sendRedirect("pages/sub.jsp");
+        }catch(SQLException ex){
+            Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    protected void deleteSubscription(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        String id = request.getParameter("id");
+
+        System.out.println("method delete");
+        
+        try(Connection conn = Database.getConnection();
+            Statement stmt = conn.createStatement();
+            ){
             
+            String sql = "delete from tickets.subscription "
+                    + " where id=" + id;
+            
+            stmt.executeUpdate(sql);
             
             response.sendRedirect("pages/sub.jsp");
-            
             
         }catch(SQLException ex){
             Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
@@ -134,13 +145,24 @@ public class SubscriptionController extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        updateSubscription(request, response);
+        if(request.getParameterMap().size() == 4){
+            updateSubscription(request, response);
+        } else{
+            deleteSubscription(request, response);   
+        }
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        updateSubscription(request, response);
+        if(request.getParameterMap().size() == 4){
+            updateSubscription(request, response);
+        } else{
+            deleteSubscription(request, response);   
+        }
     }
+    
+    
+    
     
 }
 
