@@ -28,13 +28,13 @@
         <%
             for (Subscription subscription : subscriptionList.getSubscriptionAll()) {
         %>
-            <form role="form" action="../SubscriptionController" method="POST">
+          <form role="form" action="../SubscriptionController" method="POST">
 
                 <div class="form-group">
 
                     <input id="id" type="text" name="id" value="<%=subscription.getId()%>" size="20" />
                     <input id="PIP" type="text" name="PIP" value="<%=subscription.getPIP()%>" size="20" />
-                    <input id="season" type="text" name="startYear" value="<%=subscription.getSeason()%>" size="20" />
+                    <input id="season" type="text" name="season" value="<%=subscription.getSeason()%>" size="20" />
                     <input id="placeId" type="text" name="placeId" value="<%=subscription.getPlaceId()%>" size="20" />
 
                 </div>
@@ -46,6 +46,11 @@
         <%}%>
                     
         </div>
+            <div>
+                <form  action="../GamesController" method="POST">
+                    <button type="submit"> Показати матчі </button>
+                </form>
+            </div>
         
         <div class="footer"></div>
         

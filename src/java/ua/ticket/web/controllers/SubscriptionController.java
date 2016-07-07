@@ -67,6 +67,7 @@ public class SubscriptionController extends HttpServlet{
                 if (stmt!=null) stmt.close();
                 if (rs!=null)rs.close();
                 if (conn!=null)conn.close();
+                
             } catch (SQLException ex) {
                 Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
             }
