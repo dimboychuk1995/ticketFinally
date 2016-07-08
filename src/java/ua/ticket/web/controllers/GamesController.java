@@ -38,15 +38,36 @@ public class GamesController extends HttpServlet {
         Statement stmt = null;
         ResultSet rs = null;
         Connection conn = null;
+       
+        String valueParam = request.getParameter("allGame");
+        String valueParam2 = request.getParameter("currentGame");
+        
+        String status1 = "showAllGame"; // all games
+        String status2 = "showCurrentGame"; // current game
+        
+        String moreCurrDate = "SELECT * FROM tickets.games "
+                + "WHERE date >= curdate() "
+                + "ORDER BY date";
+        
+        String currDate = "SELECT * FROM tickets.games "
+                + "WHERE date = curdate()";
+        String allTime = "SELECT * FROM tickets.games"
+                        + " ORDER BY date";
+        
+        String sql = moreCurrDate;
+        if (status1.equals(valueParam)){
+            sql = allTime;
+        }
+        if(status2.equals(valueParam2)){
+            sql = currDate;
+        }
         try{
-            String sql = "SELECT * FROM tickets.games "
-                       + "WHERE date >= curdate() "
-                       + "ORDER BY date";
-            
+ 
             conn = Database.getConnection();
             stmt = conn.createStatement();
-            rs   = stmt.executeQuery(sql);
+            rs   = stmt.executeQuery(sql);            
             
+            gamesList.clear();
             while(rs.next()){
                 GameOfTeam game = new GameOfTeam();
                 game.setDateGame(rs.getString("date"));
@@ -55,9 +76,8 @@ public class GamesController extends HttpServlet {
                 game.setNameTeam2(rs.getString("team2"));
                 game.setPlaceGame(rs.getString("place"));
                 gamesList.add(game);
-            }   
-                
-                response.sendRedirect("pages/GamesPage.jsp");
+            }      
+            response.sendRedirect("pages/GamesPage.jsp");
     
         }catch(Exception ex){
             Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
@@ -67,17 +87,14 @@ public class GamesController extends HttpServlet {
                 if (rs!=null)rs.close();
                 if (conn!=null)conn.close();
                 
-                
             } catch (SQLException ex) {
                 Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }
-    
+    }  
     public ArrayList<GameOfTeam> futureGame(){
         
         System.out.print(gamesList);
-        
         return gamesList;
     }
  
