@@ -28,12 +28,20 @@ public class Subscription {
     private String PIP;
     private String season;
     private int placeId;
+    private String aPlace;
     
     public Subscription(int id, String PIP, String season, int placeId){
         this.id = id;
         this.PIP = PIP;
         this.season = season;
         this.placeId = placeId;
+    }
+    
+    public Subscription(int id, String PIP, String season, String aPlace){
+        this.id = id;
+        this.PIP = PIP;
+        this.season = season;
+        this.aPlace = aPlace;
     }
     
     public Integer getId(){
@@ -66,5 +74,13 @@ public class Subscription {
     
     public void setPlaceId(int placeId){
         this.placeId = placeId;
+    }
+    
+    public String getAPlace(){
+        return aPlace;
+    }
+    
+    public void setAPlace(String aPlace){
+        this.aPlace = aPlace;
     }
 }

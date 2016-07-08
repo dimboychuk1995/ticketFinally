@@ -14,3 +14,16 @@ and open the template in the editor.
 .header{
     height: 200px;
 }
+
+.form-group{
+    margin-top: 25px;
+    margin-bottom: 0;
+}
+
+.id_none{
+    display: none;
+}
+
+.form-control{
+    width: 150px;
+}

@@ -1,0 +1,28 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 7 лип. 2016, 14:39:05
+    Author     : us9522
+*/
+
+.content{
+    background-color: #000;
+}
+
+.sector_f{
+    background-color: chartreuse;
+    height: 50px;
+}
+
+.sector_c {
+    background-color: chartreuse;
+    height: 75px;
+}
+
+.sector_d{
+    background-color: chartreuse;
+    height: 75px;  
+}
