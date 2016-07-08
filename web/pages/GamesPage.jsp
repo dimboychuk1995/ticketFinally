@@ -34,9 +34,16 @@
                     <input id="team2" type="text" name=" guest " value="<%=game.getNameTeam2() %>" size="20" />
                     <input id="place" type="text" name=" place " value="<%=game.getPlaceGame()%>" size="20" />
                 </div>
-               
-       
-        <%}%>  
+
+        <%}%>
+        <form  action="../GamesController" method="POST" >
+                    <input id="allGame" type="hidden" name="allGame" value="showAllGame" />
+                    <button id="btn1" type="submit" class="btn btn-default">Показати всі матчі</button>
+        </form>
+        <form  action="../GamesController" method="POST" >
+                    <input id="currentGame" type="hidden" name="currentGame" value="showCurrentGame" />
+                    <button id="btn2" type="submit">Показати сьогоднішній матч</button>
+        </form>
     </CENTER>    
     </body>
 </html>
