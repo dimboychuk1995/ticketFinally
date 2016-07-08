@@ -41,9 +41,11 @@ public class GamesController extends HttpServlet {
        
         String valueParam = request.getParameter("allGame");
         String valueParam2 = request.getParameter("currentGame");
+        String valueParam3 = request.getParameter("futureGame");
         
         String status1 = "showAllGame"; // all games
         String status2 = "showCurrentGame"; // current game
+        String status3 = "showFutureGame"; // current game
         
         String moreCurrDate = "SELECT * FROM tickets.games "
                 + "WHERE date >= curdate() "
@@ -60,6 +62,9 @@ public class GamesController extends HttpServlet {
         }
         if(status2.equals(valueParam2)){
             sql = currDate;
+        }
+        if(status3.equals(valueParam3)){
+            sql = moreCurrDate;
         }
         try{
  

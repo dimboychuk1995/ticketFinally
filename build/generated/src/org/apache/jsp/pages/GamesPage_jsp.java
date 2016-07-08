@@ -55,7 +55,18 @@ public final class GamesPage_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
       out.write("        <title>JSP Page</title>\n");
+      out.write("        <style>\n");
+      out.write("            #liniya { \n");
+      out.write("                    width:110px; \n");
+      out.write("                    height:50px; \n");
+      out.write("                    background:#669900; \n");
+      out.write("                    float:left; \n");
+      out.write("                    margin-left:15px; \n");
+      out.write("                    text-align:center;\n");
+      out.write("                    }\n");
+      out.write("        </style>\n");
       out.write("    </head>\n");
+      out.write("\n");
       out.write("    <body>\n");
       out.write("        ");
       ua.ticket.web.controllers.GamesController gamesList = null;
@@ -64,6 +75,16 @@ public final class GamesPage_jsp extends org.apache.jasper.runtime.HttpJspBase
         if (gamesList == null){
           gamesList = new ua.ticket.web.controllers.GamesController();
           _jspx_page_context.setAttribute("gamesList", gamesList, PageContext.PAGE_SCOPE);
+        }
+      }
+      out.write("\n");
+      out.write("        ");
+      ua.ticket.web.controllers.GamesController gamesInfo = null;
+      synchronized (_jspx_page_context) {
+        gamesInfo = (ua.ticket.web.controllers.GamesController) _jspx_page_context.getAttribute("gamesInfo", PageContext.PAGE_SCOPE);
+        if (gamesInfo == null){
+          gamesInfo = new ua.ticket.web.controllers.GamesController();
+          _jspx_page_context.setAttribute("gamesInfo", gamesInfo, PageContext.PAGE_SCOPE);
         }
       }
       out.write("\n");
@@ -105,11 +126,23 @@ public final class GamesPage_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.print(game.getPlaceGame());
       out.write("\" size=\"20\" />\n");
       out.write("                </div>\n");
-      out.write("               \n");
-      out.write("       \n");
+      out.write("\n");
       out.write("        ");
 }
-      out.write("  \n");
+      out.write("\n");
+      out.write("        <div id = \"liniya\">\n");
+      out.write("        <form  action=\"../GamesController\" method=\"POST\" >\n");
+      out.write("           \n");
+      out.write("                    <input id=\"allGame\" type=\"hidden\" name=\"allGame\" value=\"showAllGame\" />\n");
+      out.write("                    <button id=\"btn1\" type=\"submit\" class=\"btn btn-default\">Показати всі матчі</button>\n");
+      out.write("        </form>\n");
+      out.write("        </div>\n");
+      out.write("        <div id = \"liniya\">\n");
+      out.write("        <form  action=\"../GamesController\" method=\"POST\" >\n");
+      out.write("                    <input id=\"currentGame\" type=\"hidden\" name=\"currentGame\" value=\"showCurrentGame\" />\n");
+      out.write("                    <button id=\"btn2\" type=\"submit\">Показати сьогоднішній матч</button>\n");
+      out.write("        </form>\n");
+      out.write("        </div>\n");
       out.write("    </CENTER>    \n");
       out.write("    </body>\n");
       out.write("</html>\n");

@@ -13,7 +13,18 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <style>
+            #liniya { 
+                    width:150px; 
+                    height:60px; 
+                    float: right;
+                    margin-right: 198px; 
+                    margin-top: 10px;
+                    text-align:center;
+                    }
+        </style>
     </head>
+
     <body>
         <jsp:useBean id="gamesList" class="ua.ticket.web.controllers.GamesController"/>
         <jsp:useBean id="gamesInfo" class="ua.ticket.web.controllers.GamesController"/>
@@ -36,14 +47,26 @@
                 </div>
 
         <%}%>
+        <div id = "liniya">
         <form  action="../GamesController" method="POST" >
+           
                     <input id="allGame" type="hidden" name="allGame" value="showAllGame" />
-                    <button id="btn1" type="submit" class="btn btn-default">Показати всі матчі</button>
+                    <button id="btn1" type="submit" class="btn btn-default">всі матчі</button>
         </form>
+        </div>
+        <div id = "liniya">
         <form  action="../GamesController" method="POST" >
                     <input id="currentGame" type="hidden" name="currentGame" value="showCurrentGame" />
-                    <button id="btn2" type="submit">Показати сьогоднішній матч</button>
+                    <button id="btn2" type="submit">сьогоднішній матч</button>
         </form>
+        </div>
+                <div id = "liniya">
+        <form  action="../GamesController" method="POST" >
+                    <input id="futureGame" type="hidden" name="futureGame" value="showFutureGame" />
+                    <button id="btn2" type="submit">майбутні матчі</button>
+        </form>
+        </div>
+        
     </CENTER>    
     </body>
 </html>
