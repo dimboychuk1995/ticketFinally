@@ -31,7 +31,7 @@
                 <%
                     for (Subscription subscription : subscriptionList.getSubscriptionAll()) {
                 %>
-                    <form role="form form_update" action="../SubscriptionController" method="POST">
+                    <form  action="../SubscriptionController" method="POST">
                         <div class="form-group">
                             <input id="id" type="text" name="id" value="<%=subscription.getId()%>" size="20" />
                             <input id="PIP" type="text" name="PIP" value="<%=subscription.getPIP()%>" size="20" />
@@ -42,16 +42,16 @@
                     </form>
 =======
         <%
-            for (Subscription subscription : subscriptionList.getSubscriptionAll()) {
+            for (Subscription subscription1 : subscriptionList.getSubscriptionAll()) {
         %>
           <form role="form" action="../SubscriptionController" method="POST">
 
                 <div class="form-group">
 
-                    <input id="id" type="text" name="id" value="<%=subscription.getId()%>" size="20" />
-                    <input id="PIP" type="text" name="PIP" value="<%=subscription.getPIP()%>" size="20" />
-                    <input id="season" type="text" name="season" value="<%=subscription.getSeason()%>" size="20" />
-                    <input id="placeId" type="text" name="placeId" value="<%=subscription.getPlaceId()%>" size="20" />
+                    <input id="id" type="text" name="id" value="<%=subscription1.getId()%>" size="20" />
+                    <input id="PIP" type="text" name="PIP" value="<%=subscription1.getPIP()%>" size="20" />
+                    <input id="season" type="text" name="season" value="<%=subscription1.getSeason()%>" size="20" />
+                    <input id="placeId" type="text" name="placeId" value="<%=subscription1.getPlaceId()%>" size="20" />
 
                 </div>
         
@@ -62,9 +62,9 @@
         <%}%>
 >>>>>>> origin/andrusiv
                     
-                    <form role="form form_delete" action="../SubscriptionController" method="POST">
+                    <form  action="../SubscriptionController" method="POST">
                         <div class="form-group">
-                            <input id="id" class="id_none" type="text" name="id" value="<%=subscription.getId()%>" size="0" />
+                            <input type="text" name="id" value="<%=subscription.getId()%>" />
                         </div>
                         <button id="btn_delete" value="delete" type="submit" class="btn btn-danger">Видалити</button>  
                     </form>
@@ -72,7 +72,7 @@
             </div> 
             
             <div class="add_sub">
-                <form role="form form_add" action="../SubscriptionController" method="POST">
+                <form action="../SubscriptionController" method="POST">
                     <div class="form-group">
                         <input class="form-control" type="text" id="PIP" name="PIP" value="" placeholder="ПІП"/> 
                         <select class="form-control" name="season">

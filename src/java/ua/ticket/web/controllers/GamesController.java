@@ -39,13 +39,24 @@ public class GamesController extends HttpServlet {
         ResultSet rs = null;
         Connection conn = null;
        
-        String valueParam = request.getParameter("allGame");
-        String valueParam2 = request.getParameter("currentGame");
-        String valueParam3 = request.getParameter("futureGame");
+        String[] valueParam = new String[0];
+        String insertParam = "";
+        System.out.println(insertParam);
+        if(request.getParameterValues("sortGames") != null){
+            valueParam = request.getParameterValues("sortGames");
+        }
+        if (request.getParameter("insertGame") != null){
+            insertParam = request.getParameter("insertGame");
+        }
+        
+        
+        
         
         String status1 = "showAllGame"; // all games
         String status2 = "showCurrentGame"; // current game
-        String status3 = "showFutureGame"; // current game
+        String status3 = "showFutureGame"; // future game
+        String status4 = "insertGame"; // insert games to db
+        
         
         String moreCurrDate = "SELECT * FROM tickets.games "
                 + "WHERE date >= curdate() "
@@ -55,22 +66,32 @@ public class GamesController extends HttpServlet {
                 + "WHERE date = curdate()";
         String allTime = "SELECT * FROM tickets.games"
                         + " ORDER BY date";
+
+        String sql = currDate;//defoult
+
+        if ( valueParam.length > 0){
+            for (int i = 0; i < valueParam.length; i++){  
+                if (status1.equals(valueParam[i])){
+                    sql = allTime;
+                    }
+                if(status2.equals(valueParam[i])){
+                    sql = currDate;
+                }
+                if(status3.equals(valueParam[i])){
+                    sql = moreCurrDate;
+                }
+            }
+        }
+        if (status4.equals(insertParam)){
+
+            insertGame (request,response);
+            System.out.println(sql);
+        }
         
-        String sql = moreCurrDate;
-        if (status1.equals(valueParam)){
-            sql = allTime;
-        }
-        if(status2.equals(valueParam2)){
-            sql = currDate;
-        }
-        if(status3.equals(valueParam3)){
-            sql = moreCurrDate;
-        }
         try{
- 
             conn = Database.getConnection();
             stmt = conn.createStatement();
-            rs   = stmt.executeQuery(sql);            
+            rs   = stmt.executeQuery(sql);     
             
             gamesList.clear();
             while(rs.next()){
@@ -112,6 +133,40 @@ public class GamesController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         showGames(request, response);
+    }
+    
+    protected void insertGame(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String time   = request.getParameter("time");
+        //System.out.println(time);
+        String date   = request.getParameter("date");
+        //System.out.println(date);
+        String team1  = request.getParameter("owner");
+        //System.out.println(team1);
+        String team2  = request.getParameter("guest"); 
+        //System.out.println(team2);
+        String place = request.getParameter("place");
+        //System.out.println(place);
+        
+        try(Connection conn = Database.getConnection();
+            Statement stmt = conn.createStatement();
+            ){
+            
+                String insertGame = "INSERT INTO tickets.games"
+                    + "(team1,team2,date,time,place)"
+                    + " VALUES"
+                    + "('"  +  team1
+                    + "','" +  team2
+                    + "','" +  date
+                    + "','" +  time
+                    + "','" +  place
+                    + "')";
+            stmt.executeUpdate(insertGame);
+            
+        }catch(SQLException ex){
+            Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }
