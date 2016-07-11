@@ -26,7 +26,7 @@
         
         <div class="content">
             
-<<<<<<< HEAD
+
             <div class="forms">
                 <%
                     for (Subscription subscription : subscriptionList.getSubscriptionAll()) {
@@ -40,32 +40,9 @@
                         </div>
                         <button id="btn_update" value="update" type="submit" class="btn btn-warning">Оновити</button>  
                     </form>
-=======
-        <%
-            for (Subscription subscription1 : subscriptionList.getSubscriptionAll()) {
-        %>
-          <form role="form" action="../SubscriptionController" method="POST">
-
-                <div class="form-group">
-
-                    <input id="id" type="text" name="id" value="<%=subscription1.getId()%>" size="20" />
-                    <input id="PIP" type="text" name="PIP" value="<%=subscription1.getPIP()%>" size="20" />
-                    <input id="season" type="text" name="season" value="<%=subscription1.getSeason()%>" size="20" />
-                    <input id="placeId" type="text" name="placeId" value="<%=subscription1.getPlaceId()%>" size="20" />
-
-                </div>
-        
-                <button id="btn1" type="submit" class="btn btn-default">Оновити</button>
-                
-            </form>
-                    
-        <%}%>
->>>>>>> origin/andrusiv
                     
                     <form  action="../SubscriptionController" method="POST">
-                        <div class="form-group">
-                            <input type="text" name="id" value="<%=subscription.getId()%>" />
-                        </div>
+                        
                         <button id="btn_delete" value="delete" type="submit" class="btn btn-danger">Видалити</button>  
                     </form>
                 <%}%>
