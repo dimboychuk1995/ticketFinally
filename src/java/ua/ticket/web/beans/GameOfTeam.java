@@ -12,6 +12,7 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class GameOfTeam {
     
+    private int id;
     private String nameTeam1;
     private String nameTeam2;
     private String dateGame;
@@ -19,6 +20,15 @@ public class GameOfTeam {
     private String placeGame;
 
  // getters and setters
+
+    public int getId(){
+        return id;
+    }
+    
+    public void setId(Integer id){
+        this.id = id;
+    }
+    
     public String getTimeGame(){
         return timeGame;
     }

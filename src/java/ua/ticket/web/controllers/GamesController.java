@@ -41,12 +41,17 @@ public class GamesController extends HttpServlet {
        
         String[] valueParam = new String[0];
         String insertParam = "";
-        System.out.println(insertParam);
+        String updateParam = "";
+
         if(request.getParameterValues("sortGames") != null){
             valueParam = request.getParameterValues("sortGames");
         }
         if (request.getParameter("insertGame") != null){
             insertParam = request.getParameter("insertGame");
+        }
+        if (request.getParameter("updateGame") != null){
+            updateParam = request.getParameter("updateGame");
+            
         }
         
         
@@ -56,6 +61,7 @@ public class GamesController extends HttpServlet {
         String status2 = "showCurrentGame"; // current game
         String status3 = "showFutureGame"; // future game
         String status4 = "insertGame"; // insert games to db
+        String status5 = "updateGame";
         
         
         String moreCurrDate = "SELECT * FROM tickets.games "
@@ -64,10 +70,11 @@ public class GamesController extends HttpServlet {
         
         String currDate = "SELECT * FROM tickets.games "
                 + "WHERE date = curdate()";
+        
         String allTime = "SELECT * FROM tickets.games"
                         + " ORDER BY date";
 
-        String sql = currDate;//defoult
+        String sql = moreCurrDate;//defoult
 
         if ( valueParam.length > 0){
             for (int i = 0; i < valueParam.length; i++){  
@@ -82,12 +89,15 @@ public class GamesController extends HttpServlet {
                 }
             }
         }
-        if (status4.equals(insertParam)){
-
-            insertGame (request,response);
-            System.out.println(sql);
-        }
         
+        if (status4.equals(insertParam)){
+            insertGame (request,response);
+            //System.out.println();
+        }
+        if (status5.equals(updateParam)){
+            System.out.println(updateParam);
+            updateGame(request, response);
+        }
         try{
             conn = Database.getConnection();
             stmt = conn.createStatement();
@@ -96,6 +106,7 @@ public class GamesController extends HttpServlet {
             gamesList.clear();
             while(rs.next()){
                 GameOfTeam game = new GameOfTeam();
+                game.setId(rs.getInt("id"));
                 game.setDateGame(rs.getString("date"));
                 game.setTimeGame(rs.getString("time"));
                 game.setNameTeam1(rs.getString("team1"));
@@ -133,6 +144,43 @@ public class GamesController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         showGames(request, response);
+    }
+    
+    protected void updateGame(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException{
+        try(Connection conn = Database.getConnection();
+            Statement stmt = conn.createStatement();
+            ){
+            
+            String id = request.getParameter("id");
+            System.out.println(id);
+            String time   = request.getParameter("time");
+            System.out.println(time);
+            String date   = request.getParameter("date");
+            System.out.println(date);
+            String team1  = request.getParameter("owner");
+            System.out.println(team1);
+            String team2  = request.getParameter("guest"); 
+            System.out.println(team2);
+            String place = request.getParameter("place");
+            System.out.println(place);
+            
+            
+                String updateGame = "UPDATE games "
+                        + "set "
+                        + "time = '" + time
+                        + "',date = '" + date
+                        + "',team1 = '" + team1
+                        + "',team2 = '" + team2
+                        + "',place = '" + place
+                        + "' where id = " + id;
+
+                System.out.println(updateGame);
+            stmt.executeUpdate(updateGame);
+            
+        }catch(SQLException ex){
+            Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     protected void insertGame(HttpServletRequest request, HttpServletResponse response)

@@ -48,27 +48,7 @@
                 <option value = "showFutureGame"> майбутні матчі</option>
             </select>
             <input type="submit" value="показати матчі">
-            </form>
-        <!--
-        <div id = "liniya">
-            <form  action="../GamesController" method="POST" >
-                <p><input id="allGame" type="hidden" name="allGame" value="showAllGame" /></p>      
-                <p><button id="btn1" type="submit" class="btn btn-default">всі матчі</button></p>
-            </form>
-        </div>
-        <div id = "liniya">
-            <form  action="../GamesController" method="POST" >
-                <p><input id="currentGame" type="hidden" name="currentGame" value="showCurrentGame" /></p>
-                <p><button id="btn2" type="submit">сьогоднішній матч</button></p>
-            </form>
-        </div>
-        <div id = "liniya">
-            <form  action="../GamesController" method="POST" >
-                <p><input id="futureGame" type="hidden" name="futureGame" value="showFutureGame" />
-                <button id="btn2" type="submit">майбутні матчі</button></p>
-            </form>
-        </div>
-        -->
+        </form>
         <br>
         <br>
         <br>
@@ -78,39 +58,45 @@
         <%
             for (GameOfTeam game : gamesList.futureGame()){
         %>
-                 <div id="form-game"> 
-                     <div class="content">
-                        <input  type="text" name=" time " value="<%=game.getTimeGame() %>" size="20" readonly/>
-                        <input  type="text" name=" date " value="<%=game.getDateGame()%>" size="20" readonly />
-                        <input  type="text" name= " owner " value="<%=game.getNameTeam1()%>" size="20" readonly/>
-                        <input  type="text" name=" guest " value="<%=game.getNameTeam2() %>" size="20" readonly />
-                        <input  type="text" name=" place " value="<%=game.getPlaceGame()%>" size="20" readonly/>
+                <form  action="../GamesController" method="POST" >
+                    <div id = "form-game">
+                    <div class="content">
+                        <input  type="hidden" name="id" value="<%=game.getId()%>" />
+                        <input  type="text" name="time" value="<%=game.getTimeGame() %>" size="20"/>
+                        <input  type="text" name="date" value="<%=game.getDateGame()%>" size="20" />
+                        <input  type="text" name= "owner" value="<%=game.getNameTeam1()%>" size="20"/>
+                        <input  type="text" name="guest" value="<%=game.getNameTeam2() %>" size="20" />
+                        <input  type="text" name="place" value="<%=game.getPlaceGame()%>" size="20"/>
+                        <input id="updateGame" type="hidden" name="updateGame" value="updateGame" />
+                        <button type="submit">редагувати</button>
                     </div>
-                 </div>
+                    </div>    
+                </form> 
+        <br>
 
         <%}%>
+        
         
         <input type="button" id="more_games" onclick="add_games();" value="Добавити матч" />
             
                 <script>
-                    var room = 1;
                     function add_games() {
                         var objTo = document.getElementById('form-game')
                         var divtest = document.createElement("div");
                         divtest.innerHTML = '<div class="content">\n\
                                             <form  action="../GamesController" method="POST" >\n\
-                                            <input type="text" name= "time"   value="" size="20"/>\n\
-                                            <input type="text" name="date"    value="" size="20"/>\n\
-                                            <input type="text" name= "owner"  value="" size="20"/>\n\
-                                            <input type="text" name="guest"   value="" size="20"/>\n\
-                                            <input type="text" name="place"   value="" size="20"/>\n\
+\n\                                         <input type="text" name= "time"    value="" size="20" placeholder = "час матчу"/>\n\
+                                            <input type="text" name= "date"    value="" size="20" placeholder = "дата матчу"/>\n\
+                                            <input type="text" name= "owner"   value="" size="20" placeholder = "господар"/>\n\
+                                            <input type="text" name= "guest"   value="" size="20" placeholder = "гості"/>\n\
+                                            <input type="text" name= "place"   value="" size="20" placeholder = "місце проведення"/>\n\
                                             <input id="insertGame" type="hidden" name="insertGame" value="insertGame" />\n\
-                                            <p><button type="submit">Зберегти</button></p>\n\
+                                            <button type="submit">Добавити</button>\n\
                                             </form>\n\
                                             </div>';
                         objTo.appendChild(divtest)
                     }
-            </script>
+                </script>
         </div>
     </CENTER>    
     </body>
