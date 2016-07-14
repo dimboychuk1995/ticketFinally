@@ -40,7 +40,7 @@
                         </div>
                         <button id="btn_update" value="update" type="submit" class="btn btn-warning">Оновити</button>  
                     </form>
-                    
+                
                     <form  action="../SubscriptionController" method="POST">
                         
                         <button id="btn_delete" value="delete" type="submit" class="btn btn-danger">Видалити</button>  
