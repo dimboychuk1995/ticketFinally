@@ -1,4 +1,3 @@
-
 package ua.ticket.web.controllers;
 
 import java.io.IOException;
@@ -40,9 +39,11 @@ public class GamesController extends HttpServlet {
         Connection conn = null;
        
         String[] valueParam = new String[0];
-        String insertParam = "";
-        String updateParam = "";
-
+        String insertParam  = "";
+        String updateParam  = "";
+        String editGames    = "";
+        String deleteGame  = "";
+        
         if(request.getParameterValues("sortGames") != null){
             valueParam = request.getParameterValues("sortGames");
         }
@@ -51,17 +52,22 @@ public class GamesController extends HttpServlet {
         }
         if (request.getParameter("updateGame") != null){
             updateParam = request.getParameter("updateGame");
-            
+        }
+        if (request.getParameter("editGames") != null){
+            editGames = request.getParameter("editGames");
+        }
+        if (request.getParameter("deleteGame") != null){
+            deleteGame = request.getParameter("deleteGame");
         }
         
-        
-        
-        
+ 
         String status1 = "showAllGame"; // all games
         String status2 = "showCurrentGame"; // current game
         String status3 = "showFutureGame"; // future game
         String status4 = "insertGame"; // insert games to db
         String status5 = "updateGame";
+        String status6 = "editGames"; // edit games
+        String status7 = "deleteGame"; // edit games
         
         
         String moreCurrDate = "SELECT * FROM tickets.games "
@@ -97,6 +103,14 @@ public class GamesController extends HttpServlet {
         if (status5.equals(updateParam)){
             System.out.println(updateParam);
             updateGame(request, response);
+        }
+        if (status6.equals(editGames)){
+            System.out.println(editGames);
+            sql = moreCurrDate;
+        }
+        if (status7.equals(deleteGame)){
+            System.out.println(deleteGame);
+            deleteGame(request, response);
         }
         try{
             conn = Database.getConnection();
@@ -145,7 +159,26 @@ public class GamesController extends HttpServlet {
             throws ServletException, IOException {
         showGames(request, response);
     }
-    
+    protected void deleteGame(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException{
+        try(Connection conn = Database.getConnection();
+            Statement stmt = conn.createStatement();
+            ){
+            
+            String id = request.getParameter("id");
+            System.out.println(id);
+
+            String deleteGame = "DELETE FROM tickets.games "
+                        + "WHERE " 
+                        + "id = " + id; 
+
+            stmt.executeUpdate(deleteGame);
+                       
+        }catch(SQLException ex){
+            Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     protected void updateGame(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
         try(Connection conn = Database.getConnection();
