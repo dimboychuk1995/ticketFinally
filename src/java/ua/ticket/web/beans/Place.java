@@ -22,16 +22,21 @@ public class Place {
     private int row;
     private int number;
     private int idSector;
+    private String PIP;
+    private int status;
     
     public Place(){
         
     }
     
-    public Place(int id, int row, int number, int idSector){
+    public Place(int id, int row, int number, int idSector, String PIP, int status){
         this.id = id;
         this.row = row;
         this.number = number;
         this.idSector = idSector;
+        this.PIP = PIP;
+        this.status = status;
+        
     }
     
     public int getId(){
@@ -50,6 +55,14 @@ public class Place {
         return idSector;
     }
     
+    public String getPIP(){
+        return PIP;
+    }
+    
+    public int getStatus(){
+        return status;
+    }
+    
     public void setId(int id){
         this.id = id; 
     }
@@ -64,5 +77,13 @@ public class Place {
     
     public void setIdSector(int idSector){
         this.idSector = this.idSector; 
+    }
+    
+    public void setPIP(String PIP){
+        this.PIP = PIP;
+    }
+    
+    public void setStatus(int status){
+        this.status = status;
     }
 }

@@ -3,6 +3,10 @@
     Created on : 7 лип. 2016, 14:21:36
     Author     : us9522
 --%>
+<%@page import="ua.ticket.web.controllers.SaleController"%>
+<%@page import="ua.ticket.web.beans.Place"%>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -28,6 +32,9 @@
   
   
     <body>
+        
+        <jsp:useBean id="placeList" class="ua.ticket.web.controllers.SaleController"/>
+        
         <div class="header"></div>    
 
         <div class="content">
@@ -35,7 +42,41 @@
             <div class="sectors_up">
                 
                 <div class="row sector_f">
-
+                    <%
+                        for(Place place : placeList.getPlaceSectorA()){
+                    %>
+                    
+                    <button data-toggle="modal" data-target="#updateTicket" id="btn_update" value="update" type="submit" class="btn btn-warning"><%=place.getId()%></button>
+                    
+                    <div id="updateTicket" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Інформація про квиток</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="../SaleController" method="POST">
+                                        <div class="form-group form-group_on_sale">
+                                            <input placeholder="id" class="form-control" id="id" type="text" name="id" value="<%=place.getId()%>"/> 
+                                            <input placeholder="Ряд" class="form-control" id="row" type="text" name="row" value="<%=place.getRow()%>"/> 
+                                            <input placeholder="Місце" class="form-control" id="number" type="text" name="number" value="<%=place.getNumber()%>"/> 
+                                            <input placeholder="Сектор" class="form-control" id="id_sector" type="text" name="id_sector" value="<%=place.getIdSector()%>"/> 
+                                            <input placeholder="Вільно/зайнято" class="form-control" id="status" type="text" name="status" value="<%=place.getStatus()%>"/> 
+                                            <input placeholder="ПІП" class="form-control" id="PIP" type="text" name="PIP" value="<%=place.getPIP()%>"/> 
+                                        </div>
+                                            <button id="btn_update" value="update" type="submit" class="btn btn-warning"><%=place.getId()%></button>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Вийти</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <%}%>
+                                    
                 </div>
                 
                 <div class="row sectors_c_d_e">
