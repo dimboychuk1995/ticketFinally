@@ -4,6 +4,10 @@
     Author     : us9522
 --%>
 
+<%@page import="ua.ticket.web.controllers.SectorController"%>
+<%@page import="ua.ticket.web.beans.Sector"%>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,16 +27,40 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body>
-      
-    
-      
-      
-      
+    <body>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../js/bootstrap.min.js"></script>
-  </body>
+        <jsp:useBean id="sectorList" class="ua.ticket.web.controllers.SectorController"/>
+
+        <div class="header">
+
+        </div>
+
+        <div class="content">
+            <div class="forms">
+                <%
+                    for(Sector sector : sectorList.getSectorAll()){
+                %>
+                <form action="../SectorController" method="POST">
+                    <div class="form-group">
+                        <input id="id" type="text" name="id" value="<%=sector.getId()%>" size="20" />
+                        <input id="name" type="text" name="name" value="<%=sector.getName()%>" size="20" />
+                        <input id="price" type="text" name="price" value="<%=sector.getPrice()%>" size="20" />
+                    </div>
+                    <button id="btn_update" value="update" type="submit" class="btn btn-warning">Оновити</button>
+                </form>
+                <%}%>
+                
+                
+            </div>
+        </div>
+        
+                
+                
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    
+        <script src="../js/bootstrap.min.js"></script>
+        
+        
+    </body>
+
 </html>

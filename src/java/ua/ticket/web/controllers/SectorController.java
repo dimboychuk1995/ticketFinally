@@ -71,62 +71,53 @@ public class SectorController extends HttpServlet{
         return sectorList;
     }
     
-    public ArrayList<Sector> getSectorAll(HttpServletRequest request, HttpServletResponse response) {
+    public ArrayList<Sector> getSectorAll() {
         if (!sectorList.isEmpty()) {
             return sectorList;
         } else {
-            return getSector("select * from subscription");
+            return getSector("select * from sector");
         }
     }
     
-    public ArrayList<Sector> updateSector(HttpServletRequest request, HttpServletResponse response) {
-        if (!sectorList.isEmpty()) {
-            return sectorList;
-        } else {
-            return getSector("select * from subscription");
+    protected void updateSector(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException{
+        String id = request.getParameter("id");
+        String name = request.getParameter("name");
+        String price = request.getParameter("price");
+        
+        try(Connection conn = Database.getConnection();
+            Statement stmt = conn.createStatement();
+            ){
+            
+            String sql = "update tickets.sector "
+                    + "set id = '" + id
+                    + "', name = '" + name
+                    + "', price = " + price
+                    + " where id=" + id;
+            
+            System.out.println(sql);
+            
+            stmt.executeUpdate(sql);
+            
+            response.sendRedirect("pages/sectors.jsp");
+        }catch(SQLException ex){
+            Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public ArrayList<Sector> deleteSector(HttpServletRequest request, HttpServletResponse response) {
-        if (!sectorList.isEmpty()) {
-            return sectorList;
-        } else {
-            return getSector("select * from subscription");
-        }
-    }
-    
-    public ArrayList<Sector> addSector(HttpServletRequest request, HttpServletResponse response) {
-        if (!sectorList.isEmpty()) {
-            return sectorList;
-        } else {
-            return getSector("select * from subscription");
-        }
-    }
-    
     
     
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if(request.getParameterMap().size() == 4){
+
             updateSector(request, response);
-        } else if(request.getParameterMap().size() == 1){
-            deleteSector(request, response);   
-        } else{
-            addSector(request, response);
-        }
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if(request.getParameterMap().size() == 4){
+        
             updateSector(request, response);
-        } else if(request.getParameterMap().size() == 1){
-            deleteSector(request, response);   
-        } else{
-            addSector(request, response);
-        }
     }
     
     
