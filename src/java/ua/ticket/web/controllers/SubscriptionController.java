@@ -54,7 +54,9 @@ public class SubscriptionController extends HttpServlet{
                 subscription.setId(rs.getInt("id"));
                 subscription.setPIP(rs.getString("PIP"));
                 subscription.setSeason(rs.getString("season"));
-                subscription.setPlaceId(rs.getInt("placeId"));
+                subscription.setSector(rs.getString("name"));
+                subscription.setRow(rs.getInt("row"));
+                subscription.setNumber(rs.getInt("number"));
                 subscriptionsList.add(subscription);
             }
 
@@ -78,7 +80,10 @@ public class SubscriptionController extends HttpServlet{
         if (!subscriptionsList.isEmpty()) {
             return subscriptionsList;
         } else {
-            return getSubscription("select * from subscription");
+            return getSubscription("SELECT subscription.id, PIP, season, place.row, place.number, sector.name\n" +
+                                    "FROM tickets.subscription join tickets.place on \n" +
+                                    "subscription.placeId = place.id\n" +
+                                    "join sector on place.idSector = sector.id");
         }
     }
     
@@ -99,7 +104,7 @@ public class SubscriptionController extends HttpServlet{
         String season = request.getParameter("season");
         String placeId = request.getParameter("placeId");
         
-        System.out.println("method update");
+        //System.out.println("method update");
         
         try(Connection conn = Database.getConnection();
             Statement stmt = conn.createStatement();
@@ -150,7 +155,9 @@ public class SubscriptionController extends HttpServlet{
         
         String PIP = request.getParameter("PIP");
         String season = request.getParameter("season");
-        String placeId = request.getParameter("placeId");
+        String sector = request.getParameter("sector");
+        String row = request.getParameter("row");
+        String number = request.getParameter("number");
 
         System.out.println("method add");
         
@@ -159,17 +166,25 @@ public class SubscriptionController extends HttpServlet{
             ){
             
             String sql = "INSERT INTO `tickets`.`subscription`"
-                    + "(`PIP`, `season`, `placeId`)"
+                    + "(`PIP`, `season`)"
                     + "VALUES"
                     + "('" + PIP 
                     + "','" + season
-                    + "','" + placeId
                     + "');";
             
-            System.out.println(sql);
+            String sqlSec = "set @maxId = (select max(id) from tickets.subscription);"
+                    + "update tickets.subscription "
+                    + "set placeId = ( "
+                    + "select place.id  from place join sector on place.idSector = sector.id  "
+                    + "where row = 2 and number = 8 and sector.name = 'A' "
+                    + ") "
+                    + "where id = (@maxId)";
+            
+        
+            System.out.println(sqlSec);
             
             stmt.executeUpdate(sql);
-            
+            stmt.executeUpdate(sqlSec);
             
             response.sendRedirect("pages/sub.jsp");
             

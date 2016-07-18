@@ -27,21 +27,25 @@ public class Subscription {
     private int id;
     private String PIP;
     private String season;
-    private int placeId;
-    private String aPlace;
+    private String sector;
+    private int row;
+    private int number;
     
     public Subscription(int id, String PIP, String season, int placeId){
         this.id = id;
         this.PIP = PIP;
         this.season = season;
-        this.placeId = placeId;
+        //this.placeId = placeId;
     }
     
-    public Subscription(int id, String PIP, String season, String aPlace){
+    public Subscription(int id, String PIP, String season, String sector, int row, int number){
         this.id = id;
         this.PIP = PIP;
         this.season = season;
-        this.aPlace = aPlace;
+        this.sector = sector;
+        this.row = row;
+        this.number = number;
+        //this.aPlace = aPlace;
     }
     
     public Integer getId(){
@@ -68,19 +72,27 @@ public class Subscription {
         this.season = season;
     }
     
-    public int getPlaceId(){
-        return placeId;
+    public String getSector(){
+        return sector;
     }
     
-    public void setPlaceId(int placeId){
-        this.placeId = placeId;
+    public void setSector(String sector){
+        this.sector = sector;
     }
     
-    public String getAPlace(){
-        return aPlace;
+    public int getRow(){
+        return row;
     }
     
-    public void setAPlace(String aPlace){
-        this.aPlace = aPlace;
+    public void setRow(int row){
+        this.row = row;
+    }
+    
+    public int getNumber(){
+        return number;
+    }
+    
+    public void setNumber(int number){
+        this.number = number;
     }
 }

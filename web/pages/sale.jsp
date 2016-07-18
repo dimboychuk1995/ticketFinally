@@ -58,11 +58,17 @@
                                 <div class="modal-body">
                                     <form action="../SaleController" method="POST">
                                         <div class="form-group form-group_on_sale">
+                                            <label for="id">id</label>
                                             <input placeholder="id" class="form-control" id="id" type="text" name="id" value="<%=place.getId()%>"/> 
+                                            <label for="row">row</label>
                                             <input placeholder="Ряд" class="form-control" id="row" type="text" name="row" value="<%=place.getRow()%>"/> 
+                                            <label for="number">number</label>
                                             <input placeholder="Місце" class="form-control" id="number" type="text" name="number" value="<%=place.getNumber()%>"/> 
+                                            <label for="id_sector">id_sector</label>
                                             <input placeholder="Сектор" class="form-control" id="id_sector" type="text" name="id_sector" value="<%=place.getIdSector()%>"/> 
+                                            <label for="status">status</label>
                                             <input placeholder="Вільно/зайнято" class="form-control" id="status" type="text" name="status" value="<%=place.getStatus()%>"/> 
+                                            <label for="PIP">PIP</label>
                                             <input placeholder="ПІП" class="form-control" id="PIP" type="text" name="PIP" value="<%=place.getPIP()%>"/> 
                                         </div>
                                             <button id="btn_update" value="update" type="submit" class="btn btn-warning"><%=place.getId()%></button>

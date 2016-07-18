@@ -36,13 +36,15 @@
                             <input id="id" type="text" name="id" value="<%=subscription.getId()%>" size="20" />
                             <input id="PIP" type="text" name="PIP" value="<%=subscription.getPIP()%>" size="20" />
                             <input id="season" type="text" name="season" value="<%=subscription.getSeason()%>" size="20" />
-                            <input id="placeId" type="text" name="placeId" value="<%=subscription.getPlaceId()%>" size="20" />
+                            <input id="sector" type="text" name="sector" value="<%=subscription.getSector()%>" size="20" />
+                            <input id="row" type="text" name="row" value="<%=subscription.getRow()%>" size="20" />
+                            <input id="number" type="text" name="number" value="<%=subscription.getNumber()%>" size="20" />
                         </div>
                         <button id="btn_update" value="update" type="submit" class="btn btn-warning">Оновити</button>  
                     </form>
                 
                     <form  action="../SubscriptionController" method="POST">
-                        
+                        <input class="delete_sub" id="id" type="text" name="id" value="<%=subscription.getId()%>" size="20" />
                         <button id="btn_delete" value="delete" type="submit" class="btn btn-danger">Видалити</button>  
                     </form>
                 <%}%>
@@ -55,8 +57,12 @@
                         <select class="form-control" name="season">
                             <option id="season">2015-2016</option>
                             <option id="season">2016-2017</option>
+                            <option id="season">2017-2018</option>
+                            <option id="season">2018-2019</option>
                         </select>  
-                        <input class="form-control" type="text" id="placeId" name="placeId" value="" placeholder="placeID" />
+                        <input class="form-control" type="text" id="sector" name="sector" value="" placeholder="sector" />
+                        <input class="form-control" type="text" id="row" name="row" value="" placeholder="row" />
+                        <input class="form-control" type="text" id="number" name="number" value="" placeholder="number" />
                     </div>
                     <button id="btn_add" value="delete" type="submit" class="btn btn-success">Додати</button>  
                 </form>

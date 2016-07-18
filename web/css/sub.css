@@ -7,9 +7,7 @@ and open the template in the editor.
     Created on : 6 лип. 2016, 11:19:59
     Author     : us9522
 */
-.content{
-    width: 1000px;
-}
+
 
 .header{
     height: 200px;
@@ -26,4 +24,8 @@ and open the template in the editor.
 
 .form-control{
     width: 150px;
+}
+
+.delete_sub{
+    display: none;
 }
