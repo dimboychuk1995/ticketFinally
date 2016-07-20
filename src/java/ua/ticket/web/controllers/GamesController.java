@@ -245,6 +245,24 @@ public class GamesController extends HttpServlet {
                     + "')";
             stmt.executeUpdate(insertGame);
             
+                String insertPlacesToMatch = "INSERT into ticket_on_game"
+                    + "(id_game,row,number,id_sector,status)"
+                    + "SELECT (SELECT id FROM games ORDER BY id DESC LIMIT 1),"
+                    + "row, number, idSector,0 "
+                    + " from place"; 
+                //System.out.println(insertPlacesToMatch);
+           stmt.executeUpdate(insertPlacesToMatch);
+           
+                String updateSubscripInMatch = "update ticket_on_game"
+                    + " join place on  ticket_on_game.row = place.row"
+                    + " and ticket_on_game.number = place.number"
+                    + " and ticket_on_game.id_sector = place.idSector"
+                    + " join subscription on  place.id = subscription.placeId"
+                    + " set ticket_on_game.status = 1, ticket_on_game.PIP = subscription.PIP";
+                System.out.println(updateSubscripInMatch);
+                
+            stmt.executeUpdate(updateSubscripInMatch);
+            
         }catch(SQLException ex){
             Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
         }
