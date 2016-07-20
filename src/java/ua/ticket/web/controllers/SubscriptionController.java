@@ -158,6 +158,7 @@ public class SubscriptionController extends HttpServlet{
         String sector = request.getParameter("sector");
         String row = request.getParameter("row");
         String number = request.getParameter("number");
+        ResultSet rs = null;
 
         System.out.println("method add");
         
@@ -172,13 +173,22 @@ public class SubscriptionController extends HttpServlet{
                     + "','" + season
                     + "');";
             
-            String sqlSec = "set @maxId = (select max(id) from tickets.subscription);"
-                    + "update tickets.subscription "
+            String sqlMax = "select max(id) as id from tickets.subscription";
+            String id = "";
+            
+            rs = stmt.executeQuery(sqlMax);
+            while(rs.next()){
+                id = rs.getString("id");
+            }
+            rs.close();
+            String sqlSec = "update tickets.subscription "
                     + "set placeId = ( "
                     + "select place.id  from place join sector on place.idSector = sector.id  "
-                    + "where row = 2 and number = 8 and sector.name = 'A' "
-                    + ") "
-                    + "where id = (@maxId)";
+                    + "where row =  " + row
+                    + " and number =  " + number
+                    + " and sector.name = '" + sector
+                    + "') "
+                    + "where id = " + id;
             
         
             System.out.println(sqlSec);
