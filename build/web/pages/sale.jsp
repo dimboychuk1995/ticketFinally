@@ -5,6 +5,8 @@
 --%>
 <%@page import="ua.ticket.web.controllers.SaleController"%>
 <%@page import="ua.ticket.web.beans.Place"%>
+<%@page import="ua.ticket.web.controllers.GamesController"%>
+<%@page import="ua.ticket.web.beans.GameOfTeam"%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 
 
@@ -34,11 +36,30 @@
     <body>
         
         <jsp:useBean id="placeList" class="ua.ticket.web.controllers.SaleController"/>
+        <jsp:useBean id="gamesList" class="ua.ticket.web.controllers.GamesController"/>
         
         <div class="header"></div>    
 
         <div class="content">
+                
+            <div class="list_matches">
+                <form class="form-inline" role="form" action="../SaleController" method="POST">
+                    <select class="form-control matches">
+                        <%
+                            for (GameOfTeam game : gamesList.futureGame()){
+                        %>
 
+                        <option><%=game.getNameTeam1()%> - <%=game.getNameTeam2()%></option>
+
+                        <%}%>
+                    </select>
+                    
+                    <button type="submit" value="update" class="btn btn-default btn_show">Показати список квітків по даному матчі</button>
+                     
+                </form>
+            </div>
+            
+            
             <div class="sectors_up">
                 
                 <div class="row sector_f">
@@ -46,9 +67,9 @@
                         for(Place place : placeList.getPlaceSectorA()){
                     %>
                     
-                    <button data-toggle="modal" data-target="#updateTicket" id="btn_update" value="update" type="submit" class="btn btn-warning"><%=place.getId()%></button>
+                    <button data-toggle="modal" data-target="#<%=place.getId()%>" id="btn_update" value="update" type="submit" class="btn btn-warning"><%=place.getId()%></button>
                     
-                    <div id="updateTicket" class="modal fade" role="dialog">
+                    <div id="<%=place.getId()%>" class="modal fade" role="dialog">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">

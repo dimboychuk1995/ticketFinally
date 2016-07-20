@@ -80,11 +80,18 @@ public class SaleController extends HttpServlet{
     }
     
     public ArrayList<Place> getPlaceSectorA(){
-        if (!placeList.isEmpty()) {
+//        if (!placeList.isEmpty()) {
+//            return placeList;
+//        } else {
+//            return getPlace("select * from ticket_on_game"
+//                    + " where id_sector = " + 1);
+//        }
+        placeList.clear();
+            for (int i_sector =1; i_sector <= 10; i_sector++){
+            getPlace("select * from ticket_on_game"
+                    + " where id_sector = " + i_sector);
+            }
             return placeList;
-        } else {
-            return getPlace("select * from ticket_on_game"
-                    + " where id_sector = " + 1);
-        }
     }
 }
+

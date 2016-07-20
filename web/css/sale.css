@@ -34,3 +34,12 @@ and open the template in the editor.
 #btn_update{
     margin-left: 20px;
 }
+
+.matches{
+    margin-bottom: 15px;
+    width: 250px;
+}
+
+.btn_show{
+    margin: 0px 0px 14px 0;
+}
