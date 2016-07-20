@@ -13,7 +13,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src= "../js/manipulGame.js" type="text/javascript"></script>
-        <title>JSP Page</title>
+        <title>Перегляд матчів</title>
         <style>
             body    {
                     background: #FDF5E6;
@@ -62,7 +62,7 @@
                 <form id ="form1"  action="../GamesController" method="POST" >
                         <input type="hidden" name="id" value="<%=game.getId()%>" />
                         <input class="inputs" type="text" name="time" value="<%=game.getTimeGame() %>" size="3" disabled/>
-                        <input class="inputs" type="text" name="date" value="<%=game.getDateGame()%>" size="20" disabled />
+                        <input id="datepicker" class="inputs" type="text" name="date" value="<%=game.getDateGame()%>" size="20" disabled />
                         <input class="inputs" type="text" name= "owner" value="<%=game.getNameTeam1()%>" size="20" disabled/>
                         <input class="inputs" type="text" name="guest" value="<%=game.getNameTeam2() %>" size="20" disabled />
                         <input class="inputs" type="text" name="place" value="<%=game.getPlaceGame()%>" size="20" disabled/>

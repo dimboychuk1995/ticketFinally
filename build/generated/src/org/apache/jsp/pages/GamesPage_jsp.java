@@ -1,0 +1,185 @@
+package org.apache.jsp.pages;
+
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.jsp.*;
+import java.util.ArrayList;
+import ua.ticket.web.controllers.GamesController;
+import ua.ticket.web.beans.GameOfTeam;
+
+public final class GamesPage_jsp extends org.apache.jasper.runtime.HttpJspBase
+    implements org.apache.jasper.runtime.JspSourceDependent {
+
+  private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
+
+  private static java.util.List<String> _jspx_dependants;
+
+  private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
+
+  public java.util.List<String> getDependants() {
+    return _jspx_dependants;
+  }
+
+  public void _jspService(HttpServletRequest request, HttpServletResponse response)
+        throws java.io.IOException, ServletException {
+
+    PageContext pageContext = null;
+    HttpSession session = null;
+    ServletContext application = null;
+    ServletConfig config = null;
+    JspWriter out = null;
+    Object page = this;
+    JspWriter _jspx_out = null;
+    PageContext _jspx_page_context = null;
+
+    try {
+      response.setContentType("text/html;charset=UTF-8");
+      pageContext = _jspxFactory.getPageContext(this, request, response,
+      			null, true, 8192, true);
+      _jspx_page_context = pageContext;
+      application = pageContext.getServletContext();
+      config = pageContext.getServletConfig();
+      session = pageContext.getSession();
+      out = pageContext.getOut();
+      _jspx_out = out;
+      _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
+
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("<!DOCTYPE html>\r\n");
+      out.write("<html>\r\n");
+      out.write("    <head>\r\n");
+      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
+      out.write("        <script src= \"../js/manipulGame.js\" type=\"text/javascript\"></script>\r\n");
+      out.write("        <title>Перегляд матчів</title>\r\n");
+      out.write("        <style>\r\n");
+      out.write("            body    {\r\n");
+      out.write("                    background: #FDF5E6;\r\n");
+      out.write("                    }\r\n");
+      out.write("                    \r\n");
+      out.write("            #liniya { \r\n");
+      out.write("                    \r\n");
+      out.write("                    float: left;\r\n");
+      out.write("                    height:10px; \r\n");
+      out.write("                    margin-left: 210px; \r\n");
+      out.write("                    margin-top: 4px;\r\n");
+      out.write("                    }\r\n");
+      out.write("    \r\n");
+      out.write("      \r\n");
+      out.write("        </style>\r\n");
+      out.write("    </head>\r\n");
+      out.write("\r\n");
+      out.write("    <body>\r\n");
+      out.write("        ");
+      ua.ticket.web.controllers.GamesController gamesList = null;
+      synchronized (_jspx_page_context) {
+        gamesList = (ua.ticket.web.controllers.GamesController) _jspx_page_context.getAttribute("gamesList", PageContext.PAGE_SCOPE);
+        if (gamesList == null){
+          gamesList = new ua.ticket.web.controllers.GamesController();
+          _jspx_page_context.setAttribute("gamesList", gamesList, PageContext.PAGE_SCOPE);
+        }
+      }
+      out.write("\r\n");
+      out.write("        ");
+      ua.ticket.web.controllers.GamesController gamesInfo = null;
+      synchronized (_jspx_page_context) {
+        gamesInfo = (ua.ticket.web.controllers.GamesController) _jspx_page_context.getAttribute("gamesInfo", PageContext.PAGE_SCOPE);
+        if (gamesInfo == null){
+          gamesInfo = new ua.ticket.web.controllers.GamesController();
+          _jspx_page_context.setAttribute("gamesInfo", gamesInfo, PageContext.PAGE_SCOPE);
+        }
+      }
+      out.write("\r\n");
+      out.write("        ");
+      ua.ticket.web.beans.GameOfTeam gamesTeam = null;
+      synchronized (_jspx_page_context) {
+        gamesTeam = (ua.ticket.web.beans.GameOfTeam) _jspx_page_context.getAttribute("gamesTeam", PageContext.PAGE_SCOPE);
+        if (gamesTeam == null){
+          gamesTeam = new ua.ticket.web.beans.GameOfTeam();
+          _jspx_page_context.setAttribute("gamesTeam", gamesTeam, PageContext.PAGE_SCOPE);
+        }
+      }
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("        <h2 align =\"center\">Розклад матчів НФК Урагану</h2>\r\n");
+      out.write("        \r\n");
+      out.write("        <form  name=\"sortForm\" action=\"../GamesController\" method=\"POST\" >\r\n");
+      out.write("            <select name = \"sortGames\">\r\n");
+      out.write("                <option value = \"showAllGame\"> всі матчі</option>\r\n");
+      out.write("                <option value = \"showCurrentGame\"> поточний матч</option>\r\n");
+      out.write("                <option value = \"showFutureGame\"> майбутні матчі</option>\r\n");
+      out.write("            </select>\r\n");
+      out.write("            <input type=\"submit\" value=\"показати матчі\">\r\n");
+      out.write("            <input type=\"button\" id=\"more_games\" onclick = \"add_games();\" value=\"добавити матч\" />\r\n");
+      out.write("          </form>\r\n");
+      out.write("           \r\n");
+      out.write("            <input id=\"editGames\" type=\"hidden\" name=\"editGames\" value=\"editGames\" />\r\n");
+      out.write("            <button id=\"editG\" type = \"submit\" onclick = \"edit();\">редагувати матчі</button>  \r\n");
+      out.write("          \r\n");
+      out.write("        \r\n");
+      out.write("        <br>\r\n");
+      out.write("        <CENTER>\r\n");
+      out.write("        <div>\r\n");
+      out.write("        ");
+
+            for (GameOfTeam game : gamesList.futureGame()){
+        
+      out.write("\r\n");
+      out.write("            <div id = \"form-game\">\r\n");
+      out.write("                <form id =\"form1\"  action=\"../GamesController\" method=\"POST\" >\r\n");
+      out.write("                        <input type=\"hidden\" name=\"id\" value=\"");
+      out.print(game.getId());
+      out.write("\" />\r\n");
+      out.write("                        <input class=\"inputs\" type=\"text\" name=\"time\" value=\"");
+      out.print(game.getTimeGame() );
+      out.write("\" size=\"3\" disabled/>\r\n");
+      out.write("                        <input id=\"datepicker\" class=\"inputs\" type=\"text\" name=\"date\" value=\"");
+      out.print(game.getDateGame());
+      out.write("\" size=\"20\" disabled />\r\n");
+      out.write("                        <input class=\"inputs\" type=\"text\" name= \"owner\" value=\"");
+      out.print(game.getNameTeam1());
+      out.write("\" size=\"20\" disabled/>\r\n");
+      out.write("                        <input class=\"inputs\" type=\"text\" name=\"guest\" value=\"");
+      out.print(game.getNameTeam2() );
+      out.write("\" size=\"20\" disabled />\r\n");
+      out.write("                        <input class=\"inputs\" type=\"text\" name=\"place\" value=\"");
+      out.print(game.getPlaceGame());
+      out.write("\" size=\"20\" disabled/>\r\n");
+      out.write("                 <br>\r\n");
+      out.write("                        <input id=\"updateGame\" type=\"hidden\" name=\"updateGame\" value=\"updateGame\" />\r\n");
+      out.write("                        <input id =\"s1\" class=\"buttonEdit\" type=\"button\"  onclick=\"sbmit(this.form)\" value = \"обновити\" style = \"display: none\"/>  \r\n");
+      out.write("                </form>\r\n");
+      out.write("                <br>        \r\n");
+      out.write("                <form id =\"form2\"  action=\"../GamesController\" method=\"POST\" >\r\n");
+      out.write("                     <input type=\"hidden\" name=\"id\" value=\"");
+      out.print(game.getId());
+      out.write("\" />   \r\n");
+      out.write("                     <input id=\"deleteGame\" type=\"hidden\" name=\"deleteGame\" value=\"deleteGame\"/>\r\n");
+      out.write("                     <input id =\"s2\" class=\"buttonEdit\" type=\"button\" onclick=\"sbmit(this.form)\" value = \"видалити\" style = \"display:none\"/>       \r\n");
+      out.write("                </form>\r\n");
+      out.write("                \r\n");
+      out.write("            <br>              \r\n");
+      out.write("        ");
+}
+      out.write("\r\n");
+      out.write("        </div>\r\n");
+      out.write("    </CENTER>    \r\n");
+      out.write("    </body>\r\n");
+      out.write("</html>");
+    } catch (Throwable t) {
+      if (!(t instanceof SkipPageException)){
+        out = _jspx_out;
+        if (out != null && out.getBufferSize() != 0)
+          out.clearBuffer();
+        if (_jspx_page_context != null) _jspx_page_context.handlePageException(t);
+        else throw new ServletException(t);
+      }
+    } finally {
+      _jspxFactory.releasePageContext(_jspx_page_context);
+    }
+  }
+}
