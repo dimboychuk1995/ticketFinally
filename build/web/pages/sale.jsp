@@ -46,6 +46,7 @@
                         for(Place place : placeList.getPlaceSectorA()){
                     %>
                     
+                  
                     <button data-toggle="modal" data-target="#updateTicket" id="btn_update" value="update" type="submit" class="btn btn-warning"><%=place.getId()%></button>
                     
                     <div id="updateTicket" class="modal fade" role="dialog">
