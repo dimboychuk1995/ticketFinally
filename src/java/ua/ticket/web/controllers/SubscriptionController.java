@@ -102,9 +102,11 @@ public class SubscriptionController extends HttpServlet{
         String id = request.getParameter("id");
         String PIP = request.getParameter("PIP");
         String season = request.getParameter("season");
-        String placeId = request.getParameter("placeId");
+        String sector = request.getParameter("sector");
+        String row = request.getParameter("row");
+        String number = request.getParameter("number");
         
-        //System.out.println("method update");
+        System.out.println("method update");
         
         try(Connection conn = Database.getConnection();
             Statement stmt = conn.createStatement();
@@ -113,7 +115,12 @@ public class SubscriptionController extends HttpServlet{
             String sql = "update tickets.subscription "
                     + "set PIP = '" + PIP
                     + "', season = '" + season
-                    + "', placeId = " + placeId
+                    + "', placeId = ( "
+                    + "select place.id  from place join sector on place.idSector = sector.id  "
+                    + "where row =  " + row
+                    + " and number =  " + number
+                    + " and sector.name = '" + sector
+                    + "') "
                     + " where id=" + id;
             
             System.out.println(sql);
@@ -121,30 +128,6 @@ public class SubscriptionController extends HttpServlet{
             stmt.executeUpdate(sql);
             
             response.sendRedirect("pages/sub.jsp");
-        }catch(SQLException ex){
-            Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    
-    protected void deleteSubscription(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-        String id = request.getParameter("id");
-
-        System.out.println("method delete");
-        
-        try(Connection conn = Database.getConnection();
-            Statement stmt = conn.createStatement();
-            ){
-            
-            String sql = "delete from tickets.subscription "
-                    + " where id=" + id;
-            
-            stmt.executeUpdate(sql);
-            
-            response.sendRedirect("pages/sub.jsp");
-            
         }catch(SQLException ex){
             Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -175,12 +158,17 @@ public class SubscriptionController extends HttpServlet{
             
             String sqlMax = "select max(id) as id from tickets.subscription";
             String id = "";
+        
+            
+            
+            stmt.executeUpdate(sql);
             
             rs = stmt.executeQuery(sqlMax);
             while(rs.next()){
                 id = rs.getString("id");
             }
             rs.close();
+            
             String sqlSec = "update tickets.subscription "
                     + "set placeId = ( "
                     + "select place.id  from place join sector on place.idSector = sector.id  "
@@ -190,10 +178,7 @@ public class SubscriptionController extends HttpServlet{
                     + "') "
                     + "where id = " + id;
             
-        
-            System.out.println(sqlSec);
             
-            stmt.executeUpdate(sql);
             stmt.executeUpdate(sqlSec);
             
             response.sendRedirect("pages/sub.jsp");
@@ -203,10 +188,35 @@ public class SubscriptionController extends HttpServlet{
         }
     }
     
+    protected void deleteSubscription(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        String id = request.getParameter("id");
+
+        System.out.println("method delete");
+        
+        try(Connection conn = Database.getConnection();
+            Statement stmt = conn.createStatement();
+            ){
+            
+            String sql = "delete from tickets.subscription "
+                    + " where id=" + id;
+            
+            stmt.executeUpdate(sql);
+            
+            response.sendRedirect("pages/sub.jsp");
+            
+        }catch(SQLException ex){
+            Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if(request.getParameterMap().size() == 4){
+        if(request.getParameterMap().size() == 6){
             updateSubscription(request, response);
         } else if(request.getParameterMap().size() == 1){
             deleteSubscription(request, response);   
@@ -217,7 +227,7 @@ public class SubscriptionController extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if(request.getParameterMap().size() == 4){
+        if(request.getParameterMap().size() == 6){
             updateSubscription(request, response);
         } else if(request.getParameterMap().size() == 1){
             deleteSubscription(request, response);   
