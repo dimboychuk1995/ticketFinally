@@ -144,8 +144,6 @@ public class GamesController extends HttpServlet {
         }
     }  
     public ArrayList<GameOfTeam> futureGame(){
-        
-        System.out.print(gamesList);
         return gamesList;
     }
  
@@ -250,8 +248,8 @@ public class GamesController extends HttpServlet {
                     + "SELECT (SELECT id FROM games ORDER BY id DESC LIMIT 1),"
                     + "row, number, idSector,0 "
                     + " from place"; 
-                //System.out.println(insertPlacesToMatch);
-           stmt.executeUpdate(insertPlacesToMatch);
+                
+                stmt.executeUpdate(insertPlacesToMatch);
            
                 String updateSubscripInMatch = "update ticket_on_game"
                     + " join place on  ticket_on_game.row = place.row"
@@ -261,7 +259,7 @@ public class GamesController extends HttpServlet {
                     + " set ticket_on_game.status = 1, ticket_on_game.PIP = subscription.PIP";
                 System.out.println(updateSubscripInMatch);
                 
-            stmt.executeUpdate(updateSubscripInMatch);
+                stmt.executeUpdate(updateSubscripInMatch);
             
         }catch(SQLException ex){
             Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);

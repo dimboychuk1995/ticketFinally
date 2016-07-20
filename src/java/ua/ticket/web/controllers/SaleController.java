@@ -5,6 +5,7 @@
  */
 package ua.ticket.web.controllers;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,8 +15,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import ua.ticket.web.beans.Place;
 import ua.ticket.web.db.Database;
 
@@ -79,15 +83,39 @@ public class SaleController extends HttpServlet{
         }
     }
     
-    public ArrayList<Place> getPlaceSectorA(){
-
-            placeList.clear();
-
-            for (int i_sector =1; i_sector <= 10; i_sector++){
-            getPlace("select * from ticket_on_game"
-                    + " where id_sector = " + i_sector);
+    public ArrayList<Place> getPlaceSectorFutureGame() throws SQLException{ 
+            
+        ResultSet rs = null;
+        String idFutureMatch = null;
+        
+        try(Connection conn = Database.getConnection();
+            Statement stmt = conn.createStatement();
+            ){
+            
+            String sql = ""
+                    + "Select id "
+                    + " from games "
+                    + " where `date` >= current_date()"
+                    + " order by `date` limit 1 ";
+            
+            
+            rs = stmt.executeQuery(sql);
+            while(rs.next()){
+                idFutureMatch = rs.getString("id");
             }
-            return placeList;
+            rs.close();
+        }catch(SQLException ex){
+            Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        placeList.clear();
+        for (int idSector = 1; idSector <= 10; idSector++){
+        getPlace("select * from ticket_on_game"
+                + " where id_sector = " + idSector
+                + " and id_game = " + idFutureMatch);
+        }
+        return placeList;
 
     }
+    
 }

@@ -49,7 +49,7 @@
                             for (GameOfTeam game : gamesList.futureGame()){
                         %>
 
-                        <option><%=game.getNameTeam1()%> - <%=game.getNameTeam2()%></option>
+                        <option id="teams"><%=game.getNameTeam1()%> - <%=game.getNameTeam2()%></option>
 
                         <%}%>
                     </select>
@@ -64,7 +64,7 @@
                 
                 <div class="row sector_f">
                     <%
-                        for(Place place : placeList.getPlaceSectorA()){
+                        for(Place place : placeList.getPlaceSectorFutureGame()){
                     %>
                     
                     <button data-toggle="modal" data-target="#<%=place.getId()%>" id="btn_update" value="update" type="submit" class="btn btn-warning"><%=place.getId()%></button>
