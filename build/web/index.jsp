@@ -9,14 +9,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
         
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     </head>
     <body>
+        <jsp:useBean id="masageError" class="ua.ticket.web.controllers.LoginController"/>
        <div class="container">
          <h2>Сторінка входу</h2>
          <p id = "texstLog">Будь ласка введіть Ваш логін та пароль</p>
@@ -30,6 +31,11 @@
              <input type="password" class="form-control" id="pwd"  name = password placeholder="введіть Ваш пароль">
            </div>
            <button type="submit" class="btn_Send">Відправити</button>
+           <% if(session.getAttribute("login") != null && session.getAttribute("login").equals("loginFailed")){%>
+                <p id = "error_masage">Введені дані хибні! Перевірте введену інформацію!</p>               
+           <% session.invalidate(); }%>
+           
+           
          </form>
        </div>   
     </body>

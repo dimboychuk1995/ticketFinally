@@ -48,14 +48,25 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<html>\n");
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <link href=\"../css/bootstrap.min.css\" rel=\"stylesheet\">\n");
+      out.write("        \n");
       out.write("        <link rel=\"stylesheet\" type=\"text/css\" href=\"css/index.css\">\n");
+      out.write("        <link rel=\"stylesheet\" type=\"text/css\" href=\"css/bootstrap.min.css\">\n");
       out.write("        \n");
       out.write("        <link rel=\"stylesheet\" href=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css\">\n");
       out.write("        <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js\"></script>\n");
       out.write("        <script src=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js\"></script>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
+      out.write("        ");
+      ua.ticket.web.controllers.LoginController masageError = null;
+      synchronized (_jspx_page_context) {
+        masageError = (ua.ticket.web.controllers.LoginController) _jspx_page_context.getAttribute("masageError", PageContext.PAGE_SCOPE);
+        if (masageError == null){
+          masageError = new ua.ticket.web.controllers.LoginController();
+          _jspx_page_context.setAttribute("masageError", masageError, PageContext.PAGE_SCOPE);
+        }
+      }
+      out.write("\n");
       out.write("       <div class=\"container\">\n");
       out.write("         <h2>Сторінка входу</h2>\n");
       out.write("         <p id = \"texstLog\">Будь ласка введіть Ваш логін та пароль</p>\n");
@@ -69,6 +80,15 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("             <input type=\"password\" class=\"form-control\" id=\"pwd\"  name = password placeholder=\"введіть Ваш пароль\">\n");
       out.write("           </div>\n");
       out.write("           <button type=\"submit\" class=\"btn_Send\">Відправити</button>\n");
+      out.write("           ");
+ if(session.getAttribute("login") != null && session.getAttribute("login").equals("loginFailed")){
+      out.write("\n");
+      out.write("                <p id = \"error_masage\">Введені дані хибні! Перевірте введену інформацію!</p>               \n");
+      out.write("           ");
+ session.invalidate(); }
+      out.write("\n");
+      out.write("           \n");
+      out.write("           \n");
       out.write("         </form>\n");
       out.write("       </div>   \n");
       out.write("    </body>\n");
