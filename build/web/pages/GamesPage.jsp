@@ -11,24 +11,17 @@
 <!DOCTYPE html>
 <html>
     <head>
+        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src= "../js/manipulGame.js" type="text/javascript"></script>
+        <!-- Bootstrap -->
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/game.css" rel="stylesheet">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        
         <title>Перегляд матчів</title>
-        <style>
-            body    {
-                    background: #FDF5E6;
-                    }
-                    
-            #liniya { 
-                    
-                    float: left;
-                    height:10px; 
-                    margin-left: 210px; 
-                    margin-top: 4px;
-                    }
-    
-      
-        </style>
     </head>
 
     <body>
@@ -36,50 +29,54 @@
         <jsp:useBean id="gamesInfo" class="ua.ticket.web.controllers.GamesController"/>
         <jsp:useBean id="gamesTeam" class="ua.ticket.web.beans.GameOfTeam"/>
 
-        <h2 align ="center">Розклад матчів НФК Урагану</h2>
-        
+    <center>
+        <div class = "page-header">
+        <h2 id ="headName">Розклад матчів НФК Урагану</h2>
+        </div>
+    </center>
+    <div class = "form-inline">    
         <form  name="sortForm" action="../GamesController" method="POST" >
-            <select name = "sortGames">
-                <option value = "showAllGame"> всі матчі</option>
-                <option value = "showCurrentGame"> поточний матч</option>
+            
+            <select class="selectpicker show-menu-arrow" name = "sortGames">
+                <option class="special" value = "showAllGame"> всі матчі</option>
+                <option style="background: #5cb85c; color: #fff;" value = "showCurrentGame"> поточний матч</option>
                 <option value = "showFutureGame"> майбутні матчі</option>
             </select>
-            <input type="submit" value="показати матчі">
-            <input type="button" id="more_games" onclick = "add_games();" value="добавити матч" />
-          </form>
-           
-            <input id="editGames" type="hidden" name="editGames" value="editGames" />
-            <button id="editG" type = "submit" onclick = "edit();">редагувати матчі</button>  
-          
-        
-        <br>
-        <CENTER>
-        <div>
+                <input class="btn btn-info" type="submit" value="показати матчі">
+        </form><br>
+    </div>
+          <input class="btn btn-warning" type="button" id="more_games" onclick = "add_games();" value="добавити матч" />
+          <input id="editGames" type="hidden" name="editGames" value="editGames" />
+          <button id="editG" class="btn btn-warning" type = "submit" onclick = "edit();">редагувати матчі</button>  
+          <br><br>
         <%
             for (GameOfTeam game : gamesList.futureGame()){
         %>
+        <table class="table-bordered">
+        
             <div id = "form-game">
                 <form id ="form1"  action="../GamesController" method="POST" >
-                        <input type="hidden" name="id" value="<%=game.getId()%>" />
-                        <input class="inputs" type="text" name="time" value="<%=game.getTimeGame() %>" size="3" disabled/>
-                        <input id="datepicker" class="inputs" type="text" name="date" value="<%=game.getDateGame()%>" size="20" disabled />
-                        <input class="inputs" type="text" name= "owner" value="<%=game.getNameTeam1()%>" size="20" disabled/>
-                        <input class="inputs" type="text" name="guest" value="<%=game.getNameTeam2() %>" size="20" disabled />
-                        <input class="inputs" type="text" name="place" value="<%=game.getPlaceGame()%>" size="20" disabled/>
-                 <br>
+                    
+                        <input type="hidden" name="id" value="<%=game.getId()%>" />     
+                  <tbody>    
+                    <tr class="active">
+                        <td><input class="col-xs-12" type="text" name="time" value="<%=game.getTimeGame() %>" size="3" disabled/></td>
+                        <td><input class="col-xs-12" type="text" name="date" value="<%=game.getDateGame()%>" size="20" disabled /></td>
+                        <td><input class="col-xs-12" type="text" name= "owner" value="<%=game.getNameTeam1()%>" size="20" disabled/></td>
+                        <td><input class="col-xs-12" type="text" name="guest" value="<%=game.getNameTeam2() %>" size="20" disabled /></td>
+                        <td><input class="col-xs-12" type="text" name="place" value="<%=game.getPlaceGame()%>" size="20" disabled/></td>
                         <input id="updateGame" type="hidden" name="updateGame" value="updateGame" />
-                        <input id ="s1" class="buttonEdit" type="button"  onclick="sbmit(this.form)" value = "обновити" style = "display: none"/>  
+                        <td><input id ="s1" class="btn btn-mini btn-warning" type="button"  onclick="sbmit(this.form)" value = "обновити" style = "display: none"/></td>
                 </form>
-                <br>        
                 <form id ="form2"  action="../GamesController" method="POST" >
                      <input type="hidden" name="id" value="<%=game.getId()%>" />   
                      <input id="deleteGame" type="hidden" name="deleteGame" value="deleteGame"/>
-                     <input id ="s2" class="buttonEdit" type="button" onclick="sbmit(this.form)" value = "видалити" style = "display:none"/>       
+                     <td><input id ="s2" class="btn btn-mini btn-warning" type="button" onclick="sbmit(this.form)" value = "видалити" style = "display:none"/></td>      
                 </form>
-                
-            <br>              
-        <%}%>
-        </div>
-    </CENTER>    
+                    </tr>
+                </tbody>    
+            </div>        
+        </table>    
+        <%}%> 
     </body>
 </html>

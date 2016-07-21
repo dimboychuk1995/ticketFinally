@@ -5,6 +5,8 @@ import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 import ua.ticket.web.controllers.SaleController;
 import ua.ticket.web.beans.Place;
+import ua.ticket.web.controllers.GamesController;
+import ua.ticket.web.beans.GameOfTeam;
 
 public final class sale_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -50,6 +52,8 @@ public final class sale_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
@@ -84,26 +88,66 @@ public final class sale_jsp extends org.apache.jasper.runtime.HttpJspBase
         }
       }
       out.write("\n");
+      out.write("        ");
+      ua.ticket.web.controllers.GamesController gamesList = null;
+      synchronized (_jspx_page_context) {
+        gamesList = (ua.ticket.web.controllers.GamesController) _jspx_page_context.getAttribute("gamesList", PageContext.PAGE_SCOPE);
+        if (gamesList == null){
+          gamesList = new ua.ticket.web.controllers.GamesController();
+          _jspx_page_context.setAttribute("gamesList", gamesList, PageContext.PAGE_SCOPE);
+        }
+      }
+      out.write("\n");
       out.write("        \n");
       out.write("        <div class=\"header\"></div>    \n");
       out.write("\n");
       out.write("        <div class=\"content\">\n");
+      out.write("                \n");
+      out.write("            <div class=\"list_matches\">\n");
+      out.write("                <form class=\"form-inline\" role=\"form\" action=\"../SaleController\" method=\"POST\">\n");
+      out.write("                    <select class=\"form-control matches\">\n");
+      out.write("                        ");
+
+                            for (GameOfTeam game : gamesList.futureGame()){
+                        
       out.write("\n");
+      out.write("\n");
+      out.write("                        <option id=\"teams\">");
+      out.print(game.getNameTeam1());
+      out.write(" - ");
+      out.print(game.getNameTeam2());
+      out.write("</option>\n");
+      out.write("\n");
+      out.write("                        ");
+}
+      out.write("\n");
+      out.write("                    </select>\n");
+      out.write("                    \n");
+      out.write("                    <button type=\"submit\" value=\"update\" class=\"btn btn-default btn_show\">Показати список квітків по даному матчі</button>\n");
+      out.write("                     \n");
+      out.write("                </form>\n");
+      out.write("            </div>\n");
+      out.write("            \n");
+      out.write("            \n");
       out.write("            <div class=\"sectors_up\">\n");
       out.write("                \n");
       out.write("                <div class=\"row sector_f\">\n");
       out.write("                    ");
 
-                        for(Place place : placeList.getPlaceSectorA()){
+                        for(Place place : placeList.getPlaceSectorFutureGame()){
                     
       out.write("\n");
       out.write("                    \n");
-      out.write("                  \n");
-      out.write("                    <button data-toggle=\"modal\" data-target=\"#updateTicket\" id=\"btn_update\" value=\"update\" type=\"submit\" class=\"btn btn-warning\">");
+      out.write("                    <button data-toggle=\"modal\" data-target=\"#");
+      out.print(place.getId());
+      out.write("\" id=\"btn_update\" value=\"update\" type=\"submit\" class=\"btn btn-warning\">");
       out.print(place.getId());
       out.write("</button>\n");
+      out.write("\n");
       out.write("                    \n");
-      out.write("                    <div id=\"updateTicket\" class=\"modal fade\" role=\"dialog\">\n");
+      out.write("                    <div id=\"");
+      out.print(place.getId());
+      out.write("\" class=\"modal fade\" role=\"dialog\">\n");
       out.write("                        <div class=\"modal-dialog\">\n");
       out.write("                            <div class=\"modal-content\">\n");
       out.write("                                <div class=\"modal-header\">\n");

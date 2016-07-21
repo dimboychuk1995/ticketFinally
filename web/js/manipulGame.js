@@ -4,24 +4,36 @@ function add_games() {
                         divtest.innerHTML = '<div>\n\
                                             <br>\n\
                                             <form  action="../GamesController" method="POST" >\n\
-                                             <input type="text" name= "time"    value="" size="3" placeholder = "час"/>\n\
-                                            <input  id="datepicker" type="text" name= "date"    value="" size="20" placeholder = "дата матчу"/>\n\
-                                            <input type="text" name= "owner"   value="" size="20" placeholder = "господар"/>\n\
-                                            <input type="text" name= "guest"   value="" size="20" placeholder = "гості"/>\n\
-                                            <input type="text" name= "place"   value="" size="20" placeholder = "місце проведення"/>\n\
+                                            <div class="col-xs-1">\n\
+                                            <input class="form-control"class="form-control" type="text" name= "time"    value="" size="3" placeholder = "час"/>\n\
+                                            </div>\n\
+                                            <div class="col-xs-2">\n\
+                                            <input class="form-control" type="text" name= "date"    value="" size="20" placeholder = "дата матчу"/>\n\
+                                            </div>\n\
+                                            <div class="col-xs-2">\n\
+                                            <input class="form-control" type="text" name= "owner"   value="" size="20" placeholder = "господар"/>\n\
+                                            </div>\n\
+                                            <div class="col-xs-2">\n\
+                                            <input class="form-control" type="text" name= "guest"   value="" size="20" placeholder = "гості"/>\n\
+                                            </div>\n\
+                                            <div class="col-xs-2">\n\
+                                            <input class="form-control" type="text" name= "place"   value="" size="20" placeholder = "місце проведення"/>\n\
+                                            </div>\n\
                                             <input id="insertGame" type="hidden" name="insertGame" value="insertGame" />\n\
-                                            <button type="submit">зберегти</button>\n\
+                                            <button class = "btn btn-success" type="submit">зберегти</button>\n\
                                             </form>\n\
-                                            </div>';
+                                            </div> \n\
+                                            <br>';
+                                            
                         objTo.appendChild(divtest)
                     };
                     
 function edit(){    
-                var inputs = document.getElementsByClassName('inputs');
+                var inputs = document.getElementsByClassName('col-xs-12');
                 for(var i = 0; i < inputs.length; i++) {
                     inputs[i].disabled = false;
                 }                 
-                var div = document.getElementsByClassName('buttonEdit');
+                var div = document.getElementsByClassName('btn btn-mini btn-warning');
                 for (var j = 0; j < div.length; j++){
                 
                     if(div[j].style.display == 'none') {
@@ -36,9 +48,6 @@ function edit(){
 function sbmit(iForm){
     
     iForm.submit();
-//    var button = document.getElementById(idE);
-//    var act = document.forms["form1"];
-//    act.action = "../GamesController";
-//    act.submit();
-
 }
+
+

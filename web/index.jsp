@@ -9,45 +9,28 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Віхд</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     </head>
     <body>
-    <CENTER>
-        <div class="main">
-            
-            <div class="header"></div>
-            
-            <div class="content">
-                
-                <div class="login">
-                    <br><h2>Сторінка входу</h2>
-                        <br  id = "login_table">
-                        <h6>Будь ласка введіть Ваш логін та пароль</h6>
-                            <br>
-                               <form class="login_form" action="LoginController" method="POST">
-                                   <table>
-                                       <tr>
-                                           <td><font> логін </font></td>
-                                           <td><input type = text name = login></td>
-                                       </tr>
-                                       <tr>
-                                           <td><font> пароль </font></td>
-                                           <td><input type = password name = password> </td>
-                                       </tr>
-                                       <tr>
-                                           <td align = right><input type="submit" value="ok" ></td>
-                                       </tr>
-                                   </table>
-                               </form>  
-                                
-                            </br>
-                         </br>
-                    </br>
-                </div>
-                
-            </div>
-            
-        </div>
-    </CENTER>    
+       <div class="container">
+         <h2>Сторінка входу</h2>
+         <p id = "texstLog">Будь ласка введіть Ваш логін та пароль</p>
+         <form class="form-inline" role="form" action="LoginController" method="POST">
+           <div class="form-group">
+             <label for="email">Login:</label>
+             <input type="email" class="form-control" id="email" name = login placeholder="введіть Ваш Login">
+           </div>
+           <div class="form-group">
+             <label for="pwd">Password:</label>
+             <input type="password" class="form-control" id="pwd"  name = password placeholder="введіть Ваш пароль">
+           </div>
+           <button type="submit" class="btn_Send">Відправити</button>
+         </form>
+       </div>   
     </body>
 </html>
