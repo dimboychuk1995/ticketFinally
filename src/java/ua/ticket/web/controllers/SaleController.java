@@ -20,6 +20,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import ua.ticket.web.beans.GameOfTeam;
 import ua.ticket.web.beans.Place;
 import ua.ticket.web.db.Database;
 
@@ -29,13 +30,48 @@ import ua.ticket.web.db.Database;
  */
 @ManagedBean
 @ApplicationScoped
-@WebServlet(name = "SectorController", urlPatterns = {"/SectorController"})
+@WebServlet(name = "SaleController", urlPatterns = {"/SaleController"})
 public class SaleController extends HttpServlet{
     
-    private ArrayList<Place> placeList = new ArrayList<Place>();
-        
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        showPlaces(request, response);
+    }
     
-    private ArrayList<Place> getPlace(String str){
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        showPlaces(request, response);
+    }
+    static public  ArrayList<Place> placeList = new ArrayList<Place>();
+    
+    protected void showPlaces(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        String[] valueParamsGames = new String[0];
+        
+        if (request.getParameterValues("games")!= null){
+            valueParamsGames = request.getParameterValues("games");
+        }
+
+        int idGame = 0;
+        
+        if (valueParamsGames.length > 0){
+            for (int i = 0; i < valueParamsGames.length; i++){
+                idGame = Integer.parseInt(valueParamsGames[i]);
+            }  
+        }
+        try {
+            getPlaceDB(idGame);
+            response.sendRedirect("pages/sale.jsp");
+        } catch (SQLException ex) {
+            Logger.getLogger(SaleController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+ 
+    }
+
+    private void getPlace(String str){
         Statement stmt = null;
         ResultSet rs = null;
         Connection conn = null;
@@ -70,52 +106,31 @@ public class SaleController extends HttpServlet{
                 Logger.getLogger(SectorController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
-
-        return placeList;
+        //return placeList;
     }
     
-    public ArrayList<Place> getAllPlace(){
+    public void getAllPlace(){
         if (!placeList.isEmpty()) {
-            return placeList;
+            //return placeList;
         } else {
-            return getPlace("select * from ticket_on_game");
+           // return getPlace("select * from ticket_on_game");
         }
     }
     
-    public ArrayList<Place> getPlaceSectorFutureGame() throws SQLException{ 
-            
-        ResultSet rs = null;
-        String idFutureMatch = null;
-        
-        try(Connection conn = Database.getConnection();
-            Statement stmt = conn.createStatement();
-            ){
-            
-            String sql = ""
-                    + "Select id "
-                    + " from games "
-                    + " where `date` >= current_date()"
-                    + " order by `date` limit 1 ";
-            
-            
-            rs = stmt.executeQuery(sql);
-            while(rs.next()){
-                idFutureMatch = rs.getString("id");
-            }
-            rs.close();
-        }catch(SQLException ex){
-            Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+    public void getPlaceDB(int idGame) throws SQLException{ 
         placeList.clear();
         for (int idSector = 1; idSector <= 10; idSector++){
         getPlace("select * from ticket_on_game"
                 + " where id_sector = " + idSector
-                + " and id_game = " + idFutureMatch);
+                + " and id_game = " + idGame);
         }
-        return placeList;
-
     }
     
+    public ArrayList<Place> getListPlace(){
+        if (placeList.size()>0){
+        System.out.println(placeList.get(1).getIdSector());
+        }
+        return placeList;
+    }
+  
 }
