@@ -44,18 +44,18 @@
                 
             <div class="list_matches">
                 <form class="form-inline" role="form" action="../SaleController" method="POST">
-                    <select class="form-control matches">
+                    <select class="form-control matches" name = "games">
                         <%
-                            for (GameOfTeam game : gamesList.futureGame()){
+                            for (GameOfTeam game : gamesList.showFutureGame()){
                         %>
 
-                        <option id="teams"><%=game.getNameTeam1()%> - <%=game.getNameTeam2()%></option>
+                        <option id="teams" value="<%=game.getId()%>"><%=game.getNameTeam1()%> - <%=game.getNameTeam2()%></option>
 
                         <%}%>
                     </select>
                     
-                    <button type="submit" value="update" class="btn btn-default btn_show">Показати список квітків по даному матчі</button>
-                     
+                    <button type="submit" value="update" class="btn btn-default btn_show">Показати список квитків по даному матчі</button>
+    
                 </form>
             </div>
             
@@ -64,10 +64,10 @@
                 
                 <div class="row sector_f">
                     <%
-                        for(Place place : placeList.getPlaceSectorFutureGame()){
+                        for(Place place : placeList.getListPlace()){
                     %>
                     
-                    <button data-toggle="modal" data-target="#<%=place.getId()%>" id="btn_update" value="update" type="submit" class="btn btn-warning"><%=place.getId()%></button>
+                    <button data-toggle="modal" data-target="#<%=place.getId()%>" id="btn_update" value="update" type="submit" class="btn btn-warning"><%=place.getIdSector()%></button>
 
                     
                     <div id="<%=place.getId()%>" class="modal fade" role="dialog">
