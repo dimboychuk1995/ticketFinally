@@ -5,12 +5,19 @@
  */
 package ua.ticket.web.controllers;
 
+import static com.sun.faces.util.CollectionsUtils.map;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ApplicationScoped;
@@ -20,6 +27,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import static jdk.nashorn.internal.objects.NativeArray.map;
 import ua.ticket.web.beans.GameOfTeam;
 import ua.ticket.web.beans.Place;
 import ua.ticket.web.db.Database;
@@ -33,6 +41,20 @@ import ua.ticket.web.db.Database;
 @WebServlet(name = "SaleController", urlPatterns = {"/SaleController"})
 public class SaleController extends HttpServlet{
     
+    private static int idRow;
+    static int idGame;
+    static public  ArrayList<Place> placeList = new ArrayList<Place>();
+    static public  Set<Integer> sectorList = new LinkedHashSet<Integer>();
+    static public  Set<Integer> rowList = new LinkedHashSet<Integer>();
+
+    public void setIdRow(int idRow){
+    this.idRow = idRow;
+    }
+    
+    public int getIdGame(){
+        return idGame;
+    }
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -44,8 +66,7 @@ public class SaleController extends HttpServlet{
             throws ServletException, IOException {
         showPlaces(request, response);
     }
-    static public  ArrayList<Place> placeList = new ArrayList<Place>();
-    
+
     protected void showPlaces(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -55,20 +76,19 @@ public class SaleController extends HttpServlet{
             valueParamsGames = request.getParameterValues("games");
         }
 
-        int idGame = 0;
-        
         if (valueParamsGames.length > 0){
             for (int i = 0; i < valueParamsGames.length; i++){
+                
                 idGame = Integer.parseInt(valueParamsGames[i]);
+                System.out.println("This idGame - " + idGame);
             }  
         }
         try {
-            getPlaceDB(idGame);
+            getPlaceDB();
             response.sendRedirect("pages/sale.jsp");
         } catch (SQLException ex) {
             Logger.getLogger(SaleController.class.getName()).log(Level.SEVERE, null, ex);
         }
- 
     }
 
     private void getPlace(String str){
@@ -90,9 +110,8 @@ public class SaleController extends HttpServlet{
                 place.setStatus(rs.getInt("status"));
                 place.setPIP(rs.getString("PIP"));
                 
-                placeList.add(place);
+                placeList.add(place);             
             }
-            
 
         } catch (SQLException ex) {
             Logger.getLogger(SectorController.class.getName()).log(Level.SEVERE, null, ex);
@@ -106,31 +125,73 @@ public class SaleController extends HttpServlet{
                 Logger.getLogger(SectorController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        //return placeList;
+    }  
+    public ArrayList<Place> getAllPlace(){
+             placeList.size();
+             return placeList;
     }
     
-    public void getAllPlace(){
-        if (!placeList.isEmpty()) {
-            //return placeList;
-        } else {
-           // return getPlace("select * from ticket_on_game");
-        }
-    }
-    
-    public void getPlaceDB(int idGame) throws SQLException{ 
+    public void getPlaceDB() throws SQLException{ 
         placeList.clear();
+        sectorList.clear();
+        rowList.clear();
         for (int idSector = 1; idSector <= 10; idSector++){
+        if(idRow == 0){   
         getPlace("select * from ticket_on_game"
                 + " where id_sector = " + idSector
                 + " and id_game = " + idGame);
+         } else {
+                getPlace("select * from ticket_on_game"
+                + " where id_sector = " + idSector
+                + " and row = " + idRow
+                + " and id_game = " + idGame);
+            }
         }
+    }
+    public Set<Integer> getListSector(){
+        for (int i = 0; i< placeList.size(); i++){
+            sectorList.add(placeList.get(i).getIdSector());
+        }
+        //System.out.println("Size sectorList is : "+sectorList.size());
+        return sectorList;
     }
     
-    public ArrayList<Place> getListPlace(){
-        if (placeList.size()>0){
-        System.out.println(placeList.get(1).getIdSector());
+    public Set<Integer> getListRows(int idSector){
+        for (int i = 0; i < placeList.size(); i++){
+            getRows("select * from ticket_on_game"
+                + " where id_sector = " + idSector 
+                + " and row = " + placeList.get(i).getRow()
+                + " and id_game = " + idGame);    
         }
-        return placeList;
+        System.out.println("Rows size is " + rowList.size());
+        return rowList; 
     }
-  
+    
+     private void getRows(String str){
+        Statement stmt = null;
+        ResultSet rs = null;
+        Connection conn = null;
+        System.out.println(str);
+        try {
+            conn = Database.getConnection();
+
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(str);
+            while (rs.next()) {
+                rowList.add(rs.getInt("row"));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SectorController.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (stmt!=null) stmt.close();
+                if (rs!=null)rs.close();
+                if (conn!=null)conn.close();
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(SectorController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    } 
 }

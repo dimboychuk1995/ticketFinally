@@ -30,13 +30,15 @@ import ua.ticket.web.db.Database;
 public class GamesController extends HttpServlet {
     
     private static ArrayList<GameOfTeam> gamesList = new ArrayList<GameOfTeam>();
+    
+    Statement stmt = null;
+    ResultSet rs = null;
+    Connection conn = null;
 
     public void showGames(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
  
-        Statement stmt = null;
-        ResultSet rs = null;
-        Connection conn = null;
+
        
         String[] valueParam = new String[0];
         String insertParam  = "";
@@ -142,8 +144,8 @@ public class GamesController extends HttpServlet {
                 Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }  
-    public ArrayList<GameOfTeam> futureGame(){
+    }
+    public ArrayList<GameOfTeam> getListGame(){
         return gamesList;
     }
  
@@ -157,6 +159,42 @@ public class GamesController extends HttpServlet {
             throws ServletException, IOException {
         showGames(request, response);
     }
+    
+       public  ArrayList<GameOfTeam>  showFutureGame()
+            throws ServletException, IOException{
+        try(Connection conn = Database.getConnection();
+            Statement stmt = conn.createStatement();
+            ){
+      
+            String moreCurrDate = "SELECT * FROM tickets.games "
+                + "WHERE date >= curdate() "
+                + "ORDER BY date";
+
+            rs = stmt.executeQuery(moreCurrDate);
+            
+            gamesList.clear();
+            while(rs.next()){
+                GameOfTeam game = new GameOfTeam();
+                game.setId(rs.getInt("id"));
+                game.setDateGame(rs.getString("date"));
+                game.setTimeGame(rs.getString("time"));
+                game.setNameTeam1(rs.getString("team1"));
+                game.setNameTeam2(rs.getString("team2"));
+                game.setPlaceGame(rs.getString("place"));
+                gamesList.add(game);
+            } 
+        }catch(SQLException ex){
+            try {
+                rs.close();
+            } catch (SQLException ex1) {
+                Logger.getLogger(GamesController.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+            Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return getListGame();
+    } 
+    
     protected void deleteGame(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
         try(Connection conn = Database.getConnection();

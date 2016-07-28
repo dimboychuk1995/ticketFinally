@@ -5,6 +5,8 @@
  */
 package ua.ticket.web.beans;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.servlet.annotation.WebServlet;
@@ -24,6 +26,8 @@ public class Place {
     private int idSector;
     private String PIP;
     private int status;
+    public List<Integer> sizeRow = new ArrayList<Integer>();
+    public List<Integer> sizePlaces = new ArrayList<Integer>();
     
     public Place(){
         
@@ -76,7 +80,7 @@ public class Place {
     }
     
     public void setIdSector(int idSector){
-        this.idSector = this.idSector; 
+        this.idSector = idSector; 
     }
     
     public void setPIP(String PIP){
@@ -85,5 +89,37 @@ public class Place {
     
     public void setStatus(int status){
         this.status = status;
+    }
+    
+    public int getSizeRow(){
+        return sizeRow.size();
+    }
+    
+    public int getSizePlaces(){
+        return sizePlaces.size();
+    }
+    
+    @Override
+    public boolean equals(Object place){
+        if (place instanceof Place){
+            if (((Place)place).getId() == this.id 
+                 && ((Place)place).getIdSector() == this.idSector
+                 && ((Place)place).getRow() == this.row
+                 && ((Place)place).getNumber() == this.number){
+                return true;
+            } else {
+                return false;
+            }
+        }else { 
+            return false;
+        }
+    }
+    
+    public boolean hashCode(Place place){
+        if(place.id == this.id){
+            return true;
+        }else {
+            return false;
+        }
     }
 }

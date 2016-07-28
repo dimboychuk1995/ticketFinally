@@ -48,7 +48,6 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<html>\n");
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        \n");
       out.write("        <link rel=\"stylesheet\" type=\"text/css\" href=\"css/index.css\">\n");
       out.write("        <link rel=\"stylesheet\" type=\"text/css\" href=\"css/bootstrap.min.css\">\n");
       out.write("        \n");
@@ -87,8 +86,6 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("           ");
  session.invalidate(); }
       out.write("\n");
-      out.write("           \n");
-      out.write("           \n");
       out.write("         </form>\n");
       out.write("       </div>   \n");
       out.write("    </body>\n");

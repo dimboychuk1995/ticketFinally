@@ -43,10 +43,7 @@ public class LoginController extends HttpServlet {
                 response.sendRedirect("pages/sub.jsp");
             }else{
                  out.print("Sorry, username or password error!");  
-                 //request.getRequestDispatcher("index.jsp");  
                 session.setAttribute("login", "loginFailed");
-                
-                //showMasage();
                 response.sendRedirect("index.jsp");                
             }
             
@@ -72,9 +69,4 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException{
         checkLogin(request, response);
     }
-    
-    public String  showMasage(){
-        return "bla bla bla";
-    }
-
 }

@@ -103,14 +103,15 @@ public final class GamesPage_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <h2 id =\"headName\">Розклад матчів НФК Урагану</h2>\r\n");
       out.write("        </div>\r\n");
       out.write("    </center>\r\n");
-      out.write("    <div class = \"form-inline\">    \r\n");
+      out.write("    <div class = \"form-group\">    \r\n");
       out.write("        <form  name=\"sortForm\" action=\"../GamesController\" method=\"POST\" >\r\n");
-      out.write("            \r\n");
-      out.write("            <select class=\"selectpicker show-menu-arrow\" name = \"sortGames\">\r\n");
+      out.write("         <div class=\"col-sm-2\">\r\n");
+      out.write("            <select class=\"form-control\" name = \"sortGames\">\r\n");
       out.write("                <option class=\"special\" value = \"showAllGame\"> всі матчі</option>\r\n");
       out.write("                <option style=\"background: #5cb85c; color: #fff;\" value = \"showCurrentGame\"> поточний матч</option>\r\n");
       out.write("                <option value = \"showFutureGame\"> майбутні матчі</option>\r\n");
       out.write("            </select>\r\n");
+      out.write("         </div>   \r\n");
       out.write("                <input class=\"btn btn-info\" type=\"submit\" value=\"показати матчі\">\r\n");
       out.write("        </form><br>\r\n");
       out.write("    </div>\r\n");
@@ -120,7 +121,7 @@ public final class GamesPage_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("          <br><br>\r\n");
       out.write("        ");
 
-            for (GameOfTeam game : gamesList.futureGame()){
+            for (GameOfTeam game : gamesList.getListGame()){
         
       out.write("\r\n");
       out.write("        <table class=\"table-bordered\">\r\n");

@@ -3,6 +3,7 @@
     Created on : 7 лип. 2016, 14:21:36
     Author     : us9522
 --%>
+<%@page import="java.util.Iterator"%>
 <%@page import="ua.ticket.web.controllers.SaleController"%>
 <%@page import="ua.ticket.web.beans.Place"%>
 <%@page import="ua.ticket.web.controllers.GamesController"%>
@@ -22,6 +23,8 @@
         <!-- Bootstrap -->
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/sale.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -44,17 +47,17 @@
                 
             <div class="list_matches">
                 <form class="form-inline" role="form" action="../SaleController" method="POST">
-                    <select class="form-control matches">
+                    <select class="form-control matches" name = "games">
                         <%
-                            for (GameOfTeam game : gamesList.futureGame()){
+                            for (GameOfTeam game : gamesList.showFutureGame()){
                         %>
 
-                        <option id="teams"><%=game.getNameTeam1()%> - <%=game.getNameTeam2()%></option>
+                        <option id="teams" value = <%=game.getId()%> ><%=game.getNameTeam1()%> - <%=game.getNameTeam2()%></option>
 
                         <%}%>
                     </select>
                     
-                    <button type="submit" value="update" class="btn btn-default btn_show">Показати список квітків по даному матчі</button>
+                    <button type="submit" value="update" class="btn btn-default btn_show">Показати список квитків по даному матчі</button>
                      
                 </form>
             </div>
@@ -63,10 +66,37 @@
             <div class="sectors_up">
                 
                 <div class="row sector_f">
-                    <%
-                        for(Place place : placeList.getPlaceSectorFutureGame()){
+                    <table class = "table table-bordered"> 
+                        <thead>
+                            <tr>
+                                <th bgcolor="#BDBDBD" style="width: 10%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sectors</th>
+                                <th bgcolor="#BDBDBD" style="width: 10%">Rows</th>
+                                <th bgcolor="#BDBDBD" style="width: 80%">Places</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                    <% 
+                          Iterator iterSector = placeList.getListSector().iterator();
+                          while (iterSector.hasNext()){
+                              int idSector = (Integer) iterSector.next();
                     %>
-                    
+                    <tr>
+                        <td bgcolor="#01A9DB" rowspan=" <%=placeList.getListRows(idSector).size()%>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=idSector%></td>
+                        
+                    <% 
+                        Iterator<Integer> iterRows = placeList.getListRows(idSector).iterator();
+                        while (iterRows.hasNext()){
+                           int idRows = iterRows.next();
+                            placeList.setIdRow(idRows);
+                        
+                    %>
+                    <td bgcolor="#FE642E">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=idRows%></td>
+                    <td bgcolor="#61210B">
+                    <%
+                        for(Place place : placeList.getAllPlace()){
+                            
+                            if (idSector == place.getIdSector() && idRows == place.getRow()){
+                    %>
                     <button data-toggle="modal" data-target="#<%=place.getId()%>" id="btn_update" value="update" type="submit" class="btn btn-warning"><%=place.getId()%></button>
 
                     
@@ -102,9 +132,17 @@
                             </div>
                         </div>
                     </div>
+                     
+                    <%}else continue;%>
+                    <%}%>
+                    </td>
+                    </tr>
+                    <%}%>
                     
                     <%}%>
-                                    
+                        
+                    </tbody>
+                </table>                 
                 </div>
                 
                 <div class="row sectors_c_d_e">

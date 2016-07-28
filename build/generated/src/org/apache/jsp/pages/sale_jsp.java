@@ -3,6 +3,7 @@ package org.apache.jsp.pages;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import java.util.Iterator;
 import ua.ticket.web.controllers.SaleController;
 import ua.ticket.web.beans.Place;
 import ua.ticket.web.controllers.GamesController;
@@ -54,6 +55,7 @@ public final class sale_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
@@ -65,6 +67,8 @@ public final class sale_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <!-- Bootstrap -->\n");
       out.write("        <link href=\"../css/bootstrap.min.css\" rel=\"stylesheet\">\n");
       out.write("        <link href=\"../css/sale.css\" rel=\"stylesheet\">\n");
+      out.write("        <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js\"></script>\n");
+      out.write("        <script src=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js\"></script>\n");
       out.write("\n");
       out.write("\n");
       out.write("        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->\n");
@@ -105,14 +109,17 @@ public final class sale_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                \n");
       out.write("            <div class=\"list_matches\">\n");
       out.write("                <form class=\"form-inline\" role=\"form\" action=\"../SaleController\" method=\"POST\">\n");
-      out.write("                    <select class=\"form-control matches\">\n");
+      out.write("                    <select class=\"form-control matches\" name = \"games\">\n");
       out.write("                        ");
 
-                            for (GameOfTeam game : gamesList.futureGame()){
+                            for (GameOfTeam game : gamesList.showFutureGame()){
                         
       out.write("\n");
       out.write("\n");
-      out.write("                        <option id=\"teams\">");
+      out.write("                        <option id=\"teams\" value = ");
+      out.print(game.getId());
+      out.write(' ');
+      out.write('>');
       out.print(game.getNameTeam1());
       out.write(" - ");
       out.print(game.getNameTeam2());
@@ -123,7 +130,7 @@ public final class sale_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("                    </select>\n");
       out.write("                    \n");
-      out.write("                    <button type=\"submit\" value=\"update\" class=\"btn btn-default btn_show\">Показати список квітків по даному матчі</button>\n");
+      out.write("                    <button type=\"submit\" value=\"update\" class=\"btn btn-default btn_show\">Показати список квитків по даному матчі</button>\n");
       out.write("                     \n");
       out.write("                </form>\n");
       out.write("            </div>\n");
@@ -132,12 +139,49 @@ public final class sale_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            <div class=\"sectors_up\">\n");
       out.write("                \n");
       out.write("                <div class=\"row sector_f\">\n");
+      out.write("                    <table class = \"table table-bordered\"> \n");
+      out.write("                        <thead>\n");
+      out.write("                            <tr>\n");
+      out.write("                                <th bgcolor=\"#BDBDBD\" style=\"width: 10%\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sectors</th>\n");
+      out.write("                                <th bgcolor=\"#BDBDBD\" style=\"width: 10%\">Rows</th>\n");
+      out.write("                                <th bgcolor=\"#BDBDBD\" style=\"width: 80%\">Places</th>\n");
+      out.write("                            </tr>\n");
+      out.write("                        </thead>\n");
+      out.write("                        <tbody>\n");
       out.write("                    ");
-
-                        for(Place place : placeList.getPlaceSectorFutureGame()){
+ 
+                          Iterator iterSector = placeList.getListSector().iterator();
+                          while (iterSector.hasNext()){
+                              int idSector = (Integer) iterSector.next();
                     
       out.write("\n");
-      out.write("                    \n");
+      out.write("                    <tr>\n");
+      out.write("                        <td bgcolor=\"#01A9DB\" rowspan=\" ");
+      out.print(placeList.getListRows(idSector).size());
+      out.write("\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+      out.print(idSector);
+      out.write("</td>\n");
+      out.write("                        \n");
+      out.write("                    ");
+ 
+                        Iterator<Integer> iterRows = placeList.getListRows(idSector).iterator();
+                        while (iterRows.hasNext()){
+                           int idRows = iterRows.next();
+                            placeList.setIdRow(idRows);
+                        
+                    
+      out.write("\n");
+      out.write("                    <td bgcolor=\"#FE642E\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+      out.print(idRows);
+      out.write("</td>\n");
+      out.write("                    <td bgcolor=\"#61210B\">\n");
+      out.write("                    ");
+
+                        for(Place place : placeList.getAllPlace()){
+                            
+                            if (idSector == place.getIdSector() && idRows == place.getRow()){
+                    
+      out.write("\n");
       out.write("                    <button data-toggle=\"modal\" data-target=\"#");
       out.print(place.getId());
       out.write("\" id=\"btn_update\" value=\"update\" type=\"submit\" class=\"btn btn-warning\">");
@@ -193,11 +237,25 @@ public final class sale_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            </div>\n");
       out.write("                        </div>\n");
       out.write("                    </div>\n");
+      out.write("                     \n");
+      out.write("                    ");
+}else continue;
+      out.write("\n");
+      out.write("                    ");
+}
+      out.write("\n");
+      out.write("                    </td>\n");
+      out.write("                    </tr>\n");
+      out.write("                    ");
+}
+      out.write("\n");
       out.write("                    \n");
       out.write("                    ");
 }
       out.write("\n");
-      out.write("                                    \n");
+      out.write("                        \n");
+      out.write("                    </tbody>\n");
+      out.write("                </table>                 \n");
       out.write("                </div>\n");
       out.write("                \n");
       out.write("                <div class=\"row sectors_c_d_e\">\n");
@@ -217,11 +275,7 @@ public final class sale_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            </div>\n");
       out.write("\n");
       out.write("        </div>\n");
-      out.write("\n");
-      out.write("\n");
       out.write("        <div class=\"footer\"></div>\n");
-      out.write("\n");
-      out.write("\n");
       out.write("      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->\n");
       out.write("      <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js\"></script>\n");
       out.write("      <!-- Include all compiled plugins (below), or include individual files as needed -->\n");

@@ -34,14 +34,15 @@
         <h2 id ="headName">Розклад матчів НФК Урагану</h2>
         </div>
     </center>
-    <div class = "form-inline">    
+    <div class = "form-group">    
         <form  name="sortForm" action="../GamesController" method="POST" >
-            
-            <select class="selectpicker show-menu-arrow" name = "sortGames">
+         <div class="col-sm-2">
+            <select class="form-control" name = "sortGames">
                 <option class="special" value = "showAllGame"> всі матчі</option>
                 <option style="background: #5cb85c; color: #fff;" value = "showCurrentGame"> поточний матч</option>
                 <option value = "showFutureGame"> майбутні матчі</option>
             </select>
+         </div>   
                 <input class="btn btn-info" type="submit" value="показати матчі">
         </form><br>
     </div>
@@ -50,7 +51,7 @@
           <button id="editG" class="btn btn-warning" type = "submit" onclick = "edit();">редагувати матчі</button>  
           <br><br>
         <%
-            for (GameOfTeam game : gamesList.futureGame()){
+            for (GameOfTeam game : gamesList.getListGame()){
         %>
         <table class="table-bordered">
         

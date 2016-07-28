@@ -34,8 +34,6 @@
            <% if(session.getAttribute("login") != null && session.getAttribute("login").equals("loginFailed")){%>
                 <p id = "error_masage">Введені дані хибні! Перевірте введену інформацію!</p>               
            <% session.invalidate(); }%>
-           
-           
          </form>
        </div>   
     </body>

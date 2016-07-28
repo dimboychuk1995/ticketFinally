@@ -51,7 +51,7 @@
           <button id="editG" class="btn btn-warning" type = "submit" onclick = "edit();">редагувати матчі</button>  
           <br><br>
         <%
-            for (GameOfTeam game : gamesList.futureGame()){
+            for (GameOfTeam game : gamesList.getListGame()){
         %>
         <table class="table-bordered">
         
