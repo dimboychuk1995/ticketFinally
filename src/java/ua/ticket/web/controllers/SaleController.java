@@ -78,9 +78,8 @@ public class SaleController extends HttpServlet{
 
         if (valueParamsGames.length > 0){
             for (int i = 0; i < valueParamsGames.length; i++){
-                
                 idGame = Integer.parseInt(valueParamsGames[i]);
-                System.out.println("This idGame - " + idGame);
+                //System.out.println("This idGame - " + idGame);
             }  
         }
         try {
@@ -132,27 +131,17 @@ public class SaleController extends HttpServlet{
     }
     
     public void getPlaceDB() throws SQLException{ 
-        placeList.clear();
-        sectorList.clear();
-        rowList.clear();
-        for (int idSector = 1; idSector <= 10; idSector++){
-        if(idRow == 0){   
+         placeList.clear();
+        for (int idSector = 1; idSector <= 10; idSector++){    
         getPlace("select * from ticket_on_game"
                 + " where id_sector = " + idSector
                 + " and id_game = " + idGame);
-         } else {
-                getPlace("select * from ticket_on_game"
-                + " where id_sector = " + idSector
-                + " and row = " + idRow
-                + " and id_game = " + idGame);
-            }
         }
     }
     public Set<Integer> getListSector(){
         for (int i = 0; i< placeList.size(); i++){
             sectorList.add(placeList.get(i).getIdSector());
         }
-        //System.out.println("Size sectorList is : "+sectorList.size());
         return sectorList;
     }
     
