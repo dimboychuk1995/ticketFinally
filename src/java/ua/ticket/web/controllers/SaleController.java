@@ -214,7 +214,6 @@ public class SaleController extends HttpServlet{
             String pip = request.getParameter("PIP");
             System.out.println(pip);
             
-            
                 String orderGame = "UPDATE tickets.ticket_on_game"
                         + " set status = '" + status
                         + "',PIP = '" + pip
@@ -225,7 +224,6 @@ public class SaleController extends HttpServlet{
         }catch(SQLException ex){
             Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
      
     public String getNameTeams(){
@@ -234,25 +232,43 @@ public class SaleController extends HttpServlet{
             Statement stmt = conn.createStatement();
             ){
             ResultSet rs = null;
-            
-      
+
             String getTeams = "SELECT team1,team2 FROM tickets.games "
                 + "WHERE id = " + getIdGame();
             rs = stmt.executeQuery(getTeams);
-            
- 
             while(rs.next()){
                 String team1 = rs.getString("team1");
                 String team2 = rs.getString("team2");
                 result = team1 + " - " + team2;
             } 
             return result;
-        }catch(Exception ex){
-            
+        }catch(Exception ex){  
             Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
         }    
-        
         return result;
     }
     
+    public String getNameSector(int idSector){
+        String result = "";
+        try(Connection conn = Database.getConnection();
+            Statement stmt = conn.createStatement();
+            ){
+            ResultSet rs = null;
+            
+
+            String getSector = "SELECT tickets.sector.name "
+                              + "FROM tickets.sector "
+                              + "join tickets.ticket_on_game "
+                              + "on tickets.sector.id = " + idSector;
+            
+            rs = stmt.executeQuery(getSector);
+            while(rs.next()){
+                result = rs.getString("name");
+            } 
+            return result;
+        }catch(Exception ex){  
+            Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+        return result;
+    } 
 }
