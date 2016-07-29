@@ -109,7 +109,7 @@ public final class sale_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                \n");
       out.write("            <div class=\"list_matches\">\n");
       out.write("                <form class=\"form-inline\" role=\"form\" action=\"../SaleController\" method=\"POST\">\n");
-      out.write("                    <select class=\"form-control matches\" name = \"games\">\n");
+      out.write("                    <select class=\"form-control matches\" name = \"selectGame\">\n");
       out.write("                        ");
 
                             for (GameOfTeam game : gamesList.showFutureGame()){
@@ -139,17 +139,22 @@ public final class sale_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            <div class=\"sectors_up\">\n");
       out.write("                \n");
       out.write("                <div class=\"row sector_f\">\n");
-      out.write("                    <table class = \"table table-bordered\"> \n");
+      out.write("                    <center>\n");
+      out.write("                    <h3>");
+      out.print(placeList.getNameTeams());
+      out.write("</h3>\n");
+      out.write("                    </center>\n");
+      out.write("                    <table class = \"table table-bordered\">\n");
       out.write("                        <thead>\n");
       out.write("                            <tr>\n");
-      out.write("                                <th bgcolor=\"#BDBDBD\" style=\"width: 10%\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sectors</th>\n");
-      out.write("                                <th bgcolor=\"#BDBDBD\" style=\"width: 10%\">Rows</th>\n");
-      out.write("                                <th bgcolor=\"#BDBDBD\" style=\"width: 80%\">Places</th>\n");
+      out.write("                                <th bgcolor=\"#BDBDBD\" style=\"width: 10%\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Сектор</th>\n");
+      out.write("                                <th bgcolor=\"#BDBDBD\" style=\"width: 10%\">Ряд</th>\n");
+      out.write("                                <th bgcolor=\"#BDBDBD\" style=\"width: 80%\">Місце</th>\n");
       out.write("                            </tr>\n");
       out.write("                        </thead>\n");
       out.write("                        <tbody>\n");
       out.write("                    ");
- 
+      
                           Iterator iterSector = placeList.getListSector().iterator();
                           while (iterSector.hasNext()){
                               int idSector = (Integer) iterSector.next();
@@ -180,15 +185,27 @@ public final class sale_jsp extends org.apache.jasper.runtime.HttpJspBase
                         for(Place place : placeList.getAllPlace()){
                             
                             if (idSector == place.getIdSector() && idRows == place.getRow()){
+                                int status = place.getStatus();
+                                String colorButton = "btn btn-danger";
+                                switch(status){
+                                    case 0: colorButton = "btn btn-success";
+                                        break;
+                                    case 1: colorButton = "btn btn-warning";
+                                        break;
+                                    case 2: colorButton = "btn btn-info";
+                                        break;
+                                }
                     
       out.write("\n");
       out.write("                    <button data-toggle=\"modal\" data-target=\"#");
       out.print(place.getId());
-      out.write("\" id=\"btn_update\" value=\"update\" type=\"submit\" class=\"btn btn-warning\">");
-      out.print(place.getId());
+      out.write("\" id=\"btn_update\" value=\"update\" type=\"submit\" class=\"");
+      out.print(colorButton);
+      out.write('"');
+      out.write('>');
+      out.print(place.getNumber());
       out.write("</button>\n");
-      out.write("\n");
-      out.write("                    \n");
+      out.write(" \n");
       out.write("                    <div id=\"");
       out.print(place.getId());
       out.write("\" class=\"modal fade\" role=\"dialog\">\n");
@@ -201,7 +218,7 @@ public final class sale_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                <div class=\"modal-body\">\n");
       out.write("                                    <form action=\"../SaleController\" method=\"POST\">\n");
       out.write("                                        <div class=\"form-group form-group_on_sale\">\n");
-      out.write("                                            <label for=\"id\">id</label>\n");
+      out.write("                                       <!-- <label for=\"id\">id</label> \n");
       out.write("                                            <input placeholder=\"id\" class=\"form-control\" id=\"id\" type=\"text\" name=\"id\" value=\"");
       out.print(place.getId());
       out.write("\"/> \n");
@@ -217,18 +234,21 @@ public final class sale_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                            <input placeholder=\"Сектор\" class=\"form-control\" id=\"id_sector\" type=\"text\" name=\"id_sector\" value=\"");
       out.print(place.getIdSector());
       out.write("\"/> \n");
-      out.write("                                            <label for=\"status\">status</label>\n");
+      out.write("                                       -->\n");
+      out.write("                                            <input placeholder=\"id\" class=\"form-control\" id=\"id\" type=\"hidden\" name=\"id\" value=\"");
+      out.print(place.getId());
+      out.write("\"/>      \n");
+      out.write("                                            <label for=\"status\">Статус</label>\n");
       out.write("                                            <input placeholder=\"Вільно/зайнято\" class=\"form-control\" id=\"status\" type=\"text\" name=\"status\" value=\"");
       out.print(place.getStatus());
       out.write("\"/> \n");
-      out.write("                                            <label for=\"PIP\">PIP</label>\n");
+      out.write("                                            <label for=\"PIP\">П.І.Б.</label>\n");
       out.write("                                            <input placeholder=\"ПІП\" class=\"form-control\" id=\"PIP\" type=\"text\" name=\"PIP\" value=\"");
       out.print(place.getPIP());
       out.write("\"/> \n");
       out.write("                                        </div>\n");
-      out.write("                                            <button id=\"btn_update\" value=\"update\" type=\"submit\" class=\"btn btn-warning\">");
-      out.print(place.getId());
-      out.write("</button>\n");
+      out.write("                                            <input id=\"orderPlace\" type=\"hidden\" name=\"orderPlace\" value=\"orderPlace\" />\n");
+      out.write("                                            <button id=\"btn_update\" value=\"update\" type=\"submit\" class=\"btn btn-warning\">Зберегти</button>\n");
       out.write("                                    </form>\n");
       out.write("                                </div>\n");
       out.write("                                <div class=\"modal-footer\">\n");

@@ -303,5 +303,7 @@ public class GamesController extends HttpServlet {
             Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    
 
 }

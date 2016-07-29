@@ -31,7 +31,6 @@ import static jdk.nashorn.internal.objects.NativeArray.map;
 import ua.ticket.web.beans.GameOfTeam;
 import ua.ticket.web.beans.Place;
 import ua.ticket.web.db.Database;
-
 /**
  *
  * @author us9522
@@ -55,6 +54,7 @@ public class SaleController extends HttpServlet{
         return idGame;
     }
     
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -71,15 +71,26 @@ public class SaleController extends HttpServlet{
             throws ServletException, IOException {
         
         String[] valueParamsGames = new String[0];
+        String orderPlace = "";
         
-        if (request.getParameterValues("games")!= null){
-            valueParamsGames = request.getParameterValues("games");
+        if (request.getParameterValues("selectGame")!= null){
+            valueParamsGames = request.getParameterValues("selectGame");
+        }
+        
+        if (request.getParameter("orderPlace") != null){
+            orderPlace = request.getParameter("orderPlace");
+        }
+        
+        
+        String status2 = "orderPlace";
+        if (status2.equals(orderPlace)){
+            updatePlace(request,response);
+            
         }
 
         if (valueParamsGames.length > 0){
             for (int i = 0; i < valueParamsGames.length; i++){
                 idGame = Integer.parseInt(valueParamsGames[i]);
-                //System.out.println("This idGame - " + idGame);
             }  
         }
         try {
@@ -152,7 +163,7 @@ public class SaleController extends HttpServlet{
                 + " and row = " + placeList.get(i).getRow()
                 + " and id_game = " + idGame);    
         }
-        System.out.println("Rows size is " + rowList.size());
+        //System.out.println("Rows size is " + rowList.size());
         return rowList; 
     }
     
@@ -182,5 +193,66 @@ public class SaleController extends HttpServlet{
                 Logger.getLogger(SectorController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    } 
+    }
+     
+     protected void updatePlace(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException{
+        try(Connection conn = Database.getConnection();
+            Statement stmt = conn.createStatement();
+            ){
+            
+            String id = request.getParameter("id");
+            System.out.println(id);
+            String row   = request.getParameter("row");
+            System.out.println(row);
+            String number   = request.getParameter("number");
+            System.out.println(number);
+            String id_sector  = request.getParameter("id_sector");
+            System.out.println(id_sector);
+            String status  = request.getParameter("status"); 
+            System.out.println(status);
+            String pip = request.getParameter("PIP");
+            System.out.println(pip);
+            
+            
+                String orderGame = "UPDATE tickets.ticket_on_game"
+                        + " set status = '" + status
+                        + "',PIP = '" + pip
+                        + "' where id = " + id;
+                //System.out.println(orderGame);
+            stmt.executeUpdate(orderGame);
+            
+        }catch(SQLException ex){
+            Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+     
+    public String getNameTeams(){
+        String result = "";
+        try(Connection conn = Database.getConnection();
+            Statement stmt = conn.createStatement();
+            ){
+            ResultSet rs = null;
+            
+      
+            String getTeams = "SELECT team1,team2 FROM tickets.games "
+                + "WHERE id = " + getIdGame();
+            rs = stmt.executeQuery(getTeams);
+            
+ 
+            while(rs.next()){
+                String team1 = rs.getString("team1");
+                String team2 = rs.getString("team2");
+                result = team1 + " - " + team2;
+            } 
+            return result;
+        }catch(Exception ex){
+            
+            Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+        
+        return result;
+    }
+    
 }

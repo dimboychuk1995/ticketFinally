@@ -47,7 +47,7 @@
                 
             <div class="list_matches">
                 <form class="form-inline" role="form" action="../SaleController" method="POST">
-                    <select class="form-control matches" name = "games">
+                    <select class="form-control matches" name = "selectGame">
                         <%
                             for (GameOfTeam game : gamesList.showFutureGame()){
                         %>
@@ -66,16 +66,19 @@
             <div class="sectors_up">
                 
                 <div class="row sector_f">
-                    <table class = "table table-bordered"> 
+                    <center>
+                    <h3><%=placeList.getNameTeams()%></h3>
+                    </center>
+                    <table class = "table table-bordered">
                         <thead>
                             <tr>
-                                <th bgcolor="#BDBDBD" style="width: 10%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sectors</th>
-                                <th bgcolor="#BDBDBD" style="width: 10%">Rows</th>
-                                <th bgcolor="#BDBDBD" style="width: 80%">Places</th>
+                                <th bgcolor="#BDBDBD" style="width: 10%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Сектор</th>
+                                <th bgcolor="#BDBDBD" style="width: 10%">Ряд</th>
+                                <th bgcolor="#BDBDBD" style="width: 80%">Місце</th>
                             </tr>
                         </thead>
                         <tbody>
-                    <% 
+                    <%      
                           Iterator iterSector = placeList.getListSector().iterator();
                           while (iterSector.hasNext()){
                               int idSector = (Integer) iterSector.next();
@@ -96,10 +99,19 @@
                         for(Place place : placeList.getAllPlace()){
                             
                             if (idSector == place.getIdSector() && idRows == place.getRow()){
+                                int status = place.getStatus();
+                                String colorButton = "btn btn-danger";
+                                switch(status){
+                                    case 0: colorButton = "btn btn-success";
+                                        break;
+                                    case 1: colorButton = "btn btn-warning";
+                                        break;
+                                    case 2: colorButton = "btn btn-info";
+                                        break;
+                                }
                     %>
-                    <button data-toggle="modal" data-target="#<%=place.getId()%>" id="btn_update" value="update" type="submit" class="btn btn-warning"><%=place.getId()%></button>
-
-                    
+                    <button data-toggle="modal" data-target="#<%=place.getId()%>" id="btn_update" value="update" type="submit" class="<%=colorButton%>"><%=place.getNumber()%></button>
+ 
                     <div id="<%=place.getId()%>" class="modal fade" role="dialog">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -110,7 +122,7 @@
                                 <div class="modal-body">
                                     <form action="../SaleController" method="POST">
                                         <div class="form-group form-group_on_sale">
-                                            <label for="id">id</label>
+                                       <!-- <label for="id">id</label> 
                                             <input placeholder="id" class="form-control" id="id" type="text" name="id" value="<%=place.getId()%>"/> 
                                             <label for="row">row</label>
                                             <input placeholder="Ряд" class="form-control" id="row" type="text" name="row" value="<%=place.getRow()%>"/> 
@@ -118,12 +130,15 @@
                                             <input placeholder="Місце" class="form-control" id="number" type="text" name="number" value="<%=place.getNumber()%>"/> 
                                             <label for="id_sector">id_sector</label>
                                             <input placeholder="Сектор" class="form-control" id="id_sector" type="text" name="id_sector" value="<%=place.getIdSector()%>"/> 
-                                            <label for="status">status</label>
+                                       -->
+                                            <input placeholder="id" class="form-control" id="id" type="hidden" name="id" value="<%=place.getId()%>"/>      
+                                            <label for="status">Статус</label>
                                             <input placeholder="Вільно/зайнято" class="form-control" id="status" type="text" name="status" value="<%=place.getStatus()%>"/> 
-                                            <label for="PIP">PIP</label>
+                                            <label for="PIP">П.І.Б.</label>
                                             <input placeholder="ПІП" class="form-control" id="PIP" type="text" name="PIP" value="<%=place.getPIP()%>"/> 
                                         </div>
-                                            <button id="btn_update" value="update" type="submit" class="btn btn-warning"><%=place.getId()%></button>
+                                            <input id="orderPlace" type="hidden" name="orderPlace" value="orderPlace" />
+                                            <button id="btn_update" value="update" type="submit" class="btn btn-warning">Зберегти</button>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
