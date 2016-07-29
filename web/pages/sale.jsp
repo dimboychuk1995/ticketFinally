@@ -84,7 +84,7 @@
                               int idSector = (Integer) iterSector.next();
                     %>
                     <tr>
-                        <td bgcolor="#01A9DB" rowspan=" <%=placeList.getListRows(idSector).size()%>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=idSector%></td>
+                        <td bgcolor="#01A9DB" rowspan=" <%=placeList.getListRows(idSector).size()%>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=placeList.getNameSector(idSector)%></td>
                         
                     <% 
                         Iterator<Integer> iterRows = placeList.getListRows(idSector).iterator();
