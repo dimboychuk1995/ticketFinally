@@ -54,7 +54,7 @@
         </form> 
         <br><br>
         
-        <table class="table">
+        <table id ='tableGame' class="table">
             <thead>
                 <tr>
                     <th id ='headTable' bgcolor="#BDBDBD" style="width: 8%">Час</th>

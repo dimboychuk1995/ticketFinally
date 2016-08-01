@@ -123,7 +123,7 @@ public final class GamesPage_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        </form> \r\n");
       out.write("        <br><br>\r\n");
       out.write("        \r\n");
-      out.write("        <table class=\"table\">\r\n");
+      out.write("        <table id ='tableGame' class=\"table\">\r\n");
       out.write("            <thead>\r\n");
       out.write("                <tr>\r\n");
       out.write("                    <th id ='headTable' bgcolor=\"#BDBDBD\" style=\"width: 8%\">Час</th>\r\n");

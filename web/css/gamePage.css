@@ -25,14 +25,17 @@ input[type='text']{
 .table{
     margin-left: 24px;
 }
+#tableGame{
+    width: 98%;
+}
 #columnTableGame {
     aligin : center;
     background-color: rgba(115, 37, 30, 0.61);
     border-top: 1px solid rgb(221, 221, 221);
 }
 #inputTableGame{
-    background-color: rgba(115, 37, 30, 0.61); /* Цвет фона */
-    color: #FFF5F5; /* Цвет текста */
+    background-color: rgba(115, 37, 30, 0.61); 
+    color: #FFF5F5;
 }
 #button_AddGame{
     margin-left: 3px;
