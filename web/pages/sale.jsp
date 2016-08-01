@@ -52,7 +52,7 @@
                             for (GameOfTeam game : gamesList.showFutureGame()){
                         %>
 
-                        <option id="teams" value = <%=game.getId()%> ><%=game.getNameTeam1()%> - <%=game.getNameTeam2()%></option>
+                        <option id="teams" value = <%=game.getId()%>><%=game.getNameTeam1()%> - <%=game.getNameTeam2()%></option>
 
                         <%}%>
                     </select>

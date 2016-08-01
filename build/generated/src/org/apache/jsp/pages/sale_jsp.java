@@ -118,7 +118,6 @@ public final class sale_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("                        <option id=\"teams\" value = ");
       out.print(game.getId());
-      out.write(' ');
       out.write('>');
       out.print(game.getNameTeam1());
       out.write(" - ");
