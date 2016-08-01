@@ -26,6 +26,7 @@ function add_games() {
                                             <br>';
                                             
                         objTo.appendChild(divtest)
+                        $("#addG").attr('disabled',true);
                     };
                     
 function edit(){    
