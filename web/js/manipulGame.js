@@ -5,7 +5,7 @@ function add_games() {
                                             <br>\n\
                                             <form  action="../GamesController" method="POST" >\n\
                                             <div class="col-xs-1">\n\
-                                            <input class="form-control"class="form-control" type="text" name= "time"    value="" size="3" placeholder = "час"/>\n\
+                                            <input id = "inputAddTime" class="form-control"type="text" name= "time"    value="" size="3" placeholder = "час"/>\n\
                                             </div>\n\
                                             <div class="col-xs-2">\n\
                                             <input class="form-control" type="text" name= "date"    value="" size="20" placeholder = "дата матчу"/>\n\

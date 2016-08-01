@@ -61,7 +61,9 @@
                     <th id ='headTable' bgcolor="#BDBDBD" style="width: 10%">Дата</th>
                     <th id ='headTable' bgcolor="#BDBDBD" style="width: 25%">Господарі</th>
                     <th id ='headTable' bgcolor="#BDBDBD" style="width: 25%">Гості</th>
-                    <th id ='headTable' bgcolor="#BDBDBD" style="width: 32%">Місце проведення</th>
+                    <th id ='headTable' bgcolor="#BDBDBD" style="width: 30%">Місце проведення</th>
+                    <th id ='headTable' bgcolor="#BDBDBD" style="width: 0%"></th>
+                    <th id ='headTable' bgcolor="#BDBDBD" style="width: 0%"></th>
                 </tr>
             </thead>
             <tbody> 
@@ -74,18 +76,18 @@
                 <form id ="form1"  action="../GamesController" method="POST" >
                     
                         <input type="hidden" name="id" value="<%=game.getId()%>" />     
-                        <td><input class="col-xs-12" type="text" name="time" value="<%=game.getTimeGame() %>" size="3" disabled/></td>
-                        <td><input class="col-xs-12" type="text" name="date" value="<%=game.getDateGame()%>" size="20" disabled /></td>
-                        <td><input class="col-xs-12" type="text" name= "owner" value="<%=game.getNameTeam1()%>" size="20" disabled/></td>
-                        <td><input class="col-xs-12" type="text" name="guest" value="<%=game.getNameTeam2() %>" size="20" disabled /></td>
-                        <td><input class="col-xs-12" type="text" name="place" value="<%=game.getPlaceGame()%>" size="20" disabled/></td>
+                        <td id = 'columnTableGame'><input id ='inputTableGame' class="col-xs-12" type="text" name="time" value="<%=game.getTimeGame() %>" size="3" disabled/></td>
+                        <td id = 'columnTableGame'><input id ='inputTableGame' class="col-xs-12" type="text" name="date" value="<%=game.getDateGame()%>" size="20" disabled /></td>
+                        <td id = 'columnTableGame'><input id ='inputTableGame' class="col-xs-12" type="text" name= "owner" value="<%=game.getNameTeam1()%>" size="20" disabled/></td>
+                        <td id = 'columnTableGame'><input id ='inputTableGame' class="col-xs-12" type="text" name="guest" value="<%=game.getNameTeam2() %>" size="20" disabled /></td>
+                        <td id = 'columnTableGame'><input id ='inputTableGame' class="col-xs-12" type="text" name="place" value="<%=game.getPlaceGame()%>" size="20" disabled/></td>
                         <input id="updateGame" type="hidden" name="updateGame" value="updateGame" />
-                        <td><input id ="s1" class="btn btn-mini btn-warning" type="button"  onclick="sbmit(this.form)" value = "обновити" style = "display: none"/></td>
+                        <td id = 'columnTableGame'><input id ="s1" class="btn btn-mini btn-warning" type="button"  onclick="sbmit(this.form)" value = "обновити" style = "display: none"/></td>
                 </form>
                 <form id ="form2"  action="../GamesController" method="POST" >
                      <input type="hidden" name="id" value="<%=game.getId()%>" />   
                      <input id="deleteGame" type="hidden" name="deleteGame" value="deleteGame"/>
-                     <td><input id ="s2" class="btn btn-mini btn-warning" type="button" onclick="sbmit(this.form)" value = "видалити" style = "display:none"/></td>      
+                     <td id = 'columnTableGame'><input id ="s2" class="btn btn-mini btn-warning" type="button" onclick="sbmit(this.form)" value = "видалити" style = "display:none"/></td>      
                 </form>
                     </tr>        
             </div>        

@@ -130,7 +130,9 @@ public final class GamesPage_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    <th id ='headTable' bgcolor=\"#BDBDBD\" style=\"width: 10%\">Дата</th>\r\n");
       out.write("                    <th id ='headTable' bgcolor=\"#BDBDBD\" style=\"width: 25%\">Господарі</th>\r\n");
       out.write("                    <th id ='headTable' bgcolor=\"#BDBDBD\" style=\"width: 25%\">Гості</th>\r\n");
-      out.write("                    <th id ='headTable' bgcolor=\"#BDBDBD\" style=\"width: 32%\">Місце проведення</th>\r\n");
+      out.write("                    <th id ='headTable' bgcolor=\"#BDBDBD\" style=\"width: 30%\">Місце проведення</th>\r\n");
+      out.write("                    <th id ='headTable' bgcolor=\"#BDBDBD\" style=\"width: 0%\"></th>\r\n");
+      out.write("                    <th id ='headTable' bgcolor=\"#BDBDBD\" style=\"width: 0%\"></th>\r\n");
       out.write("                </tr>\r\n");
       out.write("            </thead>\r\n");
       out.write("            <tbody> \r\n");
@@ -147,30 +149,30 @@ public final class GamesPage_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <input type=\"hidden\" name=\"id\" value=\"");
       out.print(game.getId());
       out.write("\" />     \r\n");
-      out.write("                        <td><input class=\"col-xs-12\" type=\"text\" name=\"time\" value=\"");
+      out.write("                        <td id = 'columnTableGame'><input id ='inputTableGame' class=\"col-xs-12\" type=\"text\" name=\"time\" value=\"");
       out.print(game.getTimeGame() );
       out.write("\" size=\"3\" disabled/></td>\r\n");
-      out.write("                        <td><input class=\"col-xs-12\" type=\"text\" name=\"date\" value=\"");
+      out.write("                        <td id = 'columnTableGame'><input id ='inputTableGame' class=\"col-xs-12\" type=\"text\" name=\"date\" value=\"");
       out.print(game.getDateGame());
       out.write("\" size=\"20\" disabled /></td>\r\n");
-      out.write("                        <td><input class=\"col-xs-12\" type=\"text\" name= \"owner\" value=\"");
+      out.write("                        <td id = 'columnTableGame'><input id ='inputTableGame' class=\"col-xs-12\" type=\"text\" name= \"owner\" value=\"");
       out.print(game.getNameTeam1());
       out.write("\" size=\"20\" disabled/></td>\r\n");
-      out.write("                        <td><input class=\"col-xs-12\" type=\"text\" name=\"guest\" value=\"");
+      out.write("                        <td id = 'columnTableGame'><input id ='inputTableGame' class=\"col-xs-12\" type=\"text\" name=\"guest\" value=\"");
       out.print(game.getNameTeam2() );
       out.write("\" size=\"20\" disabled /></td>\r\n");
-      out.write("                        <td><input class=\"col-xs-12\" type=\"text\" name=\"place\" value=\"");
+      out.write("                        <td id = 'columnTableGame'><input id ='inputTableGame' class=\"col-xs-12\" type=\"text\" name=\"place\" value=\"");
       out.print(game.getPlaceGame());
       out.write("\" size=\"20\" disabled/></td>\r\n");
       out.write("                        <input id=\"updateGame\" type=\"hidden\" name=\"updateGame\" value=\"updateGame\" />\r\n");
-      out.write("                        <td><input id =\"s1\" class=\"btn btn-mini btn-warning\" type=\"button\"  onclick=\"sbmit(this.form)\" value = \"обновити\" style = \"display: none\"/></td>\r\n");
+      out.write("                        <td id = 'columnTableGame'><input id =\"s1\" class=\"btn btn-mini btn-warning\" type=\"button\"  onclick=\"sbmit(this.form)\" value = \"обновити\" style = \"display: none\"/></td>\r\n");
       out.write("                </form>\r\n");
       out.write("                <form id =\"form2\"  action=\"../GamesController\" method=\"POST\" >\r\n");
       out.write("                     <input type=\"hidden\" name=\"id\" value=\"");
       out.print(game.getId());
       out.write("\" />   \r\n");
       out.write("                     <input id=\"deleteGame\" type=\"hidden\" name=\"deleteGame\" value=\"deleteGame\"/>\r\n");
-      out.write("                     <td><input id =\"s2\" class=\"btn btn-mini btn-warning\" type=\"button\" onclick=\"sbmit(this.form)\" value = \"видалити\" style = \"display:none\"/></td>      \r\n");
+      out.write("                     <td id = 'columnTableGame'><input id =\"s2\" class=\"btn btn-mini btn-warning\" type=\"button\" onclick=\"sbmit(this.form)\" value = \"видалити\" style = \"display:none\"/></td>      \r\n");
       out.write("                </form>\r\n");
       out.write("                    </tr>        \r\n");
       out.write("            </div>        \r\n");
@@ -180,7 +182,7 @@ public final class GamesPage_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            </tbody>\r\n");
       out.write("         </table> \r\n");
       out.write("    </body>\r\n");
-      out.write("</html>\n");
+      out.write("</html>");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;
