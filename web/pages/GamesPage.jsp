@@ -16,7 +16,7 @@
         <script src= "../js/manipulGame.js" type="text/javascript"></script>
         <!-- Bootstrap -->
         <link href="../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../css/game.css" rel="stylesheet">
+        <link href="../css/gamePage.css" rel="stylesheet">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -29,11 +29,6 @@
         <jsp:useBean id="gamesInfo" class="ua.ticket.web.controllers.GamesController"/>
         <jsp:useBean id="gamesTeam" class="ua.ticket.web.beans.GameOfTeam"/>
 
-    <center>
-        <div class = "page-header">
-        <h2 id ="headName">Розклад матчів НФК Урагану</h2>
-        </div>
-    </center>
     <div class = "form-group">    
         <form  name="sortForm" action="../GamesController" method="POST" >
          <div class="col-sm-2">
