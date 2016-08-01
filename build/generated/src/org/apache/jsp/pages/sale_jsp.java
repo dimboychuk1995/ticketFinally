@@ -156,9 +156,9 @@ public final class sale_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    <table class = \"table table-bordered\">\n");
       out.write("                        <thead>\n");
       out.write("                            <tr>\n");
-      out.write("                                <th id ='headTable' bgcolor=\"#BDBDBD\" style=\"width: 10%\">Сектор</th>\n");
-      out.write("                                <th id ='headTable' bgcolor=\"#BDBDBD\" style=\"width: 10%\">Ряд</th>\n");
-      out.write("                                <th id ='headTable' bgcolor=\"#BDBDBD\" style=\"width: 80%\">Місце</th>\n");
+      out.write("                                <th id ='headTableSale' bgcolor=\"#BDBDBD\" style=\"width: 10%\">Сектор</th>\n");
+      out.write("                                <th id ='headTableSale' bgcolor=\"#BDBDBD\" style=\"width: 10%\">Ряд</th>\n");
+      out.write("                                <th id ='headTableSale' bgcolor=\"#BDBDBD\" style=\"width: 80%\">Місце</th>\n");
       out.write("                            </tr>\n");
       out.write("                        </thead>\n");
       out.write("                        <tbody>\n");

@@ -81,9 +81,9 @@
                     <table class = "table table-bordered">
                         <thead>
                             <tr>
-                                <th id ='headTable' bgcolor="#BDBDBD" style="width: 10%">Сектор</th>
-                                <th id ='headTable' bgcolor="#BDBDBD" style="width: 10%">Ряд</th>
-                                <th id ='headTable' bgcolor="#BDBDBD" style="width: 80%">Місце</th>
+                                <th id ='headTableSale' bgcolor="#BDBDBD" style="width: 10%">Сектор</th>
+                                <th id ='headTableSale' bgcolor="#BDBDBD" style="width: 10%">Ряд</th>
+                                <th id ='headTableSale' bgcolor="#BDBDBD" style="width: 80%">Місце</th>
                             </tr>
                         </thead>
                         <tbody>
