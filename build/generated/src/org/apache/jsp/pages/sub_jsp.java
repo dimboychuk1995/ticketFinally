@@ -137,12 +137,7 @@ public final class sub_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            </div>\n");
       out.write("            \n");
       out.write("        </div>\n");
-      out.write("            <div>\n");
-      out.write("                <form  action=\"../GamesController\" method=\"POST\">\n");
-      out.write("                    <button type=\"submit\"> Показати матчі </button>\n");
-      out.write("                </form>\n");
-      out.write("            </div>\n");
-      out.write("        \n");
+      out.write("       \n");
       out.write("        <div class=\"footer\"></div>\n");
       out.write("        \n");
       out.write("        \n");

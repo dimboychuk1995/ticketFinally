@@ -58,7 +58,7 @@ public final class GamesPage_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <script src= \"../js/manipulGame.js\" type=\"text/javascript\"></script>\r\n");
       out.write("        <!-- Bootstrap -->\r\n");
       out.write("        <link href=\"../css/bootstrap.min.css\" rel=\"stylesheet\">\r\n");
-      out.write("        <link href=\"../css/game.css\" rel=\"stylesheet\">\r\n");
+      out.write("        <link href=\"../css/gamePage.css\" rel=\"stylesheet\">\r\n");
       out.write("        <link rel=\"stylesheet\" href=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css\">\r\n");
       out.write("        <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js\"></script>\r\n");
       out.write("        <script src=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js\"></script>\r\n");
@@ -98,42 +98,55 @@ public final class GamesPage_jsp extends org.apache.jasper.runtime.HttpJspBase
       }
       out.write("\r\n");
       out.write("\r\n");
-      out.write("    <center>\r\n");
-      out.write("        <div class = \"page-header\">\r\n");
-      out.write("        <h2 id =\"headName\">Розклад матчів НФК Урагану</h2>\r\n");
-      out.write("        </div>\r\n");
-      out.write("    </center>\r\n");
       out.write("    <div class = \"form-group\">    \r\n");
       out.write("        <form  name=\"sortForm\" action=\"../GamesController\" method=\"POST\" >\r\n");
-      out.write("         <div class=\"col-sm-2\">\r\n");
+      out.write("         <div id = \"listMathes\" class=\"col-sm-2\">\r\n");
       out.write("            <select class=\"form-control\" name = \"sortGames\">\r\n");
       out.write("                <option class=\"special\" value = \"showAllGame\"> всі матчі</option>\r\n");
       out.write("                <option style=\"background: #5cb85c; color: #fff;\" value = \"showCurrentGame\"> поточний матч</option>\r\n");
       out.write("                <option value = \"showFutureGame\"> майбутні матчі</option>\r\n");
       out.write("            </select>\r\n");
       out.write("         </div>   \r\n");
-      out.write("                <input class=\"btn btn-info\" type=\"submit\" value=\"показати матчі\">\r\n");
+      out.write("                <input id = \"button_ShowMathes\" class=\"btn btn-info\" type=\"submit\" value=\"показати матчі\">\r\n");
       out.write("        </form><br>\r\n");
       out.write("    </div>\r\n");
-      out.write("          <input class=\"btn btn-warning\" type=\"button\" id=\"more_games\" onclick = \"add_games();\" value=\"добавити матч\" />\r\n");
+      out.write("        <button id =\"addG\" class=\"btn btn-warning\" type = \"button\" onclick = \"add_games();\">добавити матч</button> \r\n");
       out.write("          <input id=\"editGames\" type=\"hidden\" name=\"editGames\" value=\"editGames\" />\r\n");
-      out.write("          <button id=\"editG\" class=\"btn btn-warning\" type = \"submit\" onclick = \"edit();\">редагувати матчі</button>  \r\n");
-      out.write("          <br><br>\r\n");
+      out.write("        <button id=\"editG\" class=\"btn btn-warning\" type = \"submit\" onclick = \"edit();\">редагувати матчі</button>  \r\n");
+      out.write("          \r\n");
+      out.write("        <form  action=\"../SubscriptionController\" method=\"POST\">\r\n");
+      out.write("             <button id = 'button_AddGame' type=\"submit\" class=\"btn btn-primary\"> Добавити абоненмент </button> \r\n");
+      out.write("        </form>\r\n");
+      out.write("        \r\n");
+      out.write("        <form  action=\"../SaleController\" method=\"POST\">\r\n");
+      out.write("             <button id = 'button_SaleTickets' type=\"submit\" class=\"btn btn-primary\"> Замовити квиток </button> \r\n");
+      out.write("        </form> \r\n");
+      out.write("        <br><br>\r\n");
+      out.write("        \r\n");
+      out.write("        <table class=\"table\">\r\n");
+      out.write("            <thead>\r\n");
+      out.write("                <tr>\r\n");
+      out.write("                    <th id ='column_1' bgcolor=\"#BDBDBD\" style=\"width: 8%\">Час</th>\r\n");
+      out.write("                    <th id ='column_1' bgcolor=\"#BDBDBD\" style=\"width: 10%\">Дата</th>\r\n");
+      out.write("                    <th id ='column_1' bgcolor=\"#BDBDBD\" style=\"width: 25%\">Господарі</th>\r\n");
+      out.write("                    <th id ='column_1' bgcolor=\"#BDBDBD\" style=\"width: 25%\">Гості</th>\r\n");
+      out.write("                    <th id ='column_1' bgcolor=\"#BDBDBD\" style=\"width: 32%\">Місце проведення</th>\r\n");
+      out.write("                </tr>\r\n");
+      out.write("            </thead>\r\n");
+      out.write("            <tbody> \r\n");
+      out.write("                <div id = \"form-game\">\r\n");
+      out.write("                    \r\n");
       out.write("        ");
 
             for (GameOfTeam game : gamesList.getListGame()){
         
       out.write("\r\n");
-      out.write("        <table class=\"table-bordered\">\r\n");
-      out.write("        \r\n");
-      out.write("            <div id = \"form-game\">\r\n");
+      out.write("                <tr class=\"active\">\r\n");
       out.write("                <form id =\"form1\"  action=\"../GamesController\" method=\"POST\" >\r\n");
       out.write("                    \r\n");
       out.write("                        <input type=\"hidden\" name=\"id\" value=\"");
       out.print(game.getId());
       out.write("\" />     \r\n");
-      out.write("                  <tbody>    \r\n");
-      out.write("                    <tr class=\"active\">\r\n");
       out.write("                        <td><input class=\"col-xs-12\" type=\"text\" name=\"time\" value=\"");
       out.print(game.getTimeGame() );
       out.write("\" size=\"3\" disabled/></td>\r\n");
@@ -159,13 +172,13 @@ public final class GamesPage_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                     <input id=\"deleteGame\" type=\"hidden\" name=\"deleteGame\" value=\"deleteGame\"/>\r\n");
       out.write("                     <td><input id =\"s2\" class=\"btn btn-mini btn-warning\" type=\"button\" onclick=\"sbmit(this.form)\" value = \"видалити\" style = \"display:none\"/></td>      \r\n");
       out.write("                </form>\r\n");
-      out.write("                    </tr>\r\n");
-      out.write("                </tbody>    \r\n");
+      out.write("                    </tr>        \r\n");
       out.write("            </div>        \r\n");
-      out.write("        </table>    \r\n");
       out.write("        ");
 }
-      out.write(" \r\n");
+      out.write("\r\n");
+      out.write("            </tbody>\r\n");
+      out.write("         </table> \r\n");
       out.write("    </body>\r\n");
       out.write("</html>");
     } catch (Throwable t) {

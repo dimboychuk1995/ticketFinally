@@ -58,23 +58,32 @@
                     </select>
                     
                     <button type="submit" value="update" class="btn btn-default btn_show">Показати список квитків по даному матчі</button>
-                     
+                </div>
+                    
                 </form>
-            </div>
+  
+                    <form  action="../GamesController" method="POST">
+                        <p id = 'button_InfoGame'> <button type="submit" class="btn btn-primary"> Інформація про ігри </button>
+                    </form>
+
+                    <form  action="../SubscriptionController" method="POST">
+                        <p id = 'button_AddGame'> <button type="submit" class="btn btn-primary"> Добавити абоненмент </button> 
+                    </form>
             
-            
+                        
+
             <div class="sectors_up">
                 
                 <div class="row sector_f">
                     <center>
-                    <h3><%=placeList.getNameTeams()%></h3>
+                    <h3 id = 'nameTeams'><%=placeList.getNameTeams()%></h3>
                     </center>
                     <table class = "table table-bordered">
                         <thead>
                             <tr>
-                                <th bgcolor="#BDBDBD" style="width: 10%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Сектор</th>
-                                <th bgcolor="#BDBDBD" style="width: 10%">Ряд</th>
-                                <th bgcolor="#BDBDBD" style="width: 80%">Місце</th>
+                                <th id ='headTable' bgcolor="#BDBDBD" style="width: 10%">Сектор</th>
+                                <th id ='headTable' bgcolor="#BDBDBD" style="width: 10%">Ряд</th>
+                                <th id ='headTable' bgcolor="#BDBDBD" style="width: 80%">Місце</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -84,7 +93,7 @@
                               int idSector = (Integer) iterSector.next();
                     %>
                     <tr>
-                        <td bgcolor="#01A9DB" rowspan=" <%=placeList.getListRows(idSector).size()%>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=placeList.getNameSector(idSector)%></td>
+                        <td bgcolor="#01A9DB" rowspan=" <%=placeList.getListRows(idSector).size()%>"><%=placeList.getNameSector(idSector)%></td>
                         
                     <% 
                         Iterator<Integer> iterRows = placeList.getListRows(idSector).iterator();
@@ -93,7 +102,7 @@
                             placeList.setIdRow(idRows);
                         
                     %>
-                    <td bgcolor="#FE642E">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=idRows%></td>
+                    <td bgcolor="#FE642E"><%=idRows%></td>
                     <td bgcolor="#61210B">
                     <%
                         for(Place place : placeList.getAllPlace()){

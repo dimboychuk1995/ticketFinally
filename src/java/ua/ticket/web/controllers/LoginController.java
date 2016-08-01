@@ -40,9 +40,8 @@ public class LoginController extends HttpServlet {
             
             session.setAttribute("login", "loginAccess");
             if(rs.next()){
-                response.sendRedirect("pages/sub.jsp");
+                response.sendRedirect("pages/sale.jsp");
             }else{
-                 out.print("Sorry, username or password error!");  
                 session.setAttribute("login", "loginFailed");
                 response.sendRedirect("index.jsp");                
             }

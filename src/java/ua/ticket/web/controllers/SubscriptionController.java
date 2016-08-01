@@ -80,10 +80,11 @@ public class SubscriptionController extends HttpServlet{
         if (!subscriptionsList.isEmpty()) {
             return subscriptionsList;
         } else {
-            return getSubscription("SELECT subscription.id, PIP, season, place.row, place.number, sector.name\n" +
-                                    "FROM tickets.subscription join tickets.place on \n" +
-                                    "subscription.placeId = place.id\n" +
-                                    "join sector on place.idSector = sector.id");
+            return getSubscription("SELECT subscription.id, PIP, season, place.row, place.number, sector.name "
+                                    +"FROM tickets.subscription "
+                                    +"join tickets.place on "
+                                    +"subscription.placeId = place.id "
+                                    +"join sector on place.idSector = sector.id");
         }
     }
     
@@ -149,7 +150,7 @@ public class SubscriptionController extends HttpServlet{
             Statement stmt = conn.createStatement();
             ){
             
-            String sql = "INSERT INTO `tickets`.`subscription`"
+            String sql = "INSERT INTO tickets.subscription "
                     + "(`PIP`, `season`)"
                     + "VALUES"
                     + "('" + PIP 
@@ -158,9 +159,7 @@ public class SubscriptionController extends HttpServlet{
             
             String sqlMax = "select max(id) as id from tickets.subscription";
             String id = "";
-        
-            
-            
+
             stmt.executeUpdate(sql);
             
             rs = stmt.executeQuery(sqlMax);

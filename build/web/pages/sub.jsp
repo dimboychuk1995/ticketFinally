@@ -69,12 +69,7 @@
             </div>
             
         </div>
-            <div>
-                <form  action="../GamesController" method="POST">
-                    <button type="submit"> Показати матчі </button>
-                </form>
-            </div>
-        
+       
         <div class="footer"></div>
         
         

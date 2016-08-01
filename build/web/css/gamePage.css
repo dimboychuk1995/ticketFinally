@@ -1,0 +1,42 @@
+/* 
+    Created on : 1 серп. 2016, 10:12:22
+    Author     : us9546
+*/
+
+#listMathes{
+    margin-left: 15px;
+    margin-top: 10px;
+}
+#button_ShowMathes{
+    margin-top: 10px;
+}
+#addG{
+    margin-left: 24px;
+    float: left;
+}
+#editG{
+    margin-left: 3px;
+    float: left;
+}
+input[type='text']{
+    text-align: center;
+    border: none;
+}
+.table{
+    margin-left: 24px;
+}
+td {
+    aligin : center;
+}
+
+#button_AddGame{
+    margin-left: 3px;
+    float: left;
+}
+#button_SaleTickets{
+    margin-left: 3px;
+    float: left;
+}
+#headTable{
+    text-align: center;
+}
