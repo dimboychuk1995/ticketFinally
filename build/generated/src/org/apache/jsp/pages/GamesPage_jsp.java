@@ -126,11 +126,11 @@ public final class GamesPage_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <table class=\"table\">\r\n");
       out.write("            <thead>\r\n");
       out.write("                <tr>\r\n");
-      out.write("                    <th id ='column_1' bgcolor=\"#BDBDBD\" style=\"width: 8%\">Час</th>\r\n");
-      out.write("                    <th id ='column_1' bgcolor=\"#BDBDBD\" style=\"width: 10%\">Дата</th>\r\n");
-      out.write("                    <th id ='column_1' bgcolor=\"#BDBDBD\" style=\"width: 25%\">Господарі</th>\r\n");
-      out.write("                    <th id ='column_1' bgcolor=\"#BDBDBD\" style=\"width: 25%\">Гості</th>\r\n");
-      out.write("                    <th id ='column_1' bgcolor=\"#BDBDBD\" style=\"width: 32%\">Місце проведення</th>\r\n");
+      out.write("                    <th id ='headTable' bgcolor=\"#BDBDBD\" style=\"width: 8%\">Час</th>\r\n");
+      out.write("                    <th id ='headTable' bgcolor=\"#BDBDBD\" style=\"width: 10%\">Дата</th>\r\n");
+      out.write("                    <th id ='headTable' bgcolor=\"#BDBDBD\" style=\"width: 25%\">Господарі</th>\r\n");
+      out.write("                    <th id ='headTable' bgcolor=\"#BDBDBD\" style=\"width: 25%\">Гості</th>\r\n");
+      out.write("                    <th id ='headTable' bgcolor=\"#BDBDBD\" style=\"width: 32%\">Місце проведення</th>\r\n");
       out.write("                </tr>\r\n");
       out.write("            </thead>\r\n");
       out.write("            <tbody> \r\n");
@@ -180,7 +180,7 @@ public final class GamesPage_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            </tbody>\r\n");
       out.write("         </table> \r\n");
       out.write("    </body>\r\n");
-      out.write("</html>");
+      out.write("</html>\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;
