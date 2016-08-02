@@ -33,7 +33,7 @@ input[type='text']{
     background-color: rgba(115, 37, 30, 0.61);
     border-top: 1px solid rgb(221, 221, 221);
 }
-#inputTableGame{
+.col-xs-12{
     background-color: rgba(115, 37, 30, 0.61); 
     color: #FFF5F5;
 }

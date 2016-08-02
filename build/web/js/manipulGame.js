@@ -1,5 +1,5 @@
 function add_games() {
-                        var objTo = document.getElementById('form-game')
+                        var objTo = document.getElementById('addGameJS')
                         var divtest = document.createElement("div");
                         divtest.innerHTML = '<div>\n\
                                             <br>\n\

@@ -14,6 +14,7 @@
         
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src= "../js/manipulGame.js" type="text/javascript"></script>
+        
         <!-- Bootstrap -->
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/gamePage.css" rel="stylesheet">
@@ -21,7 +22,13 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         
+        
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+        <script src="http://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="http://code.jquery.com/ui/1.12.0/jquery-ui.js"></script> 
+        <script src="../js/datePicker.js"></script>
         <title>Перегляд матчів</title>
+
     </head>
 
     <body>
@@ -53,6 +60,7 @@
              <button id = 'button_SaleTickets' type="submit" class="btn btn-primary"> Замовити квиток </button> 
         </form> 
         <br><br>
+        <div id = 'addGameJS'></div>
         
         <table id ='tableGame' class="table">
             <thead>
@@ -76,11 +84,11 @@
                 <form id ="form1"  action="../GamesController" method="POST" >
                     
                         <input type="hidden" name="id" value="<%=game.getId()%>" />     
-                        <td id = 'columnTableGame'><input id ='inputTableGame' class="col-xs-12" type="text" name="time" value="<%=game.getTimeGame() %>" size="3" disabled/></td>
-                        <td id = 'columnTableGame'><input id ='inputTableGame' class="col-xs-12" type="text" name="date" value="<%=game.getDateGame()%>" size="20" disabled /></td>
-                        <td id = 'columnTableGame'><input id ='inputTableGame' class="col-xs-12" type="text" name= "owner" value="<%=game.getNameTeam1()%>" size="20" disabled/></td>
-                        <td id = 'columnTableGame'><input id ='inputTableGame' class="col-xs-12" type="text" name="guest" value="<%=game.getNameTeam2() %>" size="20" disabled /></td>
-                        <td id = 'columnTableGame'><input id ='inputTableGame' class="col-xs-12" type="text" name="place" value="<%=game.getPlaceGame()%>" size="20" disabled/></td>
+                        <td id = 'columnTableGame'><input class="col-xs-12" type="text" name="time" value="<%=game.getTimeGame() %>" size="3" disabled/></td>
+                        <td id = 'columnTableGame'><input id ="datepicker" class="col-xs-12" type="text" name="date" value="<%=game.getDateGame()%>" size="20" disabled /></td>
+                        <td id = 'columnTableGame'><input class="col-xs-12" type="text" name= "owner" value="<%=game.getNameTeam1()%>" size="20" disabled/></td>
+                        <td id = 'columnTableGame'><input class="col-xs-12" type="text" name="guest" value="<%=game.getNameTeam2() %>" size="20" disabled /></td>
+                        <td id = 'columnTableGame'><input class="col-xs-12" type="text" name="place" value="<%=game.getPlaceGame()%>" size="20" disabled/></td>
                         <input id="updateGame" type="hidden" name="updateGame" value="updateGame" />
                         <td id = 'columnTableGame'><input id ="s1" class="btn btn-mini btn-warning" type="button"  onclick="sbmit(this.form)" value = "обновити" style = "display: none"/></td>
                 </form>
