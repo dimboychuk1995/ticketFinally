@@ -48,7 +48,7 @@
                 <input id = "button_ShowMathes" class="btn btn-info" type="submit" value="показати матчі">
         </form><br>
     </div>
-        <button id ="addG" class="btn btn-warning" type = "button" onclick = "add_games();">добавити матч</button> 
+        <button id ="addG" class="btn btn-warning" type = "button" onclick = "addGame();">добавити матч</button> 
           <input id="editGames" type="hidden" name="editGames" value="editGames" />
         <button id="editG" class="btn btn-warning" type = "submit" onclick = "edit();">редагувати матчі</button>  
           

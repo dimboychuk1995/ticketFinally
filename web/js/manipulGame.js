@@ -50,5 +50,8 @@ function sbmit(iForm){
     
     iForm.submit();
 }
+function addGame(){
+    $('#addGameJS').load('addGame.jsp');
+}
 
 

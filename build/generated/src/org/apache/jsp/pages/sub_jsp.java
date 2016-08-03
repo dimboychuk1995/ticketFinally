@@ -3,6 +3,7 @@ package org.apache.jsp.pages;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import java.util.Iterator;
 import ua.ticket.web.controllers.SubscriptionController;
 import ua.ticket.web.beans.Subscription;
 
@@ -43,8 +44,9 @@ public final class sub_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write('\n');
-      out.write('\n');
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("\n");
       out.write("\n");
       out.write("\n");
@@ -74,7 +76,7 @@ public final class sub_jsp extends org.apache.jasper.runtime.HttpJspBase
       }
       out.write("\n");
       out.write("        \n");
-      out.write("        <button id =\"addS\" class=\"btn btn-warning\" type = \"button\" onclick = \"add_games();\">добавити абонемент</button> \n");
+      out.write("        <button id =\"addS\" class=\"btn btn-warning\" type = \"button\" onclick = \"addSub();\">добавити абонемент</button> \n");
       out.write("        \n");
       out.write("        <input id=\"editGames\" type=\"hidden\" name=\"editGames\" value=\"editGames\" />\n");
       out.write("        <button id=\"editS\" class=\"btn btn-warning\" type = \"submit\" onclick = \"editS();\">редагувати абонементи</button> \n");
@@ -86,10 +88,11 @@ public final class sub_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <form  action=\"../SaleController\" method=\"POST\">\n");
       out.write("             <button id = 'button_SaleTickets' type=\"submit\" class=\"btn btn-primary\"> Замовити квиток </button>\n");
       out.write("             <br>\n");
-      out.write("        </form> \n");
+      out.write("        </form>\n");
       out.write("        <br>\n");
-      out.write("        <div id = 'addSubJs'></div>\n");
+      out.write("        <div id = 'addSub'></div>\n");
       out.write("        <br>\n");
+      out.write("        \n");
       out.write("        <table id =\"tableSub\" class=\"table\">\n");
       out.write("            <thead>\n");
       out.write("                <tr>\n");
@@ -148,43 +151,11 @@ public final class sub_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("                </tbody>\n");
       out.write("                </table>\n");
-      out.write("         <!--\n");
-      out.write("            <div class=\"add_sub\">\n");
-      out.write("                \n");
-      out.write("                <form action=\"../SubscriptionController\" method=\"POST\">\n");
-      out.write("                    <div class=\"form-group\">\n");
-      out.write("                        <div class =\"col-xs-2\">\n");
-      out.write("                        <input class=\"form-control\" type=\"text\" id=\"PIP\" name=\"PIP\" value=\"\" placeholder=\"ПІП\"/> \n");
-      out.write("                        </div>\n");
-      out.write("                        <div class =\"col-xs-2\">\n");
-      out.write("                        <select class=\"form-control\" name=\"season\">\n");
-      out.write("                            <option id=\"season\">2015-2016</option>\n");
-      out.write("                            <option id=\"season\">2016-2017</option>\n");
-      out.write("                            <option id=\"season\">2017-2018</option>\n");
-      out.write("                            <option id=\"season\">2018-2019</option>\n");
-      out.write("                        </select>\n");
-      out.write("                        </div>\n");
-      out.write("                        <div class =\"col-xs-2\">\n");
-      out.write("                        <input class=\"form-control\" type=\"text\" id=\"sector\" name=\"sector\" value=\"\" placeholder=\"sector\" />\n");
-      out.write("                        </div>\n");
-      out.write("                        <div class =\"col-xs-2\">\n");
-      out.write("                        <input class=\"form-control\" type=\"text\" id=\"row\" name=\"row\" value=\"\" placeholder=\"row\" />\n");
-      out.write("                        </div>\n");
-      out.write("                        <div class =\"col-xs-2\">\n");
-      out.write("                        <input class=\"form-control\" type=\"text\" id=\"number\" name=\"number\" value=\"\" placeholder=\"number\" />\n");
-      out.write("                        </div>\n");
-      out.write("                        <button id=\"btn_add\" value=\"delete\" type=\"submit\" class=\"btn btn-success\">Зберегти</button> \n");
-      out.write("                    </div> \n");
-      out.write("                </form>\n");
-      out.write("                \n");
-      out.write("            </div>\n");
-      out.write("        -->\n");
-      out.write("        <div class=\"footer\"></div>\n");
+      out.write("\n");
+      out.write("          <div class=\"footer\"></div>\n");
       out.write("        <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js\"></script>\n");
       out.write("    \n");
       out.write("        <script src=\"../js/bootstrap.min.js\"></script>\n");
-      out.write("       \n");
-      out.write("        \n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

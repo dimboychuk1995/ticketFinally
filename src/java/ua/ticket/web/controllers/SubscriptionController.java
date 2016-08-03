@@ -15,6 +15,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ApplicationScoped;
@@ -141,8 +143,8 @@ public class SubscriptionController extends HttpServlet{
         
         String PIP = request.getParameter("PIP");
         String season = request.getParameter("season");
-        String sector = request.getParameter("sector");
-        String row = request.getParameter("row");
+        String sector = request.getParameter("sectors");
+        String row = request.getParameter("rows");
         String number = request.getParameter("number");
         ResultSet rs = null;
 
@@ -212,6 +214,58 @@ public class SubscriptionController extends HttpServlet{
             Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public LinkedHashSet getNameSectorsInGame(){
+        LinkedHashSet<String> listSectors = new LinkedHashSet<String>();
+        String result = "";
+        try(Connection conn = Database.getConnection();
+            Statement stmt = conn.createStatement();
+            ){
+            ResultSet rs = null;
+            
+
+            String getSector = "SELECT tickets.sector.name "
+                              + "FROM tickets.sector "
+                              + "join tickets.ticket_on_game "
+                              + "on tickets.sector.id = tickets.ticket_on_game.id_sector";
+            
+            System.out.println(getSector);
+            rs = stmt.executeQuery(getSector);
+            while(rs.next()){
+                listSectors.add(rs.getString("name"));
+              
+            } 
+            return listSectors;
+        }catch(Exception ex){  
+            Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+        return listSectors;
+    }
+    
+    public LinkedHashSet getRowsInGame(){
+        LinkedHashSet<Integer> listRows = new LinkedHashSet<Integer>();
+
+        try(Connection conn = Database.getConnection();
+            Statement stmt = conn.createStatement();
+            ){
+            ResultSet rs = null;
+            
+
+            String getRows = "SELECT row FROM tickets.ticket_on_game;";
+            
+            System.out.println(getRows);
+            rs = stmt.executeQuery(getRows);
+            while(rs.next()){
+                listRows.add(Integer.parseInt(rs.getString("row")));
+              
+            } 
+            return listRows;
+        }catch(Exception ex){  
+            Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+        return listRows;
+    }
+    
+    
     
     
     

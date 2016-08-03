@@ -5,7 +5,26 @@
 	 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	 version="3.0">
 
-
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>
+                Restricted Area
+            </web-resource-name>
+            <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>*</role-name>  
+        </auth-constraint> 
+    </security-constraint>
+    
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/pages/sale.jsp</form-login-page>
+            <form-error-page>/index.jsp</form-error-page>
+        </form-login-config>
+    </login-config>
+         
     <session-config>
 
         <session-timeout>

@@ -117,7 +117,7 @@ public final class GamesPage_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                <input id = \"button_ShowMathes\" class=\"btn btn-info\" type=\"submit\" value=\"показати матчі\">\r\n");
       out.write("        </form><br>\r\n");
       out.write("    </div>\r\n");
-      out.write("        <button id =\"addG\" class=\"btn btn-warning\" type = \"button\" onclick = \"add_games();\">добавити матч</button> \r\n");
+      out.write("        <button id =\"addG\" class=\"btn btn-warning\" type = \"button\" onclick = \"addGame();\">добавити матч</button> \r\n");
       out.write("          <input id=\"editGames\" type=\"hidden\" name=\"editGames\" value=\"editGames\" />\r\n");
       out.write("        <button id=\"editG\" class=\"btn btn-warning\" type = \"submit\" onclick = \"edit();\">редагувати матчі</button>  \r\n");
       out.write("          \r\n");

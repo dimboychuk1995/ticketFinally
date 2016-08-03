@@ -1,3 +1,4 @@
+<%@page import="java.util.Iterator"%>
 <%@page import="ua.ticket.web.controllers.SubscriptionController"%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%-- 
@@ -20,11 +21,10 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     </head>
-    <body>
-        
+    <body> 
         <jsp:useBean id="subscriptionList" class="ua.ticket.web.controllers.SubscriptionController"/>
         
-        <button id ="addS" class="btn btn-warning" type = "button" onclick = "add_games();">добавити абонемент</button> 
+        <button id ="addS" class="btn btn-warning" type = "button" onclick = "addSub();">добавити абонемент</button> 
         
         <input id="editGames" type="hidden" name="editGames" value="editGames" />
         <button id="editS" class="btn btn-warning" type = "submit" onclick = "editS();">редагувати абонементи</button> 
@@ -36,10 +36,11 @@
         <form  action="../SaleController" method="POST">
              <button id = 'button_SaleTickets' type="submit" class="btn btn-primary"> Замовити квиток </button>
              <br>
-        </form> 
+        </form>
         <br>
-        <div id = 'addSubJs'></div>
+        <div id = 'addSub'></div>
         <br>
+        
         <table id ="tableSub" class="table">
             <thead>
                 <tr>
@@ -50,8 +51,7 @@
                     <th class ='headTable' bgcolor="#BDBDBD" style="width: 5%" >місце</th>
                     <th class ='headTable' bgcolor="#BDBDBD" style="width: 0%" ></th>
                     <th class ='headTable' bgcolor="#BDBDBD" style="width: 0%" ></th>
-                </tr>
-                
+                </tr>     
             </thead>
             <tbody>
             <div>
@@ -70,7 +70,6 @@
                         </div>
                         <td class = 'columnTableSub'><button id="btn_update" value="update" type="submit" class="btn btn-mini btn-warning" style = "display: none">Оновити</button></td>  
                     </form>
-                
                     <form  action="../SubscriptionController" method="POST">
                         <input class="delete_sub" id="id" type="text" name="id" value="<%=subscription.getId()%>" size="20" />
                         <td class = 'columnTableSub'><button id="btn_delete" value="delete" type="submit" class="btn btn-mini btn-warning" style = "display: none" >Видалити</button></td> 
@@ -80,42 +79,10 @@
                 <%}%>
                 </tbody>
                 </table>
-         <!--
-            <div class="add_sub">
-                
-                <form action="../SubscriptionController" method="POST">
-                    <div class="form-group">
-                        <div class ="col-xs-2">
-                        <input class="form-control" type="text" id="PIP" name="PIP" value="" placeholder="ПІП"/> 
-                        </div>
-                        <div class ="col-xs-2">
-                        <select class="form-control" name="season">
-                            <option id="season">2015-2016</option>
-                            <option id="season">2016-2017</option>
-                            <option id="season">2017-2018</option>
-                            <option id="season">2018-2019</option>
-                        </select>
-                        </div>
-                        <div class ="col-xs-2">
-                        <input class="form-control" type="text" id="sector" name="sector" value="" placeholder="sector" />
-                        </div>
-                        <div class ="col-xs-2">
-                        <input class="form-control" type="text" id="row" name="row" value="" placeholder="row" />
-                        </div>
-                        <div class ="col-xs-2">
-                        <input class="form-control" type="text" id="number" name="number" value="" placeholder="number" />
-                        </div>
-                        <button id="btn_add" value="delete" type="submit" class="btn btn-success">Зберегти</button> 
-                    </div> 
-                </form>
-                
-            </div>
-        -->
-        <div class="footer"></div>
+
+          <div class="footer"></div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     
         <script src="../js/bootstrap.min.js"></script>
-       
-        
     </body>
 </html>
