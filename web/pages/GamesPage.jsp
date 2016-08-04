@@ -97,7 +97,7 @@
                      <input id="deleteGame" type="hidden" name="deleteGame" value="deleteGame"/>
                      <td id = 'columnTableGame'><input id ="s2" class="btn btn-mini btn-warning" type="button" onclick="sbmit(this.form)" value = "видалити" style = "display:none"/></td>      
                 </form>
-                    </tr>        
+               </tr>        
             </div>        
         <%}%>
             </tbody>

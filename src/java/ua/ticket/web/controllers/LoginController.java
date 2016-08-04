@@ -26,7 +26,7 @@ public class LoginController extends HttpServlet {
         HttpSession session = request.getSession();
         PrintWriter out = response.getWriter();
         String loginFailed = "login";
-       
+
         String userLogin = request.getParameter("login");
         String userPassword = request.getParameter("password");
         try(Connection conn = Database.getConnection();

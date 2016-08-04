@@ -58,19 +58,20 @@
                     </select>
                     
                     <button type="submit" value="update" class="btn btn-default btn_show">Показати список квитків по даному матчі</button>
-                </div>
-                    
+                </div>  
                 </form>
-  
+                <form action="../SesionController" method="POST">
+                    <input type="hidden" name="exitSesion" value="exitSesion" />
+                    <button id ="exitBtn" class="btnExit" type="submit">Вийти</button>
+                </form>
+                <form  action="../SubscriptionController" method="POST">
+                    <p id = 'button_AddGame'> <button type="submit" class="btn btn-primary"> Добавити абоненмент </button> 
+               </form>
+            
+                 
                     <form  action="../GamesController" method="POST">
                         <p id = 'button_InfoGame'> <button type="submit" class="btn btn-primary"> Інформація про ігри </button>
-                    </form>
-
-                    <form  action="../SubscriptionController" method="POST">
-                        <p id = 'button_AddGame'> <button type="submit" class="btn btn-primary"> Добавити абоненмент </button> 
-                    </form>
-            
-                        
+                    </form>         
 
             <div class="sectors_up">
                 

@@ -28,7 +28,8 @@
                 <input class="form-control" type="text" name= "guest"   value="" size="20" placeholder = "гості"/>
                 </div>
                 <div class="col-xs-2">
-                    <input class="form-control" type="text" name= "place"   value="" size="20" placeholder = "місце проведення"/>                                            </div>\n\
+                    <input class="form-control" type="text" name= "place"   value="" size="20" placeholder = "місце проведення"/>                                            
+                </div>
                 <input id="insertGame" type="hidden" name="insertGame" value="insertGame" />
                 <button class = "btn btn-success" type="submit">зберегти</button>
             </form>
