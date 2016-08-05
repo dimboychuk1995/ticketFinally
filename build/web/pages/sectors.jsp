@@ -6,7 +6,7 @@
 
 <%@page import="ua.ticket.web.controllers.SectorController"%>
 <%@page import="ua.ticket.web.beans.Sector"%>
-<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%--<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>--%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

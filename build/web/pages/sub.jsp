@@ -1,6 +1,6 @@
 <%@page import="java.util.Iterator"%>
 <%@page import="ua.ticket.web.controllers.SubscriptionController"%>
-<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%--<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>--%>
 <%-- 
     Document   : main
     Created on : 6 лип. 2016, 10:24:49

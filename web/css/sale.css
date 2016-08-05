@@ -59,8 +59,8 @@ td {
         margin-left: 15px;
         float: left;
    }
-#button_AddGame{
-       margin-left: 3px; 
+#button_AddSub{
+       margin-left: 15px; 
        float: left;
    }
 #nameTeams{
@@ -115,4 +115,9 @@ body {
 }
 #exitBtn{
     margin-left: 1144px; 
+}
+.btn-primary:hover {
+    color: #fff;
+    background-color: #654450;
+    border-color: #f1a9b5;
 }

@@ -8,7 +8,7 @@
 <%@page import="ua.ticket.web.beans.Place"%>
 <%@page import="ua.ticket.web.controllers.GamesController"%>
 <%@page import="ua.ticket.web.beans.GameOfTeam"%>
-<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%--<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>--%>
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -65,7 +65,7 @@
                     <button id ="exitBtn" class="btnExit" type="submit">Вийти</button>
                 </form>
                 <form  action="../SubscriptionController" method="POST">
-                    <p id = 'button_AddGame'> <button type="submit" class="btn btn-primary"> Добавити абоненмент </button> 
+                    <p id = 'button_AddSub'> <button type="submit" class="btn btn-primary"> Добавити абоненмент </button> 
                </form>
             
                  
@@ -143,7 +143,24 @@
                                        -->
                                             <input placeholder="id" class="form-control" id="id" type="hidden" name="id" value="<%=place.getId()%>"/>      
                                             <label for="status">Статус</label>
-                                            <input placeholder="Вільно/зайнято" class="form-control" id="status" type="text" name="status" value="<%=place.getStatus()%>"/> 
+                                             <%
+                                                 String statusTicket = "";
+                                                 switch (place.getStatus()){
+                                                     case 0: statusTicket = "Free";
+                                                        break;
+                                                     case 1: statusTicket = "Busy";
+                                                        break;
+                                                     case 2: statusTicket = "Booked";
+                                                        break;    
+                                                 }
+                                             %>
+                                            <select class="form-control" name="status">
+                                                <option selected><%=statusTicket%></option>
+                                                <option>Free</option>
+                                                <option>Busy</option>
+                                                <option>Booked</option>   
+                                            </select>
+                                            <!--<input placeholder="Вільно/зайнято" class="form-control" id="status" type="text" name="status" value="<%=place.getStatus()%>"/> -->
                                             <label for="PIP">П.І.Б.</label>
                                             <input placeholder="ПІП" class="form-control" id="PIP" type="text" name="PIP" value="<%=place.getPIP()%>"/> 
                                         </div>

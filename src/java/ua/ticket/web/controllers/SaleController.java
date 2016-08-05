@@ -201,6 +201,19 @@ public class SaleController extends HttpServlet{
             Statement stmt = conn.createStatement();
             ){
             
+            String status  = request.getParameter("status");
+            System.out.println(status);
+            int statusTicket = 0;
+            if (status.equals("Free")){
+                statusTicket = 0;
+            }
+            if (status.equals("Busy")){
+                statusTicket = 1;
+            }
+            if (status.equals("Booked")){
+                statusTicket = 2;
+            }
+            
             String id = request.getParameter("id");
             System.out.println(id);
             String row   = request.getParameter("row");
@@ -209,16 +222,16 @@ public class SaleController extends HttpServlet{
             System.out.println(number);
             String id_sector  = request.getParameter("id_sector");
             System.out.println(id_sector);
-            String status  = request.getParameter("status"); 
-            System.out.println(status);
+            //String status  = request.getParameter("status"); 
+            System.out.println(statusTicket);
             String pip = request.getParameter("PIP");
             System.out.println(pip);
             
                 String orderGame = "UPDATE tickets.ticket_on_game"
-                        + " set status = '" + status
+                        + " set status = '" + statusTicket
                         + "',PIP = '" + pip
                         + "' where id = " + id;
-                //System.out.println(orderGame);
+                System.out.println(orderGame);
             stmt.executeUpdate(orderGame);
             
         }catch(SQLException ex){
