@@ -3,6 +3,8 @@ package org.apache.jsp.pages;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.ArrayList;
 import ua.ticket.web.controllers.GamesController;
 import ua.ticket.web.beans.GameOfTeam;
@@ -33,7 +35,7 @@ public final class GamesPage_jsp extends org.apache.jasper.runtime.HttpJspBase
     PageContext _jspx_page_context = null;
 
     try {
-      response.setContentType("application/vnd.ms-excel;charset=UTF-8");
+      response.setContentType("text/html;charset=UTF-8");
       pageContext = _jspxFactory.getPageContext(this, request, response,
       			null, true, 8192, true);
       _jspx_page_context = pageContext;
@@ -44,6 +46,8 @@ public final class GamesPage_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -104,6 +108,16 @@ public final class GamesPage_jsp extends org.apache.jasper.runtime.HttpJspBase
         }
       }
       out.write("\r\n");
+      out.write("        ");
+      ua.ticket.web.controllers.ReportController reportGame = null;
+      synchronized (_jspx_page_context) {
+        reportGame = (ua.ticket.web.controllers.ReportController) _jspx_page_context.getAttribute("reportGame", PageContext.PAGE_SCOPE);
+        if (reportGame == null){
+          reportGame = new ua.ticket.web.controllers.ReportController();
+          _jspx_page_context.setAttribute("reportGame", reportGame, PageContext.PAGE_SCOPE);
+        }
+      }
+      out.write("\r\n");
       out.write("\r\n");
       out.write("    <div class = \"form-group\">    \r\n");
       out.write("        <form  name=\"sortForm\" action=\"../GamesController\" method=\"POST\" >\r\n");
@@ -141,6 +155,7 @@ public final class GamesPage_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    <th id ='headTable' bgcolor=\"#BDBDBD\" style=\"width: 30%\">Місце проведення</th>\r\n");
       out.write("                    <th id ='headTable' bgcolor=\"#BDBDBD\" style=\"width: 0%\"></th>\r\n");
       out.write("                    <th id ='headTable' bgcolor=\"#BDBDBD\" style=\"width: 0%\"></th>\r\n");
+      out.write("                    <th id ='headTable' bgcolor=\"#BDBDBD\" style=\"width: 0%\"></th>\r\n");
       out.write("                </tr>\r\n");
       out.write("            </thead>\r\n");
       out.write("            <tbody> \r\n");
@@ -154,24 +169,93 @@ public final class GamesPage_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                <tr class=\"active\">\r\n");
       out.write("                <form id =\"form1\"  action=\"../GamesController\" method=\"POST\" >\r\n");
       out.write("                    \r\n");
-      out.write("                        <input type=\"hidden\" name=\"id\" value=\"");
+      out.write("                <input type=\"hidden\" name=\"id\" value=\"");
       out.print(game.getId());
       out.write("\" />     \r\n");
-      out.write("                        <td id = 'columnTableGame'><input class=\"col-xs-12\" type=\"text\" name=\"time\" value=\"");
+      out.write("                <td id = 'columnTableGame'><input class=\"col-xs-12\" type=\"text\" name=\"time\" value=\"");
       out.print(game.getTimeGame() );
       out.write("\" size=\"3\" disabled/></td>\r\n");
-      out.write("                        <td id = 'columnTableGame'><input id =\"datepicker\" class=\"col-xs-12\" type=\"text\" name=\"date\" value=\"");
+      out.write("                <td id = 'columnTableGame'><input id =\"datepicker\" class=\"col-xs-12\" type=\"text\" name=\"date\" value=\"");
       out.print(game.getDateGame());
       out.write("\" size=\"20\" disabled /></td>\r\n");
-      out.write("                        <td id = 'columnTableGame'><input class=\"col-xs-12\" type=\"text\" name= \"owner\" value=\"");
+      out.write("                <td id = 'columnTableGame'><input class=\"col-xs-12\" type=\"text\" name= \"owner\" value=\"");
       out.print(game.getNameTeam1());
       out.write("\" size=\"20\" disabled/></td>\r\n");
-      out.write("                        <td id = 'columnTableGame'><input class=\"col-xs-12\" type=\"text\" name=\"guest\" value=\"");
+      out.write("                <td id = 'columnTableGame'><input class=\"col-xs-12\" type=\"text\" name=\"guest\" value=\"");
       out.print(game.getNameTeam2() );
       out.write("\" size=\"20\" disabled /></td>\r\n");
-      out.write("                        <td id = 'columnTableGame'><input class=\"col-xs-12\" type=\"text\" name=\"place\" value=\"");
+      out.write("                <td id = 'columnTableGame'><input class=\"col-xs-12\" type=\"text\" name=\"place\" value=\"");
       out.print(game.getPlaceGame());
       out.write("\" size=\"20\" disabled/></td>\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("                <td id = 'columnTableGame'><button class=\"btn btn-info btn-lg\" type=\"button\" data-toggle=\"modal\" data-target=\"#");
+      out.print(game.getId());
+      out.write("\" onclick=\"addGame();\">ЗВІТ</button></td>\r\n");
+      out.write("                    <div id=\"");
+      out.print(game.getId());
+      out.write("\" class=\"modal fade\">\r\n");
+      out.write("                        <div class=\"modal-dialog\">\r\n");
+      out.write("                        <div class=\"modal-content\">\r\n");
+      out.write("                        <div class=\"modal-header\"><button class=\"close\" type=\"button\" data-dismiss=\"modal\">×</button>\r\n");
+      out.write("                            <p id = \"nameTeamIn\">");
+      out.print(game.getNameTeam1());
+      out.write(" - ");
+      out.print(game.getNameTeam2() );
+      out.write("</p>\r\n");
+      out.write("                        <h4 class=\"modal-title\">");
+      out.print(game.getDateGame());
+      out.write("</h4>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                        <div>\r\n");
+      out.write("                                ");
+
+                                    Iterator<Integer> iterSector = reportGame.getSectorsForReport(game.getId()).iterator();
+                                    int idSector = 0;
+                                    int allSumm = 0;
+                                    while(iterSector.hasNext()){
+                                        idSector = (Integer)iterSector.next();
+                                
+      out.write("\r\n");
+      out.write("                                <div class=\"modal-body\">");
+      out.print(reportGame.getNameSectorForReport(idSector));
+      out.write("</div>\r\n");
+      out.write("                                ");
+ 
+                                    reportGame.getSizePlaceForReport(idSector, game.getId());
+                                
+      out.write("\r\n");
+      out.write("                                ");
+ 
+                                    int countPlace  = reportGame.arrPlace.size();
+                                    int priceSector = reportGame.getPriceSectorForReport(idSector);
+                                    int sum = countPlace*priceSector;
+                                    allSumm = allSumm + sum;
+                                
+      out.write("\r\n");
+      out.write("                                <div class=\"modal-body\">");
+      out.print(countPlace );
+      out.write("</div>\r\n");
+      out.write("                                <div class=\"modal-body\">");
+      out.print(priceSector );
+      out.write("</div>\r\n");
+      out.write("                                <div class=\"modal-body\">");
+      out.print(sum );
+      out.write("</div>\r\n");
+      out.write("                                ");
+}
+      out.write("\r\n");
+      out.write("                                <div class=\"modal-body\">");
+      out.print(allSumm);
+      out.write("</div>\r\n");
+      out.write("                                <div id = 'addGameJSa'></div>\r\n");
+      out.write("\r\n");
+      out.write("                            <div class=\"modal-footer\"><button class=\"btn btn-default\" type=\"button\" data-dismiss=\"modal\">Закрыть</button></div>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                    </div> \r\n");
+      out.write("                        \r\n");
       out.write("                        <input id=\"updateGame\" type=\"hidden\" name=\"updateGame\" value=\"updateGame\" />\r\n");
       out.write("                        <td id = 'columnTableGame'><input id =\"s1\" class=\"btn btn-mini btn-warning\" type=\"button\"  onclick=\"sbmit(this.form)\" value = \"обновити\" style = \"display: none\"/></td>\r\n");
       out.write("                </form>\r\n");

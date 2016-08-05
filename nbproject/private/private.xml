@@ -3,17 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/projectsWork/ticketFinally/src/java/ua/ticket/web/controllers/LoginController.java</file>
+            <file>file:/D:/projectsWork/ticketFinally/src/java/ua/ticket/web/controllers/ReportController.java</file>
             <file>file:/D:/projectsWork/ticketFinally/web/pages/sale.jsp</file>
             <file>file:/D:/projectsWork/ticketFinally/src/java/ua/ticket/web/controllers/GamesController.java</file>
-            <file>file:/D:/projectsWork/ticketFinally/web/WEB-INF/web.xml</file>
-            <file>file:/D:/projectsWork/ticketFinally/web/pages/sub.jsp</file>
-            <file>file:/D:/projectsWork/ticketFinally/web/index.jsp</file>
+            <file>file:/D:/projectsWork/ticketFinally/web/pages/GamesPage.jsp</file>
             <file>file:/D:/projectsWork/ticketFinally/src/java/ua/ticket/web/controllers/SaleController.java</file>
             <file>file:/D:/projectsWork/ticketFinally/web/pages/addSub.jsp</file>
-            <file>file:/D:/projectsWork/ticketFinally/web/css/index.css</file>
-            <file>file:/D:/projectsWork/ticketFinally/src/java/ua/ticket/web/controllers/SesionController.java</file>
-            <file>file:/D:/projectsWork/ticketFinally/web/css/sale.css</file>
         </group>
     </open-files>
 </project-private>
