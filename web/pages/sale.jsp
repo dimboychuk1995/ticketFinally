@@ -79,112 +79,120 @@
                     <center>
                     <h3 id = 'nameTeams'><%=placeList.getNameTeams()%></h3>
                     </center>
-                    <table class = "table table-bordered">
-                        <thead>
-                            <tr>
-                                <th id ='headTableSale' bgcolor="#BDBDBD" style="width: 10%">Сектор</th>
-                                <th id ='headTableSale' bgcolor="#BDBDBD" style="width: 10%">Ряд</th>
-                                <th id ='headTableSale' bgcolor="#BDBDBD" style="width: 80%">Місце</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                    
                     <%      
-                          Iterator iterSector = placeList.getListSector().iterator();
-                          while (iterSector.hasNext()){
-                              int idSector = (Integer) iterSector.next();
+                        Iterator iterSector = placeList.getListSector().iterator();
+                        String idSectorClass = "";
+                        String idRowClass = "idRow";
+                        while (iterSector.hasNext()){
+                            int idSector = (Integer) iterSector.next();
+                            
+                            switch (idSector){
+                                case 1: idSectorClass = "idClassA";
+                                break;
+                                case 2: idSectorClass = "idClassB";
+                                break;
+                                case 3: idSectorClass = "idClassVIP";
+                                break;
+                                case 4: idSectorClass = "idClassF";
+                                break;
+                                case 5: idSectorClass = "idClassK";
+                                break;
+                                case 6: idSectorClass = "idClassC";
+                                break;
+                                case 7: idSectorClass = "idClassD";
+                                break;
+                                case 8: idSectorClass = "idClassE";
+                                break;
+                                case 9: idSectorClass = "idClassO";
+                                break;
+                                case 10: idSectorClass = "idClassP";
+                                break;
+                            }
                     %>
-                    <tr>
-                        <td bgcolor="#01A9DB" rowspan=" <%=placeList.getListRows(idSector).size()%>"><%=placeList.getNameSector(idSector)%></td>
-                        
-                    <% 
+                    <div id="<%=idSectorClass%>">
+                        <h5><%=placeList.getNameSector(idSector)%></h5>
+                        <% 
                         Iterator<Integer> iterRows = placeList.getListRows(idSector).iterator();
                         while (iterRows.hasNext()){
                            int idRows = iterRows.next();
                             placeList.setIdRow(idRows);
-                        
-                    %>
-                    <td bgcolor="#FE642E"><%=idRows%></td>
-                    <td bgcolor="#61210B">
-                    <%
-                        for(Place place : placeList.getAllPlace()){
-                            
-                            if (idSector == place.getIdSector() && idRows == place.getRow()){
-                                int status = place.getStatus();
-                                String colorButton = "btn btn-danger";
-                                switch(status){
-                                    case 0: colorButton = "btn btn-success";
-                                        break;
-                                    case 1: colorButton = "btn btn-warning";
-                                        break;
-                                    case 2: colorButton = "btn btn-info";
-                                        break;
-                                }
-                    %>
-                    <button data-toggle="modal" data-target="#<%=place.getId()%>" id="btn_update" value="update" type="submit" class="<%=colorButton%>"><%=place.getNumber()%></button>
- 
-                    <div id="<%=place.getId()%>" class="modal fade" role="dialog">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Інформація про квиток</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <form action="../SaleController" method="POST">
-                                        <div class="form-group form-group_on_sale">
-                                       <!-- <label for="id">id</label> 
-                                            <input placeholder="id" class="form-control" id="id" type="text" name="id" value="<%=place.getId()%>"/> 
-                                            <label for="row">row</label>
-                                            <input placeholder="Ряд" class="form-control" id="row" type="text" name="row" value="<%=place.getRow()%>"/> 
-                                            <label for="number">number</label>
-                                            <input placeholder="Місце" class="form-control" id="number" type="text" name="number" value="<%=place.getNumber()%>"/> 
-                                            <label for="id_sector">id_sector</label>
-                                            <input placeholder="Сектор" class="form-control" id="id_sector" type="text" name="id_sector" value="<%=place.getIdSector()%>"/> 
-                                       -->
-                                            <input placeholder="id" class="form-control" id="id" type="hidden" name="id" value="<%=place.getId()%>"/>      
-                                            <label for="status">Статус</label>
-                                             <%
-                                                 String statusTicket = "";
-                                                 switch (place.getStatus()){
-                                                     case 0: statusTicket = "Free";
-                                                        break;
-                                                     case 1: statusTicket = "Busy";
-                                                        break;
-                                                     case 2: statusTicket = "Booked";
-                                                        break;    
-                                                 }
-                                             %>
-                                            <select class="form-control" name="status">
-                                                <option selected><%=statusTicket%></option>
-                                                <option>Free</option>
-                                                <option>Busy</option>
-                                                <option>Booked</option>   
-                                            </select>
-                                            <!--<input placeholder="Вільно/зайнято" class="form-control" id="status" type="text" name="status" value="<%=place.getStatus()%>"/> -->
-                                            <label for="PIP">П.І.Б.</label>
-                                            <input placeholder="ПІП" class="form-control" id="PIP" type="text" name="PIP" value="<%=place.getPIP()%>"/> 
-                                        </div>
-                                            <input id="orderPlace" type="hidden" name="orderPlace" value="orderPlace" />
-                                            <button id="btn_update" value="update" type="submit" class="btn btn-warning">Зберегти</button>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Вийти</button>
-                                </div>
-                            </div>
+                        %>
+                        <div class = "<%=idRowClass + idRows%>">
+                        <h6><%=idRows%></h6>
+                            <%
+                                for(Place place : placeList.getAllPlace()){
+                                    if (idSector == place.getIdSector() && idRows == place.getRow()){
+                                        int status = place.getStatus();
+                                        String colorButton = "btn btn-danger";
+                                        switch(status){
+                                            case 0: colorButton = "btn btn-success";
+                                                break;
+                                            case 1: colorButton = "btn btn-warning";
+                                                break;
+                                            case 2: colorButton = "btn btn-info";
+                                                break;
+                                        }
+                                %>
+                            <button data-toggle="modal" data-target="#<%=place.getId()%>" id="btn_update" value="update" type="submit" class="<%=colorButton%>"><%=place.getNumber()%></button>
+                                        <div id="<%=place.getId()%>" class="modal fade" role="dialog">
+                                           <div class="modal-dialog">
+                                               <div class="modal-content">
+                                                   <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                           <h4 class="modal-title">Інформація про квиток</h4>
+                                                   </div>
+                                                   <div class="modal-body">
+                                                       <form action="../SaleController" method="POST">
+                                                           <div class="form-group form-group_on_sale">
+                                                               <!-- <label for="id">id</label> 
+                                                                    <input placeholder="id" class="form-control" id="id" type="text" name="id" value="<%=place.getId()%>"/> 
+                                                                    <label for="row">row</label>
+                                                                    <input placeholder="Ряд" class="form-control" id="row" type="text" name="row" value="<%=place.getRow()%>"/> 
+                                                                    <label for="number">number</label>
+                                                                    <input placeholder="Місце" class="form-control" id="number" type="text" name="number" value="<%=place.getNumber()%>"/> 
+                                                                    <label for="id_sector">id_sector</label>
+                                                                    <input placeholder="Сектор" class="form-control" id="id_sector" type="text" name="id_sector" value="<%=place.getIdSector()%>"/> 
+                                                               -->
+                                                                   <input placeholder="id" class="form-control" id="id" type="hidden" name="id" value="<%=place.getId()%>"/>      
+                                                                   <label for="status">Статус</label>
+                                                                    <%
+                                                                        String statusTicket = "";
+                                                                        switch (place.getStatus()){
+                                                                            case 0: statusTicket = "Free";
+                                                                               break;
+                                                                            case 1: statusTicket = "Busy";
+                                                                               break;
+                                                                            case 2: statusTicket = "Booked";
+                                                                               break;    
+                                                                        }
+                                                                    %>
+                                                                   <select class="form-control" name="status">
+                                                                       <option selected><%=statusTicket%></option>
+                                                                       <option>Free</option>
+                                                                       <option>Busy</option>
+                                                                       <option>Booked</option>   
+                                                                   </select>
+                                                                   <!--<input placeholder="Вільно/зайнято" class="form-control" id="status" type="text" name="status" value="<%=place.getStatus()%>"/> -->
+                                                                   <label for="PIP">П.І.Б.</label>
+                                                                   <input placeholder="ПІП" class="form-control" id="PIP" type="text" name="PIP" value="<%=place.getPIP()%>"/> 
+                                                           </div>
+                                                               <input id="orderPlace" type="hidden" name="orderPlace" value="orderPlace" />
+                                                               <button id="btn_update" value="update" type="submit" class="btn btn-warning">Зберегти</button>
+                                                       </form>
+                                                   </div>
+                                               <div class="modal-footer">
+                                               <button type="button" class="btn btn-default" data-dismiss="modal">Вийти</button>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                                <%}%>
+                         <%}%>
                         </div>
+                        <%}%>                        
                     </div>
-                     
-                    <%}else continue;%>
                     <%}%>
-                    </td>
-                    </tr>
-                    <%}%>
-                    
-                    <%}%>
-                        
-                    </tbody>
-                </table>                 
                 </div>
                 
                 <div class="row sectors_c_d_e">
