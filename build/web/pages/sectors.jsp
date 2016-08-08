@@ -19,6 +19,7 @@
 
     <!-- Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/sectors.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -36,21 +37,28 @@
         </div>
 
         <div class="content">
-            <div class="forms">
-                <%
-                    for(Sector sector : sectorList.getSectorAll()){
-                %>
-                <form action="../SectorController" method="POST">
-                    <div class="form-group">
-                        <input id="id" type="text" name="id" value="<%=sector.getId()%>" size="20" />
-                        <input id="name" type="text" name="name" value="<%=sector.getName()%>" size="20" />
-                        <input id="price" type="text" name="price" value="<%=sector.getPrice()%>" size="20" />
+            <div class="container">
+                <div class="row">
+                    <div class="forms">
+                        
+                        <label class="name">Назва сектора</label>
+                        <label class="price">Ціна за місце</label>
+                        
+                        <%
+                            for(Sector sector : sectorList.getSectorAll()){
+                        %>
+                        <form action="../SectorController" method="POST">
+                            <div class="form-group alert alert-info sector_info">
+                                <input id="id" type="text" name="id" value="<%=sector.getId()%>" size="20" />
+                                <input id="name" type="text" name="name" value="<%=sector.getName()%>" size="20" />
+                                <input id="price" type="text" name="price" value="<%=sector.getPrice()%>" size="20" />
+
+                                <button id="btn_update" class="btn btn-sm btn-warning" value="update" type="submit">Оновити</button>
+                            </div>
+                        </form>
+                        <%}%>   
                     </div>
-                    <button id="btn_update" value="update" type="submit" class="btn btn-warning">Оновити</button>
-                </form>
-                <%}%>
-                
-                
+                </div>
             </div>
         </div>
         

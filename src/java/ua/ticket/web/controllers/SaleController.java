@@ -180,7 +180,6 @@ public class SaleController extends HttpServlet{
             while (rs.next()) {
                 rowList.add(rs.getInt("row"));
             }
-
         } catch (SQLException ex) {
             Logger.getLogger(SectorController.class.getName()).log(Level.SEVERE, null, ex);
         } finally {

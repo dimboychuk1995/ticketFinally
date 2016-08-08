@@ -95,13 +95,13 @@
                 <td id = 'columnTableGame'><input class="col-xs-12" type="text" name="place" value="<%=game.getPlaceGame()%>" size="20" disabled/></td>
 
 
-                <td id = 'columnTableGame'><button class="btn btn-info btn-lg" type="button" data-toggle="modal" data-target="#<%=game.getId()%>">ЗВІТ</button></td>
+                <td id = 'columnTableGame'><button class="btn btn-info btn-xs btn_zv" type="button" data-toggle="modal" data-target="#<%=game.getId()%>">ЗВІТ</button></td>
                     <div id="<%=game.getId()%>" class="modal fade">
                         <div class="modal-dialog">
                         <div class="modal-content">
                         <div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
                             <p id = "nameTeamIn"><%=game.getNameTeam1()%> - <%=game.getNameTeam2() %></p>
-                        <h4 class="modal-title"><%=game.getDateGame()%></h4>
+                        <h4 class="modal-title">Дата гри: <%=game.getDateGame()%></h4>
                         </div>
                         <div>
                                 <%
@@ -111,7 +111,7 @@
                                     while(iterSector.hasNext()){
                                         idSector = (Integer)iterSector.next();
                                 %>
-                                <div class="modal-body"><%=reportGame.getNameSectorForReport(idSector)%></div>
+                                
                                 <% 
                                     reportGame.getSizePlaceForReport(idSector, game.getId());
                                 %>
@@ -121,11 +121,18 @@
                                     int sum = countPlace*priceSector;
                                     allSumm = allSumm + sum;
                                 %>
-                                <div class="modal-body"><%=countPlace %></div>
-                                <div class="modal-body"><%=priceSector %></div>
-                                <div class="modal-body"><%=sum %></div>
+                                
+                            <div class="alert alert-info">
+                                <div class="modal-body">Назва сектора: <%=reportGame.getNameSectorForReport(idSector)%></div>
+                                <div class="modal-body">Продано квитків:   <%=countPlace %></div>
+                                <div class="modal-body">Ціна квитка в секторі: <%=priceSector %> грн.</div>
+                                <div class="modal-body">Сума: <%=sum %> грн.</div>
+                                <br>
+                            </div>
                                 <%}%>
-                                <div class="modal-body"><%=allSumm%></div>
+                                <br>
+                                
+                                <div class="modal-body alert alert-success">Загальна сума: <%=allSumm%> грн.</div>
                                 
 
                             <div class="modal-footer"><button class="btn btn-default" type="button" data-dismiss="modal">Закрыть</button></div>
