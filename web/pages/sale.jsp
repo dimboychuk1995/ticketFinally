@@ -60,18 +60,11 @@
                     <button type="submit" value="update" class="btn btn-default btn_show">Показати список квитків по даному матчі</button>
                 </div>  
                 </form>
-                <form action="../SesionController" method="POST">
+                    <form action="../SesionController" method="POST" class="form_out">
                     <input type="hidden" name="exitSesion" value="exitSesion" />
                     <button id ="exitBtn" class="btnExit" type="submit">Вийти</button>
                 </form>
-                <form  action="../SubscriptionController" method="POST">
-                    <p id = 'button_AddSub'> <button type="submit" class="btn btn-primary"> Добавити абоненмент </button> 
-               </form>
-            
-                 
-                    <form  action="../GamesController" method="POST">
-                        <p id = 'button_InfoGame'> <button type="submit" class="btn btn-primary"> Інформація про ігри </button>
-                    </form>         
+                         
 
             <div class="sectors_up">
                 
@@ -96,7 +89,7 @@
                                 break;
                                 case 4: idSectorClass = "idClassF";
                                 break;
-                                case 5: idSectorClass = "idClassK";
+                                case 5: idSectorClass = "idClassG";
                                 break;
                                 case 6: idSectorClass = "idClassC";
                                 break;
@@ -110,8 +103,9 @@
                                 break;
                             }
                     %>
-                    <div id="<%=idSectorClass%>">
-                        <h5><%=placeList.getNameSector(idSector)%></h5>
+                    <div class="first_sec">
+                    <div id="<%=idSectorClass%>" class="sector">
+                        <br>
                         <% 
                         Iterator<Integer> iterRows = placeList.getListRows(idSector).iterator();
                         while (iterRows.hasNext()){
@@ -119,7 +113,6 @@
                             placeList.setIdRow(idRows);
                         %>
                         <div class = "<%=idRowClass + idRows%>">
-                        <h6><%=idRows%></h6>
                             <%
                                 for(Place place : placeList.getAllPlace()){
                                     if (idSector == place.getIdSector() && idRows == place.getRow()){
@@ -134,7 +127,8 @@
                                                 break;
                                         }
                                 %>
-                            <button data-toggle="modal" data-target="#<%=place.getId()%>" id="btn_update" value="update" type="submit" class="<%=colorButton%>"><%=place.getNumber()%></button>
+                                
+                            <button data-toggle="modal" data-target="#<%=place.getId()%>" id="btn_update" value="update" type="submit" class="<%=colorButton%> btn_place"><%=place.getNumber()%></button>
                                         <div id="<%=place.getId()%>" class="modal fade" role="dialog">
                                            <div class="modal-dialog">
                                                <div class="modal-content">
@@ -192,25 +186,20 @@
                         </div>
                         <%}%>                        
                     </div>
+                    
                     <%}%>
-                </div>
-                
-                <div class="row sectors_c_d_e">
-                    <div class="col-lg-3 sector_c">
-                        
-                    </div>
-                    
-                    <div class="col-lg-6 sector_d">
-                        
-                    </div>
-                    
-                    <div class="col-lg-3 sector_e">
-                        
                     </div>
                 </div>
-                
             </div>
-
+                    
+                    <img class="media-object" src="../image/pole.PNG" alt="...">
+                    
+        <form  action="../SubscriptionController" method="POST" class="form_add">
+            <p id = 'button_AddSub'> <button type="submit" class="btn btn-primary"> Добавити абоненмент </button> 
+        </form>
+        <form  action="../GamesController" method="POST">
+            <p id = 'button_InfoGame'> <button type="submit" class="btn btn-primary"> Інформація про ігри </button>
+        </form>
         </div>
         <div class="footer"></div>
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
