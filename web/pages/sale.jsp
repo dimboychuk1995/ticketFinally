@@ -23,6 +23,7 @@
         <!-- Bootstrap -->
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/sale.css" rel="stylesheet">
+        <script src= "../js/Error.js" type="text/javascript"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
@@ -161,7 +162,7 @@
                                                                                break;    
                                                                         }
                                                                     %>
-                                                                   <select class="form-control" name="status">
+                                                                   <select onchange="document.getElementById('selectHidden').value = this.value"  class="form-control" name="status">
                                                                        <option selected><%=statusTicket%></option>
                                                                        <option>Free</option>
                                                                        <option>Busy</option>
@@ -175,6 +176,25 @@
                                                                <button id="btn_update" value="update" type="submit" class="btn btn-warning">Зберегти</button>
                                                        </form>
                                                    </div>
+                                                                      <form action="../TicketController" method="POST">
+                                                                <input class="form-control" id="selectHidden" type="hidden" name="selectHidden" value="defoult"/>
+                                                                <input class="form-control" id="status" type="hidden" name="status" value=""/>
+                                                                <input class="form-control" id="PIP" type="hidden" name="PIP" value="<%=place.getPIP()%>"/>
+                                                                <input class="form-control" id="id" type="hidden" name="id" value="<%=place.getId()%>"/> 
+                                                                <input class="form-control" id="row" type="hidden" name="row" value="<%=place.getRow()%>"/> 
+                                                                <input class="form-control" id="number" type="hidden" name="number" value="<%=place.getNumber()%>"/> 
+                                                                <input class="form-control" id="sector" type="hidden" name="sector" value="<%=place.getIdSector()%>"/>
+                                                                <%
+                                                                    String submit  = "";
+                                                                    String onclick = "";
+                                                                    if (place.getStatus() != 1){
+                                                                       submit = "reset";                                                                                                                                             
+                                                                       onclick = "masageErrorStatus();";
+                                                                    }
+                                                                %>
+                                                                
+                                                                <p id = 'button_PrintTicket'> <button id ="buttonPrintTicket" name="buttonToPrintTicket" type="<%=submit%>" class= "btn btn-primary" onclick="<%=onclick%>"> друкувати квиток </button> 
+                                                           </form> 
                                                <div class="modal-footer">
                                                <button type="button" class="btn btn-default" data-dismiss="modal">Вийти</button>
                                            </div>
