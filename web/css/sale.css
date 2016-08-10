@@ -151,6 +151,10 @@ body {
     font-size: 50%;
 }
 
+#idClassC{
+    margin-left: 90px;
+}
+
 .form_out{
     margin: -50px 0px -50px 0px;
 }
@@ -159,6 +163,28 @@ body {
     margin-top: 150px;
 }
 
+.img_pole{
+    margin-left: 400px;
+}
+
+.sl_sector{
+    background-color: crimson;
+    border: 0;
+}
+
+.sector_o{
+    margin: 30px 0px 0px 153px;
+}
+
+.sector_p{
+    margin: 30px 0px 0px 590px;
+}
+
+.sector_l{
+    margin-left: 153px;
+    margin-top: 10px;
+    width: 1004px;
+}
 
 
 /*.first_sec{

@@ -213,7 +213,11 @@
             </div>
                     
                     <img class="media-object" src="../image/pole.PNG" alt="...">
-                    
+        <div class="btn btn-success btn-lg sl_sector sector_o">службовий Сектор О</div>
+        <div class="btn btn-success btn-lg sl_sector sector_p">службовий Сектор P</div>
+        <br>
+        <div class="btn btn-success btn-lg sl_sector sector_l" data-toggle="modal" data-target="#ModalL">Сектор L</div>
+                        
         <form  action="../SubscriptionController" method="POST" class="form_add">
             <p id = 'button_AddSub'> <button type="submit" class="btn btn-primary"> Добавити абоненмент </button> 
         </form>
@@ -221,6 +225,33 @@
             <p id = 'button_InfoGame'> <button type="submit" class="btn btn-primary"> Інформація про ігри </button>
         </form>
         </div>
+                    
+        <div id="ModalL" class="modal fade">
+                <div class="modal-dialog">
+
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form" action="../SaleController" method="POST">
+                            <div class="form-group">
+                                <label for="PIP">ПІП</label>
+                                <input type="text" name="PIP" class="form-control" id="PIP" placeholder="Введіть прізвище">
+                            </div>
+                            <button type="submit"  class="btn btn-success">Додати</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                    </div>
+                  </div>
+
+                </div>
+            </div>
+                    
         <div class="footer"></div>
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

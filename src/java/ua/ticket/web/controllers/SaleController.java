@@ -53,25 +53,14 @@ public class SaleController extends HttpServlet{
     public int getIdGame(){
         return idGame;
     }
-    
-    
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        showPlaces(request, response);
-    }
-    
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        showPlaces(request, response);
-    }
 
     protected void showPlaces(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         String[] valueParamsGames = new String[0];
         String orderPlace = "";
+        
+        
         
         if (request.getParameterValues("selectGame")!= null){
             valueParamsGames = request.getParameterValues("selectGame");
@@ -80,7 +69,6 @@ public class SaleController extends HttpServlet{
         if (request.getParameter("orderPlace") != null){
             orderPlace = request.getParameter("orderPlace");
         }
-        
         
         String status2 = "orderPlace";
         if (status2.equals(orderPlace)){
@@ -93,6 +81,12 @@ public class SaleController extends HttpServlet{
                 idGame = Integer.parseInt(valueParamsGames[i]);
             }  
         }
+        
+        int size = request.getParameterMap().size();
+        if (size == 1){
+            updatePlaceL(request, response);
+        }
+        
         try {
             getPlaceDB();
             response.sendRedirect("pages/sale.jsp");
@@ -149,6 +143,8 @@ public class SaleController extends HttpServlet{
                 + " and id_game = " + idGame);
         }
     }
+    
+    
     public Set<Integer> getListSector(){
         for (int i = 0; i< placeList.size(); i++){
             sectorList.add(placeList.get(i).getIdSector());
@@ -167,7 +163,7 @@ public class SaleController extends HttpServlet{
         return rowList; 
     }
     
-     private void getRows(String str){
+    private void getRows(String str){
         Statement stmt = null;
         ResultSet rs = null;
         Connection conn = null;
@@ -194,7 +190,7 @@ public class SaleController extends HttpServlet{
         }
     }
      
-     protected void updatePlace(HttpServletRequest request, HttpServletResponse response)
+    protected void updatePlace(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
         try(Connection conn = Database.getConnection();
             Statement stmt = conn.createStatement();
@@ -232,6 +228,27 @@ public class SaleController extends HttpServlet{
                         + "' where id = " + id;
                 System.out.println(orderGame);
             stmt.executeUpdate(orderGame);
+            
+        }catch(SQLException ex){
+            Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+     
+    protected void updatePlaceL(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException{
+        try(Connection conn = Database.getConnection();
+            Statement stmt = conn.createStatement();
+            ){
+            
+            String pip = request.getParameter("PIP");
+            System.out.println(pip);
+            
+                String SQL = "insert into tickets.ticket_on_game "
+                        + " (id_game, id_sector, PIP, status) "
+                        + " values(" + idGame + ", " + 11 + "," + "'" + pip + "', " + 1 
+                        + ") ";
+                System.out.println(SQL);
+            stmt.executeUpdate(SQL);
             
         }catch(SQLException ex){
             Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
@@ -283,4 +300,16 @@ public class SaleController extends HttpServlet{
         }    
         return result;
     } 
+    
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        showPlaces(request, response);
+    }
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        showPlaces(request, response);
+    }
 }
