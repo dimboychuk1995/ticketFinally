@@ -31,6 +31,10 @@ and open the template in the editor.
     display: none;
 }*/
 
+.content{
+    width: 1334px;
+}
+
 .matches{
     margin-bottom: 15px;
     width: 250px;
@@ -140,7 +144,7 @@ body {
 }
 
 #idClassA{
-    margin-left: 150px;
+    margin-left: 305px;
 }
 
 #idClassA, #idClassB, #idClassVIP, #idClassF{
@@ -160,11 +164,13 @@ body {
 }
 
 .form_add{
-    margin-top: 150px;
+    margin-top: 10px;
 }
 
-.img_pole{
-    margin-left: 400px;
+.bacg{
+    margin-top: 15px;
+    height: 300px;
+    background-color: #ffffff;
 }
 
 .sl_sector{
@@ -173,11 +179,11 @@ body {
 }
 
 .sector_o{
-    margin: 30px 0px 0px 153px;
+    margin: 10px 0px 0px 153px;
 }
 
 .sector_p{
-    margin: 30px 0px 0px 590px;
+    margin: 10px 0px 0px 590px;
 }
 
 .sector_l{

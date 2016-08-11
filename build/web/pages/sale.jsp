@@ -23,7 +23,9 @@
         <!-- Bootstrap -->
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/sale.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="../css/print.css" media="print">
         <script src= "../js/Error.js" type="text/javascript"></script>
+        <script src= "../js/print.js" type="text/javascript"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
@@ -127,9 +129,9 @@
                                             case 2: colorButton = "btn btn-info";
                                                 break;
                                         }
-                                %>
+                            %>
                                 
-                            <button data-toggle="modal" data-target="#<%=place.getId()%>" id="btn_update" value="update" type="submit" class="<%=colorButton%> btn_place"><%=place.getNumber()%></button>
+                                <button data-toggle="modal" data-target="#<%=place.getId()%>" id="btn_update" value="update" type="submit" class="<%=colorButton%> btn_place"><%=place.getNumber()%></button>
                                         <div id="<%=place.getId()%>" class="modal fade" role="dialog">
                                            <div class="modal-dialog">
                                                <div class="modal-content">
@@ -140,15 +142,6 @@
                                                    <div class="modal-body">
                                                        <form action="../SaleController" method="POST">
                                                            <div class="form-group form-group_on_sale">
-                                                               <!-- <label for="id">id</label> 
-                                                                    <input placeholder="id" class="form-control" id="id" type="text" name="id" value="<%=place.getId()%>"/> 
-                                                                    <label for="row">row</label>
-                                                                    <input placeholder="Ряд" class="form-control" id="row" type="text" name="row" value="<%=place.getRow()%>"/> 
-                                                                    <label for="number">number</label>
-                                                                    <input placeholder="Місце" class="form-control" id="number" type="text" name="number" value="<%=place.getNumber()%>"/> 
-                                                                    <label for="id_sector">id_sector</label>
-                                                                    <input placeholder="Сектор" class="form-control" id="id_sector" type="text" name="id_sector" value="<%=place.getIdSector()%>"/> 
-                                                               -->
                                                                    <input placeholder="id" class="form-control" id="id" type="hidden" name="id" value="<%=place.getId()%>"/>      
                                                                    <label for="status">Статус</label>
                                                                     <%
@@ -162,39 +155,39 @@
                                                                                break;    
                                                                         }
                                                                     %>
-                                                                   <select onchange="document.getElementById('selectHidden').value = this.value"  class="form-control" name="status">
+                                                                    <select onchange="document.getElementById('selectHidden').value = this.value"  class="form-control" name="status">
                                                                        <option selected><%=statusTicket%></option>
                                                                        <option>Free</option>
                                                                        <option>Busy</option>
                                                                        <option>Booked</option>   
-                                                                   </select>
-                                                                   <!--<input placeholder="Вільно/зайнято" class="form-control" id="status" type="text" name="status" value="<%=place.getStatus()%>"/> -->
-                                                                   <label for="PIP">П.І.Б.</label>
-                                                                   <input placeholder="ПІП" class="form-control" id="PIP" type="text" name="PIP" value="<%=place.getPIP()%>"/> 
-                                                           </div>
-                                                               <input id="orderPlace" type="hidden" name="orderPlace" value="orderPlace" />
-                                                               <button id="btn_update" value="update" type="submit" class="btn btn-warning">Зберегти</button>
-                                                       </form>
-                                                   </div>
-                                                                      <form action="../TicketController" method="POST">
-                                                                <input class="form-control" id="selectHidden" type="hidden" name="selectHidden" value="defoult"/>
-                                                                <input class="form-control" id="status" type="hidden" name="status" value=""/>
-                                                                <input class="form-control" id="PIP" type="hidden" name="PIP" value="<%=place.getPIP()%>"/>
-                                                                <input class="form-control" id="id" type="hidden" name="id" value="<%=place.getId()%>"/> 
-                                                                <input class="form-control" id="row" type="hidden" name="row" value="<%=place.getRow()%>"/> 
-                                                                <input class="form-control" id="number" type="hidden" name="number" value="<%=place.getNumber()%>"/> 
-                                                                <input class="form-control" id="sector" type="hidden" name="sector" value="<%=place.getIdSector()%>"/>
-                                                                <%
-                                                                    String submit  = "";
-                                                                    String onclick = "";
-                                                                    if (place.getStatus() != 1){
-                                                                       submit = "reset";                                                                                                                                             
-                                                                       onclick = "masageErrorStatus();";
-                                                                    }
-                                                                %>
-                                                                
-                                                                <p id = 'button_PrintTicket'> <button id ="buttonPrintTicket" name="buttonToPrintTicket" type="<%=submit%>" class= "btn btn-primary" onclick="<%=onclick%>"> друкувати квиток </button> 
-                                                           </form> 
+                                                                    </select>
+                                                                    <!--<input placeholder="Вільно/зайнято" class="form-control" id="status" type="text" name="status" value="<%=place.getStatus()%>"/> -->
+                                                                    <label for="PIP">П.І.Б.</label>
+                                                                    <input placeholder="ПІП" class="form-control" id="PIP" type="text" name="PIP" value="<%=place.getPIP()%>"/> 
+                                                            </div>
+                                                                <input id="orderPlace" type="hidden" name="orderPlace" value="orderPlace" />
+                                                                <button id="btn_update" value="update" type="submit" class="btn btn-warning"  onclick="print_doc()">Зберегти</button>
+                                                        </form>
+                                                    </div>
+                                                        <form action="../TicketController" method="POST">
+                                                            <input class="form-control" id="selectHidden" type="hidden" name="selectHidden" value="defoult"/>
+                                                            <input class="form-control" id="status" type="hidden" name="status" value=""/>
+                                                            <input class="form-control" id="PIP" type="hidden" name="PIP" value="<%=place.getPIP()%>"/>
+                                                            <input class="form-control" id="id" type="hidden" name="id" value="<%=place.getId()%>"/> 
+                                                            <input class="form-control" id="row" type="hidden" name="row" value="<%=place.getRow()%>"/> 
+                                                            <input class="form-control" id="number" type="hidden" name="number" value="<%=place.getNumber()%>"/> 
+                                                            <input class="form-control" id="sector" type="hidden" name="sector" value="<%=place.getIdSector()%>"/>
+                                                            <%
+                                                                String submit  = "";
+                                                                String onclick = "";
+                                                                if (place.getStatus() != 1){
+                                                                   submit = "reset";                                                                                                                                             
+                                                                   onclick = "masageErrorStatus();";
+                                                                }
+                                                            %>
+
+                                                            <p id = 'button_PrintTicket'> <button id ="buttonPrintTicket" name="buttonToPrintTicket" type="<%=submit%>" class= "btn btn-primary" onclick="<%=onclick%>"> друкувати квиток </button> 
+                                                        </form> 
                                                <div class="modal-footer">
                                                <button type="button" class="btn btn-default" data-dismiss="modal">Вийти</button>
                                            </div>
@@ -211,8 +204,14 @@
                     </div>
                 </div>
             </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 bacg">
                     
-                    <img class="media-object" src="../image/pole.PNG" alt="...">
+                </div>
+            </div>    
+        </div>            
+                    
         <div class="btn btn-success btn-lg sl_sector sector_o">службовий Сектор О</div>
         <div class="btn btn-success btn-lg sl_sector sector_p">службовий Сектор P</div>
         <br>
@@ -251,7 +250,7 @@
 
                 </div>
             </div>
-                    
+            
         <div class="footer"></div>
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

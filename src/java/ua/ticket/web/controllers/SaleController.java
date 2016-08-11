@@ -153,13 +153,9 @@ public class SaleController extends HttpServlet{
     }
     
     public Set<Integer> getListRows(int idSector){
-        for (int i = 0; i < placeList.size(); i++){
             getRows("select * from ticket_on_game"
-                + " where id_sector = " + idSector 
-                + " and row = " + placeList.get(i).getRow()
+                + " where id_sector = " + idSector
                 + " and id_game = " + idGame);    
-        }
-        //System.out.println("Rows size is " + rowList.size());
         return rowList; 
     }
     
