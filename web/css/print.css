@@ -7,7 +7,17 @@ and open the template in the editor.
     Created on : 11 серп. 2016, 8:18:30
     Author     : us9522
 */
-
-* {
+.list_matches, .btnExit, .container-fluid, .sector_o, .sector_p, .sector_l, .bottom_forms, 
+.nameTeams, .modal-header, .modal-footer{
     display: none;
 }
+
+
+
+.btn_place{
+    color: #FFF;
+    background: #FFF;
+    border-color: #FFF;
+    font-size: 0;
+}
+

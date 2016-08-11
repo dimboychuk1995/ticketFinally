@@ -24,7 +24,6 @@
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/sale.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="../css/print.css" media="print">
-        <script src= "../js/Error.js" type="text/javascript"></script>
         <script src= "../js/print.js" type="text/javascript"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -54,12 +53,9 @@
                         <%
                             for (GameOfTeam game : gamesList.showFutureGame()){
                         %>
-
                         <option id="teams" value = <%=game.getId()%>><%=game.getNameTeam1()%> - <%=game.getNameTeam2()%></option>
-
                         <%}%>
                     </select>
-                    
                     <button type="submit" value="update" class="btn btn-default btn_show">Показати список квитків по даному матчі</button>
                 </div>  
                 </form>
@@ -73,7 +69,7 @@
                 
                 <div class="row sector_f">
                     <center>
-                    <h3 id = 'nameTeams'><%=placeList.getNameTeams()%></h3>
+                        <h3 id = 'nameTeams' class="nameTeams"><%=placeList.getNameTeams()%></h3>
                     </center>
                     
                     <%      
@@ -132,68 +128,54 @@
                             %>
                                 
                                 <button data-toggle="modal" data-target="#<%=place.getId()%>" id="btn_update" value="update" type="submit" class="<%=colorButton%> btn_place"><%=place.getNumber()%></button>
-                                        <div id="<%=place.getId()%>" class="modal fade" role="dialog">
-                                           <div class="modal-dialog">
-                                               <div class="modal-content">
-                                                   <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                           <h4 class="modal-title">Інформація про квиток</h4>
-                                                   </div>
-                                                   <div class="modal-body">
-                                                       <form action="../SaleController" method="POST">
-                                                           <div class="form-group form-group_on_sale">
-                                                                   <input placeholder="id" class="form-control" id="id" type="hidden" name="id" value="<%=place.getId()%>"/>      
-                                                                   <label for="status">Статус</label>
-                                                                    <%
-                                                                        String statusTicket = "";
-                                                                        switch (place.getStatus()){
-                                                                            case 0: statusTicket = "Free";
-                                                                               break;
-                                                                            case 1: statusTicket = "Busy";
-                                                                               break;
-                                                                            case 2: statusTicket = "Booked";
-                                                                               break;    
-                                                                        }
-                                                                    %>
-                                                                    <select onchange="document.getElementById('selectHidden').value = this.value"  class="form-control" name="status">
-                                                                       <option selected><%=statusTicket%></option>
-                                                                       <option>Free</option>
-                                                                       <option>Busy</option>
-                                                                       <option>Booked</option>   
-                                                                    </select>
-                                                                    <!--<input placeholder="Вільно/зайнято" class="form-control" id="status" type="text" name="status" value="<%=place.getStatus()%>"/> -->
-                                                                    <label for="PIP">П.І.Б.</label>
-                                                                    <input placeholder="ПІП" class="form-control" id="PIP" type="text" name="PIP" value="<%=place.getPIP()%>"/> 
-                                                            </div>
-                                                                <input id="orderPlace" type="hidden" name="orderPlace" value="orderPlace" />
-                                                                <button id="btn_update" value="update" type="submit" class="btn btn-warning"  onclick="print_doc()">Зберегти</button>
-                                                        </form>
-                                                    </div>
-                                                        <form action="../TicketController" method="POST">
-                                                            <input class="form-control" id="selectHidden" type="hidden" name="selectHidden" value="defoult"/>
-                                                            <input class="form-control" id="status" type="hidden" name="status" value=""/>
-                                                            <input class="form-control" id="PIP" type="hidden" name="PIP" value="<%=place.getPIP()%>"/>
-                                                            <input class="form-control" id="id" type="hidden" name="id" value="<%=place.getId()%>"/> 
-                                                            <input class="form-control" id="row" type="hidden" name="row" value="<%=place.getRow()%>"/> 
-                                                            <input class="form-control" id="number" type="hidden" name="number" value="<%=place.getNumber()%>"/> 
-                                                            <input class="form-control" id="sector" type="hidden" name="sector" value="<%=place.getIdSector()%>"/>
+                                <div id="<%=place.getId()%>" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">Інформація про квиток</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="../SaleController" method="POST">
+                                                    <div class="form-group form-group_on_sale">
+                                                           <input placeholder="id" class="form-control" id="id" type="hidden" name="id" value="<%=place.getId()%>"/>      
+                                                           <label for="status">Статус</label>
                                                             <%
-                                                                String submit  = "";
-                                                                String onclick = "";
-                                                                if (place.getStatus() != 1){
-                                                                   submit = "reset";                                                                                                                                             
-                                                                   onclick = "masageErrorStatus();";
+                                                                String statusTicket = "";
+                                                                switch (place.getStatus()){
+                                                                    case 0: statusTicket = "Free";
+                                                                       break;
+                                                                    case 1: statusTicket = "Busy";
+                                                                       break;
+                                                                    case 2: statusTicket = "Booked";
+                                                                       break;    
                                                                 }
                                                             %>
-
-                                                            <p id = 'button_PrintTicket'> <button id ="buttonPrintTicket" name="buttonToPrintTicket" type="<%=submit%>" class= "btn btn-primary" onclick="<%=onclick%>"> друкувати квиток </button> 
-                                                        </form> 
-                                               <div class="modal-footer">
-                                               <button type="button" class="btn btn-default" data-dismiss="modal">Вийти</button>
-                                           </div>
-                                       </div>
-                                   </div>
-                               </div>
+                                                            <select onchange="document.getElementById('selectHidden').value = this.value"  class="form-control" name="status">
+                                                               <option selected><%=statusTicket%></option>
+                                                               <option>Free</option>
+                                                               <option>Busy</option>
+                                                               <option>Booked</option>   
+                                                            </select>
+                                                            <label for="PIP">П.І.Б.</label>
+                                                            <input placeholder="ПІП" class="form-control" id="PIP" type="text" name="PIP" value="<%=place.getPIP()%>"/> 
+                                                            <label for="row">Row</label>
+                                                            <input class="form-control row_print" id="row" name="row" value="<%=place.getRow()%>"/> 
+                                                            <label for="number">Number</label>
+                                                            <input class="form-control" id="number" name="number" value="<%=place.getNumber()%>"/> 
+                                                            <label for="sector">Sector</label>
+                                                            <input class="form-control" id="sector" name="sector" value="<%=place.getIdSector()%>"/>
+                                                    </div>
+                                                        <input id="orderPlace" type="hidden" name="orderPlace" value="orderPlace" />
+                                                        <button id="btn_update" value="update" type="submit" class="btn btn-warning" onclick="print_doc()">Зберегти</button>
+                                                </form>
+                                            </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Вийти</button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <%}%>
                          <%}%>
                         </div>
@@ -204,27 +186,30 @@
                     </div>
                 </div>
             </div>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12 bacg">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 bacg">
+
+                    </div>
+                </div>    
+            </div>            
                     
-                </div>
-            </div>    
-        </div>            
-                    
-        <div class="btn btn-success btn-lg sl_sector sector_o">службовий Сектор О</div>
-        <div class="btn btn-success btn-lg sl_sector sector_p">службовий Сектор P</div>
-        <br>
-        <div class="btn btn-success btn-lg sl_sector sector_l" data-toggle="modal" data-target="#ModalL">Сектор L</div>
-                        
-        <form  action="../SubscriptionController" method="POST" class="form_add">
-            <p id = 'button_AddSub'> <button type="submit" class="btn btn-primary"> Добавити абоненмент </button> 
-        </form>
-        <form  action="../GamesController" method="POST">
-            <p id = 'button_InfoGame'> <button type="submit" class="btn btn-primary"> Інформація про ігри </button>
-        </form>
+            <div class="btn btn-success btn-lg sl_sector sector_o">службовий Сектор О</div>
+            <div class="btn btn-success btn-lg sl_sector sector_p">службовий Сектор P</div>
+            <br>
+            <div class="btn btn-success btn-lg sl_sector sector_l" data-toggle="modal" data-target="#ModalL">Сектор L</div>
+            
+            <div class="bottom_forms">
+                <form action="../SubscriptionController" method="POST" class="form_add">
+                    <p id='button_AddSub'> <button type="submit" class="btn btn-primary"> Добавити абоненмент </button> 
+                </form>
+                <form action="../GamesController" method="POST">
+                    <p id='button_InfoGame'> <button type="submit" class="btn btn-primary"> Інформація про ігри </button>
+                </form>
+            </div>
         </div>
-                    
+        <div class="footer"></div>
+        
         <div id="ModalL" class="modal fade">
                 <div class="modal-dialog">
 
@@ -251,7 +236,7 @@
                 </div>
             </div>
             
-        <div class="footer"></div>
+        
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
       <!-- Include all compiled plugins (below), or include individual files as needed -->
