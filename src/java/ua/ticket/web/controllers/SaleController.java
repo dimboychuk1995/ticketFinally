@@ -137,7 +137,7 @@ public class SaleController extends HttpServlet{
     
     public void getPlaceDB() throws SQLException{ 
          placeList.clear();
-        for (int idSector = 1; idSector <= 10; idSector++){    
+        for (int idSector = 1; idSector <= 10; idSector++){      
         getPlace("select * from ticket_on_game"
                 + " where id_sector = " + idSector
                 + " and id_game = " + idGame);

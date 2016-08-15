@@ -126,6 +126,7 @@ body {
     display: table;
     margin-left: 20px;
     float: left;
+    padding: 5px;
 }
 
 .btn_place{
@@ -136,7 +137,6 @@ body {
 
 #idClassG{
     float: none;
-    padding: 0px 0px 0px 19px;
 }
 
 #idClassF{
@@ -153,6 +153,7 @@ body {
 
 #idClassC, #idClassD, #idClassE{
     font-size: 50%;
+    margin-top: 5px;
 }
 
 #idClassC{
@@ -179,7 +180,7 @@ body {
 }
 
 .sector_o{
-    margin: 10px 0px 0px 153px;
+    margin: 10px 0px 0px 300px;
 }
 
 .sector_p{
@@ -187,10 +188,59 @@ body {
 }
 
 .sector_l{
-    margin-left: 153px;
+    margin-left: 300px;
     margin-top: 10px;
     width: 1004px;
+    background-color: orange;
 }
+
+.btn_sectors{
+    margin-left: 15px;
+}
+
+#idClassA, #idClassB, #idClassF, #idClassG, #idClassC, #idClassE{
+    background-color: gold;
+}
+
+#idClassVIP{
+    background-color: darkmagenta;
+}
+
+#idClassD{
+    background-color: #28a4c9;
+}
+
+.directory_sec{
+    font-size: 150%;
+    color: antiquewhite;
+    margin-top: 15px;
+    padding: 0px 89px 0px 65px;
+}
+
+.price_vip{
+    background-color: darkmagenta;
+    border-radius: 7px;
+}
+
+.price_blue{
+    background-color: #28a4c9;
+    border-radius: 7px;
+}
+
+.price_yellow{
+    background-color: gold;
+    border-radius: 7px;
+}
+
+.price_orange{
+    background-color: orange;
+    border-radius: 7px;
+}
+
+.price_m{
+    margin-top: 5px;
+}
+
 
 
 /*.first_sec{

@@ -33,7 +33,19 @@
         <jsp:useBean id="sectorList" class="ua.ticket.web.controllers.SectorController"/>
 
         <div class="header">
-
+            <div class="">
+                <form  action="../SaleController" method="POST">
+                    <button id='button_SaleTickets' type="submit" class="btn btn-primary order_ticket"> Замовити квиток </button> 
+                </form>
+                
+                <form  action="../SubscriptionController" method="POST">
+                    <button id='button_AddSub' type="submit" class="btn btn-primary add_sub"> Добавити абоненмент </button> 
+                </form>
+                
+                <form  action="../GamesController" method="POST">
+                    <button id='button_AddGame' type="submit" class="btn btn-primary"> Показати ігри </button> 
+                </form>
+            </div>
         </div>
 
         <div class="content">
@@ -49,7 +61,7 @@
                         %>
                         <form action="../SectorController" method="POST">
                             <div class="form-group alert alert-info sector_info">
-                                <input id="id" type="text" name="id" value="<%=sector.getId()%>" size="20" />
+                                <input class="hidden" id="id" type="text" name="id" value="<%=sector.getId()%>" size="20" />
                                 <input id="name" type="text" name="name" value="<%=sector.getName()%>" size="20" />
                                 <input id="price" type="text" name="price" value="<%=sector.getPrice()%>" size="20" />
 

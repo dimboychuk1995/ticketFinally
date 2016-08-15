@@ -9,16 +9,14 @@ and open the template in the editor.
 */
 
 
-#btn_update{
-    position: relative;
-}
+
 
 .forms{
     margin-top: 15px;
 }
 
 .container{
-    width: 660px;
+    width: 450px;
 }
 
 .sector_info{
@@ -26,7 +24,7 @@ and open the template in the editor.
 }
 
 .name{
-    margin-left: 215px;
+    margin-left: 15px;
     font-size: 125%;
 }
 
@@ -34,3 +32,8 @@ and open the template in the editor.
     margin-left: 60px;
     font-size: 125%;
 }
+
+.order_ticket, .add_sub{
+    float: left;
+}
+

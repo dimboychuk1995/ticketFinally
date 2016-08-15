@@ -62,6 +62,11 @@
         <form  action="../SaleController" method="POST">
              <button id = 'button_SaleTickets' type="submit" class="btn btn-primary"> Замовити квиток </button> 
         </form> 
+        
+        <form  action="../SectorController" method="POST">
+             <button id = 'button_Sectors' type="submit" class="btn btn-primary btn_sectors"> Довідник секторів </button> 
+        </form>
+        
         <br><br>
         <div id = 'addGameJS'></div>
         

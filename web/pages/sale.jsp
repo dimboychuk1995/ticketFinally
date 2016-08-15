@@ -188,7 +188,26 @@
             </div>
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 bacg">
+                    <div class="col-md-2 directory_sec">
+                        <label>Квитки</label>
+                        <div class="price_seс price_vip">
+                            <label></label>
+                            <label>грн</label>
+                        </div>
+                        <div class="price_sec price_blue price_m">
+                            <label></label>
+                            <label>грн</label>
+                        </div>
+                        <div class="price_sec price_yellow price_m">
+                            <label></label>
+                            <label>грн</label>
+                        </div>
+                        <div class="price_sec price_orange price_m">
+                            <label></label>
+                            <label>грн</label>
+                        </div>
+                    </div>
+                    <div class="col-md-10 bacg">
 
                     </div>
                 </div>    
@@ -206,6 +225,10 @@
                 <form action="../GamesController" method="POST">
                     <p id='button_InfoGame'> <button type="submit" class="btn btn-primary"> Інформація про ігри </button>
                 </form>
+                <form  action="../SectorController" method="POST">
+                    <button id = 'button_Sectors' type="submit" class="btn btn-primary btn_sectors"> Довідник секторів </button> 
+                </form>
+                
             </div>
         </div>
         <div class="footer"></div>
