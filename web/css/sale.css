@@ -127,6 +127,8 @@ body {
     margin-left: 20px;
     float: left;
     padding: 5px;
+    padding-top: 0px;
+    border-radius: 8px;
 }
 
 .btn_place{

@@ -193,37 +193,24 @@ public class SaleController extends HttpServlet{
             ){
             
             String status  = request.getParameter("status");
-            System.out.println(status);
-            int statusTicket = 0;
-            if (status.equals("Free")){
-                statusTicket = 0;
-            }
-            if (status.equals("Busy")){
-                statusTicket = 1;
-            }
-            if (status.equals("Booked")){
-                statusTicket = 2;
-            }
             
             String id = request.getParameter("id");
-            System.out.println(id);
             String row   = request.getParameter("row");
-            System.out.println(row);
             String number   = request.getParameter("number");
-            System.out.println(number);
-            String id_sector  = request.getParameter("id_sector");
-            System.out.println(id_sector);
-            //String status  = request.getParameter("status"); 
-            System.out.println(statusTicket);
+            String id_sector  = request.getParameter("id_sector");            
             String pip = request.getParameter("PIP");
-            System.out.println(pip);
             
                 String orderGame = "UPDATE tickets.ticket_on_game"
-                        + " set status = '" + statusTicket
+                        + " set status = '" + 1
                         + "',PIP = '" + pip
                         + "' where id = " + id;
                 System.out.println(orderGame);
             stmt.executeUpdate(orderGame);
+            
+            
+            conn.close();
+            stmt.close();
+            
             
         }catch(SQLException ex){
             Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
@@ -246,6 +233,9 @@ public class SaleController extends HttpServlet{
                 System.out.println(SQL);
             stmt.executeUpdate(SQL);
             
+            
+            conn.close();
+            stmt.close();
         }catch(SQLException ex){
             Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -266,6 +256,10 @@ public class SaleController extends HttpServlet{
                 String team2 = rs.getString("team2");
                 result = team1 + " - " + team2;
             } 
+            
+            conn.close();
+            stmt.close();
+            
             return result;
         }catch(Exception ex){  
             Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
@@ -290,6 +284,9 @@ public class SaleController extends HttpServlet{
             while(rs.next()){
                 result = rs.getString("name");
             } 
+            
+            conn.close();
+            stmt.close();
             return result;
         }catch(Exception ex){  
             Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);

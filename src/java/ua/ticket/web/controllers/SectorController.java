@@ -99,7 +99,11 @@ public class SectorController extends HttpServlet{
                 
                 sectorList.add(sector);
         }
-            
+        
+        conn.close();
+        stmt.close();
+        rs.close();
+        
         return sectorList;
     } 
     
@@ -120,10 +124,11 @@ public class SectorController extends HttpServlet{
                     + " where id=" + id;
             
             System.out.println(sql);
-            
             stmt.executeUpdate(sql);
-            
             response.sendRedirect("pages/sectors.jsp");
+            
+            conn.close();
+            stmt.close();
         }catch(SQLException ex){
             Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
         }

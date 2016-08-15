@@ -8,7 +8,7 @@ and open the template in the editor.
     Author     : us9522
 */
 .list_matches, .btnExit, .container-fluid, .sector_o, .sector_p, .sector_l, .bottom_forms, 
-.nameTeams, .modal-header, .modal-footer{
+.nameTeams, .modal-header, .modal-footer, .btn, label{
     display: none;
 }
 
@@ -20,4 +20,15 @@ and open the template in the editor.
     border-color: #FFF;
     font-size: 0;
 }
+
+.form-control{
+    border: 0;
+    float: left;
+    width: 55px;
+    height: 40px;
+    font-size: 400%;
+}
+
+
+
 

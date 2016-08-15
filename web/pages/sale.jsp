@@ -104,6 +104,8 @@
                                 break;
                                 case 10: idSectorClass = "idClassP";
                                 break;
+                                case 11: idSectorClass = "idClassL";
+                                break;
                             }
                     %>
                     <div class="first_sec">
@@ -142,36 +144,46 @@
                                             <div class="modal-body">
                                                 <form action="../SaleController" method="POST">
                                                     <div class="form-group form-group_on_sale">
-                                                           <input placeholder="id" class="form-control" id="id" type="hidden" name="id" value="<%=place.getId()%>"/>      
-                                                           <label for="status">Статус</label>
+                                                            <input placeholder="id" class="form-control" id="id" type="hidden" name="id" value="<%=place.getId()%>"/>      
+                                                            <input placeholder="status" class="form-control" id="status" type="hidden" name="PIP" value="1"/> 
+                                                            <input placeholder="ПІП" class="form-control" id="PIP" type="hidden" name="PIP" value="<%=place.getPIP()%>"/> 
+                                                            <label for="row">Ряд</label>
+                                                            <input class="form-control row_print" id="row" name="row" value="<%=place.getRow()%>"/> 
+                                                            <label for="number">Місце</label>
+                                                            <input class="form-control" id="number" name="number" value="<%=place.getNumber()%>"/> 
+                                                            <label for="sector">Сектор</label>
                                                             <%
-                                                                String statusTicket = "";
-                                                                switch (place.getStatus()){
-                                                                    case 0: statusTicket = "Free";
+                                                                String SectorName = "";
+                                                                switch (place.getIdSector()){
+                                                                    case 1: SectorName = "A";
                                                                        break;
-                                                                    case 1: statusTicket = "Busy";
+                                                                    case 2: SectorName = "C";
                                                                        break;
-                                                                    case 2: statusTicket = "Booked";
+                                                                    case 3: SectorName = "VIP";
+                                                                       break;    
+                                                                    case 4: SectorName = "F";
+                                                                       break;    
+                                                                    case 5: SectorName = "G";
+                                                                       break;    
+                                                                    case 6: SectorName = "C";
+                                                                       break;    
+                                                                    case 7: SectorName = "D";
+                                                                       break;    
+                                                                    case 8: SectorName = "E";
+                                                                       break;    
+                                                                    case 9: SectorName = "O";
+                                                                       break;    
+                                                                    case 10: SectorName = "P";
+                                                                       break;    
+                                                                    case 11: SectorName = "L";
                                                                        break;    
                                                                 }
                                                             %>
-                                                            <select onchange="document.getElementById('selectHidden').value = this.value"  class="form-control" name="status">
-                                                               <option selected><%=statusTicket%></option>
-                                                               <option>Free</option>
-                                                               <option>Busy</option>
-                                                               <option>Booked</option>   
-                                                            </select>
-                                                            <label for="PIP">П.І.Б.</label>
-                                                            <input placeholder="ПІП" class="form-control" id="PIP" type="text" name="PIP" value="<%=place.getPIP()%>"/> 
-                                                            <label for="row">Row</label>
-                                                            <input class="form-control row_print" id="row" name="row" value="<%=place.getRow()%>"/> 
-                                                            <label for="number">Number</label>
-                                                            <input class="form-control" id="number" name="number" value="<%=place.getNumber()%>"/> 
-                                                            <label for="sector">Sector</label>
-                                                            <input class="form-control" id="sector" name="sector" value="<%=place.getIdSector()%>"/>
+                                                            <input class="form-control" id="sector" name="sector" value="<%=SectorName%>"/>
                                                     </div>
                                                         <input id="orderPlace" type="hidden" name="orderPlace" value="orderPlace" />
-                                                        <button id="btn_update" value="update" type="submit" class="btn btn-warning" onclick="print_doc()">Зберегти</button>
+                                                        <button id="btn_update" value="update" type="submit" class="btn btn-warning" onclick="print_doc()">Зберегти/Друк</button>
+                                                        <button id="" value="" class="btn btn-warning">Відмінити(не працює)</button>
                                                 </form>
                                             </div>
                                         <div class="modal-footer">
