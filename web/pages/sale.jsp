@@ -8,6 +8,9 @@
 <%@page import="ua.ticket.web.beans.Place"%>
 <%@page import="ua.ticket.web.controllers.GamesController"%>
 <%@page import="ua.ticket.web.beans.GameOfTeam"%>
+<%@page import="ua.ticket.web.controllers.SectorController"%>
+<%@page import="ua.ticket.web.beans.Sector"%>
+
 <%--<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>--%>
 
 
@@ -42,6 +45,7 @@
         
         <jsp:useBean id="placeList" class="ua.ticket.web.controllers.SaleController"/>
         <jsp:useBean id="gamesList" class="ua.ticket.web.controllers.GamesController"/>
+        <jsp:useBean id="sectorList" class="ua.ticket.web.controllers.SectorController"/>
         
         <div class="header"></div>    
 
@@ -190,22 +194,14 @@
                 <div class="row">
                     <div class="col-md-2 directory_sec">
                         <label>Квитки</label>
-                        <div class="price_seс price_vip">
-                            <label></label>
+                        <%
+                            for(Sector sector : sectorList.getPriceList()) {
+                        %>
+                        <div class="price_seс price_<%=sector.getName()%>">
+                            <label><%=sector.getPrice()%></label>
                             <label>грн</label>
                         </div>
-                        <div class="price_sec price_blue price_m">
-                            <label></label>
-                            <label>грн</label>
-                        </div>
-                        <div class="price_sec price_yellow price_m">
-                            <label></label>
-                            <label>грн</label>
-                        </div>
-                        <div class="price_sec price_orange price_m">
-                            <label></label>
-                            <label>грн</label>
-                        </div>
+                        <%}%>
                     </div>
                     <div class="col-md-10 bacg">
 

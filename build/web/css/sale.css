@@ -172,6 +172,7 @@ body {
     margin-top: 15px;
     height: 300px;
     background-color: #ffffff;
+    margin-left: -29px;
 }
 
 .sl_sector{
@@ -180,7 +181,7 @@ body {
 }
 
 .sector_o{
-    margin: 10px 0px 0px 300px;
+    margin: 10px 0px 0px 270px;
 }
 
 .sector_p{
@@ -188,7 +189,7 @@ body {
 }
 
 .sector_l{
-    margin-left: 300px;
+    margin-left: 270px;
     margin-top: 10px;
     width: 1004px;
     background-color: orange;
@@ -199,7 +200,7 @@ body {
 }
 
 #idClassA, #idClassB, #idClassF, #idClassG, #idClassC, #idClassE{
-    background-color: gold;
+    background-color: yellow;
 }
 
 #idClassVIP{
@@ -212,32 +213,34 @@ body {
 
 .directory_sec{
     font-size: 150%;
-    color: antiquewhite;
-    margin-top: 15px;
+    color: grey;
+    margin-top: 35px;
     padding: 0px 89px 0px 65px;
 }
 
-.price_vip{
+.price_seс{
+    border-radius: 7px;
+    padding-left: 4px;
+    padding-top: 2px;
+}
+
+.price_VIP{
     background-color: darkmagenta;
-    border-radius: 7px;
 }
 
-.price_blue{
+.price_D{
     background-color: #28a4c9;
-    border-radius: 7px;
 }
 
-.price_yellow{
-    background-color: gold;
-    border-radius: 7px;
+.price_A{
+    background-color: yellow;
 }
 
-.price_orange{
+.price_L{
     background-color: orange;
-    border-radius: 7px;
 }
 
-.price_m{
+.price_D, .price_A, .price_L{
     margin-top: 5px;
 }
 

@@ -79,6 +79,30 @@ public class SectorController extends HttpServlet{
         }
     }
     
+    public ArrayList<Sector> getPriceList()
+            throws ServletException, IOException, SQLException{
+          
+        Connection conn = Database.getConnection();
+        Statement stmt = conn.createStatement();
+        ResultSet rs;
+
+        String sql = "select name,price from tickets.sector "
+            + " where price != 0 "
+            + " group by price order by price desc ";
+        
+        rs = stmt.executeQuery(sql);
+        
+        while(rs.next()){
+            Sector sector = new Sector();
+                sector.setName(rs.getString("name"));
+                sector.setPrice(rs.getInt("price"));
+                
+                sectorList.add(sector);
+        }
+            
+        return sectorList;
+    } 
+    
     protected void updateSector(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
         String id = request.getParameter("id");
@@ -104,7 +128,6 @@ public class SectorController extends HttpServlet{
             Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
     
     
     @Override
