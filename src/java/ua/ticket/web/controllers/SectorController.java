@@ -87,8 +87,8 @@ public class SectorController extends HttpServlet{
         ResultSet rs;
 
         String sql = "select name,price from tickets.sector "
-            + " where price != 0 "
-            + " group by price order by price desc ";
+            + " where price != 0 ";
+//            + " group by price order by price desc ";
         
         rs = stmt.executeQuery(sql);
         

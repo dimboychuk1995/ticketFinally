@@ -4,14 +4,13 @@
  * and open the template in the editor.
  */
 
-function call() {
-        var msg   = $('#mainFormToSale').serialize();
-  $.ajax({
+function call(id) {
+        var msg   = $('#mainFormToSale' + id).serialize();
+    $.ajax({
         type: 'POST',
         url: '../SaleController',
         data: msg,
     success: function(data) {
-        alert('it good');
         $('#results').html(data);
     },
     error:  function(xhr, str){

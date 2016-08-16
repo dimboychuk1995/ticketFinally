@@ -82,10 +82,10 @@ public class SaleController extends HttpServlet{
             }  
         }
         
-        int size = request.getParameterMap().size();
-        if (size == 1){
-            updatePlaceL(request, response);
-        }
+//        int size = request.getParameterMap().size();
+//        if (size == 1){
+//            updatePlaceL(request, response);
+//        }
         
         try {
             getPlaceDB();
@@ -192,7 +192,7 @@ public class SaleController extends HttpServlet{
             Statement stmt = conn.createStatement();
             ){
             
-            String status  = request.getParameter("status");
+            //String status  = request.getParameter("status");
             
             String id = request.getParameter("id");
             String row   = request.getParameter("row");
@@ -200,9 +200,9 @@ public class SaleController extends HttpServlet{
             String id_sector  = request.getParameter("id_sector");            
             String pip = request.getParameter("PIP");
             
+                    
                 String orderGame = "UPDATE tickets.ticket_on_game"
                         + " set status = '" + 1
-                        + "',PIP = '" + pip
                         + "' where id = " + id;
                 System.out.println(orderGame);
             stmt.executeUpdate(orderGame);
@@ -217,29 +217,29 @@ public class SaleController extends HttpServlet{
         }
     }
      
-    protected void updatePlaceL(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException{
-        try(Connection conn = Database.getConnection();
-            Statement stmt = conn.createStatement();
-            ){
-            
-            String pip = request.getParameter("PIP");
-            System.out.println(pip);
-            
-                String SQL = "insert into tickets.ticket_on_game "
-                        + " (id_game, id_sector, PIP, status) "
-                        + " values(" + idGame + ", " + 11 + "," + "'" + pip + "', " + 1 
-                        + ") ";
-                System.out.println(SQL);
-            stmt.executeUpdate(SQL);
-            
-            
-            conn.close();
-            stmt.close();
-        }catch(SQLException ex){
-            Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+//    protected void updatePlaceL(HttpServletRequest request, HttpServletResponse response)
+//            throws ServletException, IOException{
+//        try(Connection conn = Database.getConnection();
+//            Statement stmt = conn.createStatement();
+//            ){
+//            
+//            String pip = request.getParameter("PIP");
+//            System.out.println(pip);
+//            
+//                String SQL = "insert into tickets.ticket_on_game "
+//                        + " (id_game, id_sector, PIP, status) "
+//                        + " values(" + idGame + ", " + 11 + "," + "'" + pip + "', " + 1 
+//                        + ") ";
+//                System.out.println(SQL);
+//            stmt.executeUpdate(SQL);
+//            
+//            
+//            conn.close();
+//            stmt.close();
+//        }catch(SQLException ex){
+//            Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
      
     public String getNameTeams(){
         String result = "";

@@ -143,10 +143,10 @@
                                                 <h4 class="modal-title">Інформація про квиток</h4>
                                             </div>
                                             <div class="modal-body">
-                                                <form action="javascript:void(null);" method="POST" id="mainFormToSale" onsubmit="call()">
+                                                <form action="javascript:void(null);" id="mainFormToSale<%=place.getId()%>" onsubmit="call(<%=place.getId()%>)">
                                                     <div class="form-group form-group_on_sale">
-                                                            <input placeholder="id" class="form-control" id="id" type="hidden" name="id" value="<%=place.getId()%>"/>      
-                                                            <input placeholder="status" class="form-control" id="status" type="hidden" name="PIP" value="1"/> 
+                                                            <input placeholder="id" class="form-control" id="id" type="" name="id" value="<%=place.getId()%>"/>      
+                                                            <!--<input placeholder="status" class="form-control" id="status" type="hidden" name="PIP" value="1"/>--> 
                                                             <input placeholder="ПІП" class="form-control" id="PIP" type="hidden" name="PIP" value="<%=place.getPIP()%>"/> 
                                                             <label for="row">Ряд</label>
                                                             <input class="form-control row_print" id="row" name="row" value="<%=place.getRow()%>"/> 
@@ -206,14 +206,14 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-2 directory_sec">
-                        <label>Квитки</label>
+                        <!--<label>Квитки</label>-->
                         <%
                             for(Sector sector : sectorList.getPriceList()) {
                         %>
-                        <div class="price_seс price_<%=sector.getName()%>">
+<!--                        <div class="price_seс price_<%=sector.getName()%>">
                             <label><%=sector.getPrice()%></label>
                             <label>грн</label>
-                        </div>
+                        </div>-->
                         <%}%>
                     </div>
                     <div class="col-md-10 bacg">
