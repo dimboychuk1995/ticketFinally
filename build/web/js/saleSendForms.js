@@ -12,6 +12,8 @@ function call(id) {
         data: msg,
     success: function(data) {
         $('#results').html(data);
+        document.getElementById(id).style.display = "none";
+        $( ".modal-backdrop" ).removeClass( "modal-backdrop" );
     },
     error:  function(xhr, str){
         alert('Помилка запису даних: ' + xhr.responseCode);

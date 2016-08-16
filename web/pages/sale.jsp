@@ -134,7 +134,7 @@
                                         }
                             %>
                                 
-                                <button data-toggle="modal" data-target="#<%=place.getId()%>" id="btn_update" value="update" type="submit" class="<%=colorButton%> btn_place"><%=place.getNumber()%></button>
+                                <button data-toggle="modal" data-target="#<%=place.getId()%>" id="btn_update btn_update<%=place.getId()%>" value="update" type="submit" class="<%=colorButton%> btn_place"><%=place.getNumber()%></button>
                                 <div id="<%=place.getId()%>" class="modal fade" role="dialog">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
