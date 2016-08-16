@@ -125,16 +125,16 @@
                                         int status = place.getStatus();
                                         String colorButton = "btn btn-danger";
                                         switch(status){
-                                            case 0: colorButton = "btn btn-success";
+                                            case 0: colorButton = "btn-success";
                                                 break;
-                                            case 1: colorButton = "btn btn-warning";
+                                            case 1: colorButton = "btn-warning";
                                                 break;
-                                            case 2: colorButton = "btn btn-info";
+                                            case 2: colorButton = "btn-info";
                                                 break;
                                         }
                             %>
                                 
-                                <button data-toggle="modal" data-target="#<%=place.getId()%>" id="btn_update btn_update<%=place.getId()%>" value="update" type="submit" class="<%=colorButton%> btn_place"><%=place.getNumber()%></button>
+                                <button data-toggle="modal" data-target="#<%=place.getId()%>" id="btn_update btn_update<%=place.getId()%>" value="update" type="submit" class="btn <%=colorButton%> btn_place"><%=place.getNumber()%></button>
                                 <div id="<%=place.getId()%>" class="modal fade" role="dialog">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
