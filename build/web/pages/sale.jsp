@@ -28,6 +28,7 @@
         <link href="../css/sale.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="../css/print.css" media="print">
         <script src= "../js/print.js" type="text/javascript"></script>
+        <script src= "../js/saleSendForms.js" type="text/javascript"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
@@ -142,7 +143,7 @@
                                                 <h4 class="modal-title">Інформація про квиток</h4>
                                             </div>
                                             <div class="modal-body">
-                                                <form action="../SaleController" method="POST">
+                                                <form action="javascript:void(null);" method="POST" id="mainFormToSale" onsubmit="call()">
                                                     <div class="form-group form-group_on_sale">
                                                             <input placeholder="id" class="form-control" id="id" type="hidden" name="id" value="<%=place.getId()%>"/>      
                                                             <input placeholder="status" class="form-control" id="status" type="hidden" name="PIP" value="1"/> 
@@ -182,8 +183,8 @@
                                                             <input class="form-control" id="sector" name="sector" value="<%=SectorName%>"/>
                                                     </div>
                                                         <input id="orderPlace" type="hidden" name="orderPlace" value="orderPlace" />
-                                                        <button id="btn_update" value="update" type="submit" class="btn btn-warning" onclick="print_doc()">Зберегти/Друк</button>
-                                                        <button id="" value="" class="btn btn-warning">Відмінити(не працює)</button>
+                                                        <button id="btn_update" value="update" type="submit" class="btn btn-warning">Зберегти/Друк</button>
+                                                        <!--<button id="" value="" class="btn btn-warning">Відмінити(не працює)</button>-->
                                                 </form>
                                             </div>
                                         <div class="modal-footer">
