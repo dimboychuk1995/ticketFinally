@@ -164,7 +164,7 @@
                                                                 switch (place.getIdSector()){
                                                                     case 1: SectorName = "A";
                                                                        break;
-                                                                    case 2: SectorName = "C";
+                                                                    case 2: SectorName = "B";
                                                                        break;
                                                                     case 3: SectorName = "VIP";
                                                                        break;    
@@ -212,7 +212,7 @@
                         <%
                             Sector sectorSec = null;
                         %>
-                        <label class="sector_name"><%=sector%> - <%=SectorController.getPriseSector(idSectorForLabel)%></label>
+                        <label class="sector_name sector_name<%=sector%>"><%=sector%> - <%=SectorController.getPriseSector(idSectorForLabel)%>грн</label>
                     </div>
                     <%}%>
                     
