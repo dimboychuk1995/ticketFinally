@@ -45,8 +45,14 @@
     <body>
         
         <jsp:useBean id="placeList" class="ua.ticket.web.controllers.SaleController"/>
+        <jsp:useBean id="sectorName" class="ua.ticket.web.controllers.SaleController"/>
         <jsp:useBean id="gamesList" class="ua.ticket.web.controllers.GamesController"/>
         <jsp:useBean id="sectorList" class="ua.ticket.web.controllers.SectorController"/>
+        
+        <%
+            String sector = null;
+            int idSectorForLabel = 0;
+        %>
         
         <div class="header"></div>    
 
@@ -83,7 +89,6 @@
                         String idRowClass = "idRow";
                         while (iterSector.hasNext()){
                             int idSector = (Integer) iterSector.next();
-                            
                             switch (idSector){
                                 case 1: idSectorClass = "idClassA";
                                 break;
@@ -108,10 +113,11 @@
                                 case 11: idSectorClass = "idClassL";
                                 break;
                             }
+                            
+                        
                     %>
-                    <div class="first_sec">
+                    
                     <div id="<%=idSectorClass%>" class="sector">
-                        <br>
                         <% 
                         Iterator<Integer> iterRows = placeList.getListRows(idSector).iterator();
                         while (iterRows.hasNext()){
@@ -179,6 +185,11 @@
                                                                     case 11: SectorName = "L";
                                                                        break;    
                                                                 }
+                                                                
+                                                                //імя сектору для надписів на сторінці
+                                                                //змінна оголошена на початку
+                                                                sector = SectorName;
+                                                                idSectorForLabel = place.getIdSector();
                                                             %>
                                                             <input class="form-control" id="sector" name="sector" value="<%=SectorName%>"/>
                                                     </div>
@@ -194,27 +205,23 @@
                                     </div>
                                 </div>
                                 <%}%>
-                         <%}%>
-                        </div>
-                        <%}%>                        
+                        <%}%>
+                        </div>    
+                        <%}%>
+                        
+                        <%
+                            Sector sectorSec = null;
+                        %>
+                        <label class="sector_name"><%=sector%> - <%=SectorController.getPriseSector(idSectorForLabel)%></label>
                     </div>
-                    
                     <%}%>
-                    </div>
+                    
                 </div>
             </div>
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-2 directory_sec">
-                        <!--<label>Квитки</label>-->
-                        <%
-                            for(Sector sector : sectorList.getPriceList()) {
-                        %>
-<!--                        <div class="price_seс price_<%=sector.getName()%>">
-                            <label><%=sector.getPrice()%></label>
-                            <label>грн</label>
-                        </div>-->
-                        <%}%>
+                        
                     </div>
                     <div class="col-md-9 bacg">
 
@@ -243,30 +250,30 @@
         <div class="footer"></div>
         
         <div id="ModalL" class="modal fade">
-                <div class="modal-dialog">
+            <div class="modal-dialog">
 
-                  <!-- Modal content-->
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      <h4 class="modal-title">Modal Header</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form role="form" action="../SaleController" method="POST">
-                            <div class="form-group">
-                                <label for="PIP">ПІП</label>
-                                <input type="text" name="PIP" class="form-control" id="PIP" placeholder="Введіть прізвище">
-                            </div>
-                            <button type="submit"  class="btn btn-success">Додати</button>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
-                    </div>
-                  </div>
-
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Modal Header</h4>
                 </div>
+                <div class="modal-body">
+                    <form role="form" action="../SaleController" method="POST">
+                        <div class="form-group">
+                            <label for="PIP">ПІП</label>
+                            <input type="text" name="PIP" class="form-control" id="PIP" placeholder="Введіть прізвище">
+                        </div>
+                        <button type="submit"  class="btn btn-success">Додати</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+              </div>
+
             </div>
+        </div>
             
         
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

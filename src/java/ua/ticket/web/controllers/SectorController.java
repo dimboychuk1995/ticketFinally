@@ -105,7 +105,38 @@ public class SectorController extends HttpServlet{
         rs.close();
         
         return sectorList;
-    } 
+    }
+    
+    
+    
+    //метод, що викликається з головної сторінки, для того щоб дізнатися ціну сектора
+    public static int getPriseSector(int sectorId)
+            throws ServletException, IOException{
+        int price = 0;
+        
+        try(Connection conn = Database.getConnection();
+            Statement stmt = conn.createStatement();
+            ){
+            ResultSet rs;
+            String sql = "select sector.price "
+                    + " from tickets.sector "
+                    + " where id=" + sectorId;
+            
+            rs = stmt.executeQuery(sql);
+            while(rs.next()){
+                price = rs.getInt("price");
+            }
+            conn.close();
+            stmt.close();
+            rs.close();
+            
+            return price;
+        }catch(SQLException ex){
+            Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return price;
+    }
     
     protected void updateSector(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
