@@ -14,6 +14,7 @@ function call(id) {
         $('#results').html(data);
         document.getElementById(id).style.display = "none";
         $( ".modal-backdrop" ).removeClass( "modal-backdrop" );
+        $('#btn_update' + id).addClass("btn_busy");
     },
     error:  function(xhr, str){
         alert('Помилка запису даних: ' + xhr.responseCode);

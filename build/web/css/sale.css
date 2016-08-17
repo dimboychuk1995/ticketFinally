@@ -246,6 +246,11 @@ body {
     margin-top: 5px;
 }
 
+.btn_busy{
+    color: #000;
+    background-color: #000;
+    border-color: #000;
+}
 
 
 /*.first_sec{
