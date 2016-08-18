@@ -27,7 +27,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import static jdk.nashorn.internal.objects.NativeArray.map;
 import ua.ticket.web.beans.GameOfTeam;
 import ua.ticket.web.beans.Place;
 import ua.ticket.web.db.Database;
@@ -57,10 +56,19 @@ public class SaleController extends HttpServlet{
     protected void showPlaces(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        int size = request.getParameterMap().size();
+        System.out.println("Кількість параметрів " + size);
+        
+        if (size == 2){
+            try {
+                cancelOrder(request, response);
+            } catch (SQLException ex) {
+                Logger.getLogger(SaleController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
         String[] valueParamsGames = new String[0];
         String orderPlace = "";
-        
-        
         
         if (request.getParameterValues("selectGame")!= null){
             valueParamsGames = request.getParameterValues("selectGame");
@@ -73,7 +81,6 @@ public class SaleController extends HttpServlet{
         String status2 = "orderPlace";
         if (status2.equals(orderPlace)){
             updatePlace(request,response);
-            
         }
 
         if (valueParamsGames.length > 0){
@@ -81,11 +88,9 @@ public class SaleController extends HttpServlet{
                 idGame = Integer.parseInt(valueParamsGames[i]);
             }  
         }
+
         
-//        int size = request.getParameterMap().size();
-//        if (size == 1){
-//            updatePlaceL(request, response);
-//        }
+        
         
         try {
             getPlaceDB();
@@ -201,7 +206,7 @@ public class SaleController extends HttpServlet{
             String pip = request.getParameter("PIP");
             
                     
-                String orderGame = "UPDATE tickets.ticket_on_game"
+                String orderGame = "UPDATE ticket_on_game"
                         + " set status = '" + 1
                         + "' where id = " + id;
                 System.out.println(orderGame);
@@ -215,6 +220,31 @@ public class SaleController extends HttpServlet{
         }catch(SQLException ex){
             Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    protected void cancelOrder(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, SQLException{
+        
+        String id = request.getParameter("id");
+        String status = request.getParameter("status");
+        
+        try(Connection conn = Database.getConnection();
+            Statement stmt = conn.createStatement();
+            ){
+            
+            String sql = "update tickets.ticket_on_game " +
+                    " set status = '" + 0 +
+                    "' where id = " + id;
+            
+            System.out.println(sql);
+            stmt.executeUpdate(sql);
+            
+            conn.close();
+            stmt.close();
+        }catch(SQLException ex){
+            Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
      
 //    protected void updatePlaceL(HttpServletRequest request, HttpServletResponse response)
@@ -297,7 +327,7 @@ public class SaleController extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        showPlaces(request, response);
+            showPlaces(request, response);
     }
     
     @Override

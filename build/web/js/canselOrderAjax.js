@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 
-function call(id) {
-        var msg   = $('#mainFormToSale' + id).serialize();
+function canceled(id) {
+        var msg   = $('#formCanceled' + id).serialize();
     $.ajax({
         type: 'POST',
         url: '../SaleController',
@@ -14,7 +14,7 @@ function call(id) {
         $('#results').html(data);
         document.getElementById(id).style.display = "none";
         $( ".modal-backdrop" ).removeClass( "modal-backdrop" );
-        $('#btn_update' + id).addClass("btn_busy");
+        $('#btn_update' + id).removeClass("btn_busy").addClass("btn-success");
     },
     error:  function(xhr, str){
         alert('Помилка запису даних: ' + xhr.responseCode);

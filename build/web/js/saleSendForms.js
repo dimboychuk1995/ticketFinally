@@ -20,5 +20,4 @@ function call(id) {
         alert('Помилка запису даних: ' + xhr.responseCode);
     }
   });
-
 }

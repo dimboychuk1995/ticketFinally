@@ -107,8 +107,6 @@ public class SectorController extends HttpServlet{
         return sectorList;
     }
     
-    
-    
     //метод, що викликається з головної сторінки, для того щоб дізнатися ціну сектора
     public static int getPriseSector(int sectorId)
             throws ServletException, IOException{
@@ -156,7 +154,6 @@ public class SectorController extends HttpServlet{
             
             System.out.println(sql);
             stmt.executeUpdate(sql);
-            response.sendRedirect("pages/sectors.jsp");
             
             conn.close();
             stmt.close();
