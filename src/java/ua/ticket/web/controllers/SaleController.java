@@ -58,7 +58,6 @@ public class SaleController extends HttpServlet{
         
         int size = request.getParameterMap().size();
         System.out.println("Кількість параметрів " + size);
-        
         if (size == 2){
             try {
                 cancelOrder(request, response);
@@ -76,6 +75,11 @@ public class SaleController extends HttpServlet{
         
         if (request.getParameter("orderPlace") != null){
             orderPlace = request.getParameter("orderPlace");
+        }
+        
+        //умова для виконання методу updatePlaceL
+        if(request.getParameter("updateL") != null){
+            updatePlaceL(request, response);
         }
         
         String status2 = "orderPlace";
@@ -247,29 +251,29 @@ public class SaleController extends HttpServlet{
         
     }
      
-//    protected void updatePlaceL(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException{
-//        try(Connection conn = Database.getConnection();
-//            Statement stmt = conn.createStatement();
-//            ){
-//            
-//            String pip = request.getParameter("PIP");
-//            System.out.println(pip);
-//            
-//                String SQL = "insert into tickets.ticket_on_game "
-//                        + " (id_game, id_sector, PIP, status) "
-//                        + " values(" + idGame + ", " + 11 + "," + "'" + pip + "', " + 1 
-//                        + ") ";
-//                System.out.println(SQL);
-//            stmt.executeUpdate(SQL);
-//            
-//            
-//            conn.close();
-//            stmt.close();
-//        }catch(SQLException ex){
-//            Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
+    protected void updatePlaceL(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException{
+        try(Connection conn = Database.getConnection();
+            Statement stmt = conn.createStatement();
+            ){
+            
+            String pip = request.getParameter("PIP");
+            System.out.println(pip);
+            
+                String SQL = "insert into tickets.ticket_on_game "
+                        + " (id_game, id_sector, PIP, status) "
+                        + " values(" + idGame + ", " + 11 + "," + "'" + pip + "', " + 1 
+                        + ") ";
+                System.out.println(SQL);
+            stmt.executeUpdate(SQL);
+            
+            
+            conn.close();
+            stmt.close();
+        }catch(SQLException ex){
+            Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
      
     public String getNameTeams(){
         String result = "";

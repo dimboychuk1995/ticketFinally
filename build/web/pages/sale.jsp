@@ -30,6 +30,7 @@
         <script src= "../js/print.js" type="text/javascript"></script>
         <script src= "../js/saleSendForms.js" type="text/javascript"></script>
         <script src= "../js/canselOrderAjax.js" type="text/javascript"></script>
+        <script src= "../js/updateL.js" type="text/javascript"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
@@ -238,7 +239,7 @@
             <div class="btn btn-success btn-lg sl_sector sector_o">службовий Сектор О</div>
             <div class="btn btn-success btn-lg sl_sector sector_p">службовий Сектор P</div>
             <br>
-            <div class="btn btn-success btn-lg sl_sector sector_l" data-toggle="modal" data-target="#ModalL">Сектор L</div>
+            <div class="btn btn-success btn-lg sl_sector sector_l" data-toggle="modal" data-target="#ModalL">Сектор L - 20 грн</div>
             
             <div class="bottom_forms">
                 <form action="../SubscriptionController" method="POST" class="form_add">
@@ -262,13 +263,12 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Modal Header</h4>
+                  <h4 class="modal-title">Замовлення квитка в секторі L</h4>
                 </div>
                 <div class="modal-body">
-                    <form role="form" action="../SaleController" method="POST">
+                    <form role="form" action="javascript:void(null);" id="formCanceled" onsubmit="orderL()">
                         <div class="form-group">
-                            <label for="PIP">ПІП</label>
-                            <input type="text" name="PIP" class="form-control" id="PIP" placeholder="Введіть прізвище">
+                            <input id="updateL" type="hidden" name="updateL" value="updateL" />
                         </div>
                         <button type="submit"  class="btn btn-success">Додати</button>
                     </form>
