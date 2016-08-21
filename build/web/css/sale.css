@@ -175,6 +175,7 @@ body {
     height: 300px;
     background-color: #ffffff;
     margin-left: -29px;
+    padding: 0;
 }
 
 .sl_sector{
@@ -183,7 +184,7 @@ body {
 }
 
 .sector_o{
-    margin: 10px 0px 0px 210px;
+    margin: 10px 0px 0px 190px;
 }
 
 .sector_p{
@@ -191,7 +192,7 @@ body {
 }
 
 .sector_l{
-    margin-left: 210px;
+    margin-left: 193px;
     margin-top: 10px;
     width: 1004px;
     background-color: orange;
@@ -264,3 +265,8 @@ body {
 /*.first_sec{
     padding-left: 215px;
 }*/
+
+.img-responsive{
+    height: 300px;
+    width: 1000px;
+}

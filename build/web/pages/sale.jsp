@@ -231,7 +231,7 @@
                         
                     </div>
                     <div class="col-md-9 bacg">
-
+                        <img src="../image/pole.PNG" class="img-responsive" alt="Responsive image">
                     </div>
                 </div>    
             </div>            
