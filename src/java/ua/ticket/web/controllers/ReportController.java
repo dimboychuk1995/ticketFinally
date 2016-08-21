@@ -6,7 +6,6 @@
 package ua.ticket.web.controllers;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,9 +19,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import ua.ticket.web.beans.Place;
-import static ua.ticket.web.controllers.SaleController.idGame;
-import static ua.ticket.web.controllers.SaleController.placeList;
 import ua.ticket.web.db.Database;
 
 /**
@@ -32,7 +28,10 @@ import ua.ticket.web.db.Database;
 @WebServlet(name = "ReportController", urlPatterns = {"/ReportController"})
 public class ReportController extends HttpServlet {
     
-    public static ArrayList<Integer>arrPlace = new ArrayList<Integer>();
+    /**
+     *
+     */
+    public static ArrayList<Integer>arrPlace = new ArrayList<>();
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException,SQLException{

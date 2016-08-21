@@ -180,9 +180,9 @@
                                                                    break;    
                                                                 case 8: SectorName = "E";
                                                                    break;    
-                                                                case 9: SectorName = "O";
+                                                                case 9: SectorName = "Службовий сектор O";
                                                                    break;    
-                                                                case 10: SectorName = "P";
+                                                                case 10: SectorName = "Службовий сектор P";
                                                                    break;    
                                                                 case 11: SectorName = "L";
                                                                    break;    
@@ -235,9 +235,6 @@
                     </div>
                 </div>    
             </div>            
-                    
-            <div class="btn btn-success btn-lg sl_sector sector_o">службовий Сектор О</div>
-            <div class="btn btn-success btn-lg sl_sector sector_p">службовий Сектор P</div>
             <br>
             <div class="btn btn-success btn-lg sl_sector sector_l" data-toggle="modal" data-target="#ModalL">Сектор L - 20 грн</div>
             

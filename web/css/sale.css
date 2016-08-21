@@ -193,7 +193,7 @@ body {
 
 .sector_l{
     margin-left: 193px;
-    margin-top: 10px;
+    margin-top: 75px;
     width: 1004px;
     background-color: orange;
 }
@@ -270,3 +270,17 @@ body {
     height: 300px;
     width: 1000px;
 }
+
+#idClassO{
+    position: absolute;
+    margin-top: 420px;
+    margin-left: 205px;
+}
+
+#idClassP{
+    position: absolute;
+    margin-left: 1057px;
+    margin-top: 421px;
+    color: #000;
+}
+
