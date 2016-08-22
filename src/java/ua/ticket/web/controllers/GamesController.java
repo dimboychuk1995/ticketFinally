@@ -100,18 +100,14 @@ public class GamesController extends HttpServlet {
         
         if (status4.equals(insertParam)){
             insertGame (request,response);
-            //System.out.println();
         }
         if (status5.equals(updateParam)){
-            System.out.println(updateParam);
             updateGame(request, response);
         }
         if (status6.equals(editGames)){
-            System.out.println(editGames);
             sql = moreCurrDate;
         }
         if (status7.equals(deleteGame)){
-            System.out.println(deleteGame);
             deleteGame(request, response);
         }
         try{
@@ -294,8 +290,7 @@ public class GamesController extends HttpServlet {
                     + " and ticket_on_game.number = place.number"
                     + " and ticket_on_game.id_sector = place.idSector"
                     + " join subscription on  place.id = subscription.placeId"
-                    + " set ticket_on_game.status = 1, ticket_on_game.PIP = subscription.PIP";
-                System.out.println(updateSubscripInMatch);
+                    + " set ticket_on_game.status = 2, ticket_on_game.PIP = subscription.PIP";
                 
                 stmt.executeUpdate(updateSubscripInMatch);
             

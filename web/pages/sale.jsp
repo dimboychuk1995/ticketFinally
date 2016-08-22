@@ -137,7 +137,7 @@
                                                 break;
                                             case 1: colorButton = "btn_busy";
                                                 break;
-                                            case 2: colorButton = "btn-info";
+                                            case 2: colorButton = "subButton";
                                                 break;
                                         }
                             %>

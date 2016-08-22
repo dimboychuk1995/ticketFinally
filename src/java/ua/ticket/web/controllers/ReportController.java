@@ -98,8 +98,8 @@ public class ReportController extends HttpServlet {
                                 + " FROM tickets.ticket_on_game tg" 
                                 + " left join tickets.sector ts on"
                                 + " ts.id = tg.id_sector"
-                                + " where tg.id_game = " + gameId;
-            System.out.println(getSector);
+                                + " where tg.id_game = " + gameId
+                                + " order by name";
             rs = stmt.executeQuery(getSector);
             while (rs.next()) {
                 arrSector.add(rs.getString("name"));
@@ -135,8 +135,7 @@ public class ReportController extends HttpServlet {
             conn = Database.getConnection();
 
             stmt = conn.createStatement();
-            String getSector =  "SELECT id_sector FROM tickets.ticket_on_game where id_game = " + gameId;
-            System.out.println(getSector);
+            String getSector =  "SELECT id_sector FROM tickets.ticket_on_game where id_game = " + gameId + " group by id_sector";
             rs = stmt.executeQuery(getSector);
             while (rs.next()) {
                 arrSector.add(Integer.parseInt(rs.getString("id_sector")));
@@ -200,7 +199,7 @@ public class ReportController extends HttpServlet {
                     + " left join tickets.sector ts on tg.id_sector = ts.id "
                     + " where ts.id = " + idSector + " and "
                     + " tg.id_game = " + idGame
-                    + " and status = 1";
+                    + " and (status = 1 or status = 2)";
             
             rs = stmt.executeQuery(getPlace);
             while(rs.next()){
