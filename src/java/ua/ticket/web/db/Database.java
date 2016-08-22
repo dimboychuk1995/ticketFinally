@@ -27,11 +27,13 @@ public class Database {
     public static Connection getConnection() {
         try {
             ic = new InitialContext();
-            ds = (DataSource) ic.lookup("jdbc/sample");
+            ds = (DataSource) ic.lookup("java:comp/env/jdbc/sample");
             conn = ds.getConnection();
         } catch (SQLException ex) {
+            System.out.println("error number 1");
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NamingException ex) {
+            System.out.println("error number 2");
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
 

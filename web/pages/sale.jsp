@@ -70,13 +70,13 @@
                         <%}%>
                     </select>
                     <button type="submit" value="update" class="btn btn-default btn_show">Показати список квитків по даному матчі</button>
-                </div>  
+                  
                 </form>
-                    <form action="../SesionController" method="POST" class="form_out">
+                <form action="../SesionController" method="POST" class="form_out">
                     <input type="hidden" name="exitSesion" value="exitSesion" />
                     <button id ="exitBtn" class="btnExit" type="submit">Вийти</button>
                 </form>
-                         
+            </div>             
 
             <div class="sectors_up">
                 

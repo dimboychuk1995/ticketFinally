@@ -203,10 +203,9 @@ public class ReportController extends HttpServlet {
             
             rs = stmt.executeQuery(getPlace);
             while(rs.next()){
-                int place = Integer.parseInt(rs.getString("number"));
+                int place = (rs.getInt("number"));
                 arrPlace.add(place);                
-            } 
-            System.out.println(arrPlace);
+            }
 
         }catch(Exception ex){  
             Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
