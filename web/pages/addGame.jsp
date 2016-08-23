@@ -22,7 +22,7 @@
                     <input class="form-control" type="text" name= "date"    value="" size="20" placeholder = "дата матчу"/>
                 </div>
                 <div class="col-xs-2">
-                    <input class="form-control" type="text" name= "owner"   value="" size="20" placeholder = "господар"/>
+                    <input class="form-control" type="text" name= "owner"   value="Uragan" size="20" placeholder = "господар"/>
                 </div>
                     <div class="col-xs-2">
                 <input class="form-control" type="text" name= "guest"   value="" size="20" placeholder = "гості"/>

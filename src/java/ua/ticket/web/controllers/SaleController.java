@@ -116,6 +116,7 @@ public class SaleController extends HttpServlet{
                 place.setIdSector(rs.getInt("id_sector"));
                 place.setStatus(rs.getInt("status"));
                 place.setPIP(rs.getString("PIP"));
+                place.setPrice(rs.getInt("price"));
                 
                 placeList.add(place);             
             }
@@ -141,7 +142,8 @@ public class SaleController extends HttpServlet{
     public void getPlaceDB() throws SQLException{ 
          placeList.clear();
         for (int idSector = 1; idSector <= 10; idSector++){      
-        getPlace("select * from ticket_on_game"
+        getPlace("select ticket_on_game.id,id_game,row,number,id_sector,status,PIP,sector.price from ticket_on_game "
+                + " join sector on sector.id = ticket_on_game.id_sector "
                 + " where id_sector = " + idSector
                 + " and id_game = " + idGame);
         }
@@ -283,6 +285,31 @@ public class SaleController extends HttpServlet{
                 String team1 = rs.getString("team1");
                 String team2 = rs.getString("team2");
                 result = team1 + " - " + team2;
+            } 
+            
+            conn.close();
+            stmt.close();
+            
+            return result;
+        }catch(Exception ex){  
+            Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+        return result;
+    }
+    
+    public String getDateMatch(){
+        String result = "";
+        try(Connection conn = Database.getConnection();
+            Statement stmt = conn.createStatement();
+            ){
+            ResultSet rs = null;
+
+            String getTeams = "SELECT date FROM tickets.games "
+                + "WHERE id = " + getIdGame();
+            rs = stmt.executeQuery(getTeams);
+            while(rs.next()){
+                String date = rs.getString("date");
+                result = date;
             } 
             
             conn.close();

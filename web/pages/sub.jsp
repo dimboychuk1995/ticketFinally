@@ -17,9 +17,7 @@
         <script src= "../js/manipulSub.js" type="text/javascript"></script>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/sub.css" rel="stylesheet">
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        
     </head>
     <body> 
         <jsp:useBean id="subscriptionList" class="ua.ticket.web.controllers.SubscriptionController"/>
@@ -81,7 +79,7 @@
                 </table>
 
           <div class="footer"></div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+          <script src="../js/jquery.min.js"></script>
     
         <script src="../js/bootstrap.min.js"></script>
     </body>

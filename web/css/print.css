@@ -8,11 +8,21 @@ and open the template in the editor.
     Author     : us9522
 */
 .list_matches, .btnExit, .container-fluid, .sector_o, .sector_p, .sector_l, .bottom_forms, 
-.nameTeams, .modal-header, .modal-footer, .btn, label{
+.modal-header, .modal-footer, .btn, label{
     display: none;
 }
 
+#PIP{
+    display: none;
+}
 
+.nameTeams{
+    float: left;
+    font-size: 300%;
+    margin-top: 15px;
+    margin-left: 50px;
+
+}
 
 .btn_place{
     color: #FFF;
@@ -24,9 +34,40 @@ and open the template in the editor.
 .form-control{
     border: 0;
     float: left;
-    width: 55px;
+    width: 120px;
     height: 40px;
-    font-size: 400%;
+    font-size: 290%;
+    margin-top: 310px;
+    margin-left: 520px;
+    margin-right: 0;
+    padding-right: 0;
+}
+
+.row_print{
+    margin-left: 15px;
+}
+
+.number_print{
+    margin-left: 15px;
+    float: left;
+}
+
+.price_print{
+    position: absolute;
+    margin-top: 310px;
+    margin-left: 870px;
+}
+
+.dateMatch{
+    float: left;
+    color: #fff;
+    font-size: 270%;
+    margin-left: 290px;
+    margin-top: 15px;
+}
+
+.form-controlC, .form-controlD, .form-controlE{
+    font-size: 500%;
 }
 
 

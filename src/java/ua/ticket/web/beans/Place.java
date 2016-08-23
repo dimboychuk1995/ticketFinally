@@ -26,6 +26,7 @@ public class Place {
     private int idSector;
     private String PIP;
     private int status;
+    private int price;
     public List<Integer> sizeRow = new ArrayList<Integer>();
     public List<Integer> sizePlaces = new ArrayList<Integer>();
     
@@ -33,13 +34,14 @@ public class Place {
         
     }
     
-    public Place(int id, int row, int number, int idSector, String PIP, int status){
+    public Place(int id, int row, int number, int idSector, String PIP, int status, int price){
         this.id = id;
         this.row = row;
         this.number = number;
         this.idSector = idSector;
         this.PIP = PIP;
         this.status = status;
+        this.price = price;
         
     }
     
@@ -97,6 +99,14 @@ public class Place {
     
     public int getSizePlaces(){
         return sizePlaces.size();
+    }
+    
+    public int getPrice(){
+        return price;
+    }
+    
+    public void setPrice(int price){
+        this.price = price;
     }
     
     @Override

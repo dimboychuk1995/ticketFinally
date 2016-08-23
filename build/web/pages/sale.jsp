@@ -31,7 +31,7 @@
         <script src= "../js/saleSendForms.js" type="text/javascript"></script>
         <script src= "../js/canselOrderAjax.js" type="text/javascript"></script>
         <script src= "../js/updateL.js" type="text/javascript"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="../js/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 
@@ -82,6 +82,7 @@
                 
                 <div class="row sector_f">
                     <center>
+                        <h3 id="dateMatch" class="dateMatch"><%=placeList.getDateMatch()%></h3>
                         <h3 id = 'nameTeams' class="nameTeams"><%=placeList.getNameTeams()%></h3>
                     </center>
                     
@@ -155,11 +156,7 @@
                                                     <div class="form-group form-group_on_sale">
                                                         <input placeholder="id" class="form-control" id="id" type="hidden" name="id" value="<%=place.getId()%>"/>      
                                                         <!--<input placeholder="status" class="form-control" id="status" type="hidden" name="PIP" value="1"/>--> 
-                                                        <input placeholder="ПІП" class="form-control" id="PIP" type="hidden" name="PIP" value="<%=place.getPIP()%>"/> 
-                                                        <label for="row">Ряд</label>
-                                                        <input class="form-control row_print" id="row" name="row" value="<%=place.getRow()%>"/> 
-                                                        <label for="number">Місце</label>
-                                                        <input class="form-control" id="number" name="number" value="<%=place.getNumber()%>"/> 
+                                                        <input placeholder="ПІП" class="form-control" id="PIP" type="" name="PIP" value="<%=place.getPIP()%>"/>
                                                         <label for="sector">Сектор</label>
                                                         <%
                                                             String SectorName = "";
@@ -193,10 +190,17 @@
                                                             sector = SectorName;
                                                             idSectorForLabel = place.getIdSector();
                                                         %>
-                                                        <input class="form-control" id="sector" name="sector" value="<%=SectorName%>"/>
+                                                        <input class="form-control<%=sector%> form-control" id="sector" name="sector" value="<%=SectorName%>"/>
+                                                        <label for="row">Ряд</label>
+                                                        <input class="form-control<%=sector%> form-control row_print" id="row" name="row" value="<%=place.getRow()%>"/> 
+                                                        <label for="number">Місце</label>
+                                                        <input class="form-control<%=sector%> form-control number_print" id="number" name="number" value="<%=place.getNumber()%>"/> 
+                                                        <label for="number">Ціна</label>
+                                                        <input class="form-control<%=sector%> form-control price_print" id="price" name="price" value="<%=place.getPrice()%>"/> 
+                                                        
                                                     </div>
                                                         <input id="orderPlace" type="hidden" name="orderPlace" value="orderPlace" />
-                                                        <button id="btn_update" value="update" type="submit" class="btn btn-warning">Зберегти/Друк</button>
+                                                        <button id="btn_update" value="update" type="submit" class="btn btn-warning" onclick="print_doc()">Зберегти/Друк</button>
                                                 </form>
                                                     
                                                 <form action="javascript:void(null);" class="cancel_of_order" id="formCanceled<%=place.getId()%>" onsubmit="canceled(<%=place.getId()%>)">
@@ -280,7 +284,7 @@
             
         
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+      <script src="../js/jquery.min.js"></script>
       <!-- Include all compiled plugins (below), or include individual files as needed -->
       <script src="../js/bootstrap.min.js"></script>
     </body>

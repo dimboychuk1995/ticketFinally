@@ -2,6 +2,6 @@
 <Context path="/ticketFinally">
     <Resource name="jdbc/sample" auth="Container" type="javax.sql.DataSource"
                     maxActive="100" maxIdle="30" maxWait="10000"
-                    username="tickets" password="tickets" driverClassName="com.mysql.jdbc.Driver"
-                    url="jdbc:mysql://10.93.105.49:3306/tickets"/>
+                    username="root" password="root" driverClassName="com.mysql.jdbc.Driver"
+                    url="jdbc:mysql://localhost:3306/tickets"/>
 </Context>

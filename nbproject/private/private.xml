@@ -12,16 +12,10 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/WORK/netBeans/ticketFinally/src/java/ua/ticket/web/db/Database.java</file>
-            <file>file:/D:/WORK/netBeans/ticketFinally/web/pages/sale.jsp</file>
-            <file>file:/D:/WORK/netBeans/ticketFinally/src/java/ua/ticket/web/controllers/ReportController.java</file>
-            <file>file:/D:/WORK/netBeans/ticketFinally/web/js/updateL.js</file>
-            <file>file:/D:/WORK/netBeans/ticketFinally/web/pages/GamesPage.jsp</file>
-            <file>file:/D:/WORK/netBeans/ticketFinally/web/WEB-INF/web.xml</file>
-            <file>file:/D:/WORK/netBeans/ticketFinally/web/css/sale.css</file>
-            <file>file:/D:/WORK/netBeans/ticketFinally/web/META-INF/context.xml</file>
-            <file>file:/D:/WORK/netBeans/ticketFinally/src/java/ua/ticket/web/controllers/SaleController.java</file>
-            <file>file:/D:/WORK/netBeans/ticketFinally/web/js/canselOrderAjax.js</file>
+            <file>file:/home/dima/NetBeansProjects/ticketFinally/web/META-INF/context.xml</file>
+            <file>file:/home/dima/NetBeansProjects/ticketFinally/web/pages/sub.jsp</file>
+            <file>file:/home/dima/NetBeansProjects/ticketFinally/web/pages/sectors.jsp</file>
+            <file>file:/home/dima/NetBeansProjects/ticketFinally/web/pages/sale.jsp</file>
         </group>
     </open-files>
 </project-private>
