@@ -12,6 +12,13 @@ and open the template in the editor.
     display: none;
 }
 
+html{
+    border: 0;
+    border-color: #fff;
+    color: #fff;
+    border: 0px solid;
+}
+
 #PIP{
     display: none;
 }
@@ -37,10 +44,11 @@ and open the template in the editor.
     width: 120px;
     height: 40px;
     font-size: 290%;
-    margin-top: 310px;
+    margin-top: 290px;
     margin-left: 520px;
     margin-right: 0;
     padding-right: 0;
+    border: 0px solid;
 }
 
 .row_print{
@@ -54,7 +62,7 @@ and open the template in the editor.
 
 .price_print{
     position: absolute;
-    margin-top: 310px;
+    margin-top: 290px;
     margin-left: 870px;
 }
 
