@@ -26,7 +26,7 @@ html{
 .nameTeams{
     float: left;
     font-size: 300%;
-    margin-top: 15px;
+    margin-top: 17px;
     margin-left: 50px;
 
 }
@@ -38,40 +38,42 @@ html{
     font-size: 0;
 }
 
-.form-control{
+.form-controlP{
+    display: block;
     border: 0;
     float: left;
     width: 120px;
     height: 40px;
     font-size: 290%;
-    margin-top: 290px;
-    margin-left: 520px;
+    margin-top: 285px;
+    margin-left: 615px;
     margin-right: 0;
     padding-right: 0;
     border: 0px solid;
 }
 
 .row_print{
-    margin-left: 15px;
+    margin-left: 0px;
+    margin-top: 265px;
 }
 
 .number_print{
-    margin-left: 15px;
-    float: left;
+    margin-left: 10px;
+    margin-top: 245px;
 }
 
 .price_print{
     position: absolute;
-    margin-top: 290px;
-    margin-left: 870px;
+    margin-top: 225px;
+    margin-left: 975px;
 }
 
 .dateMatch{
     float: left;
     color: #fff;
     font-size: 270%;
-    margin-left: 290px;
-    margin-top: 15px;
+    margin-left: 395px;
+    margin-top: 22px;
 }
 
 .form-controlC, .form-controlD, .form-controlE{

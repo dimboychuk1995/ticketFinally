@@ -9,7 +9,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="ua.ticket.web.controllers.GamesController"%>
 <%@page import="ua.ticket.web.beans.GameOfTeam"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="utf8"%>
 <!DOCTYPE html>
 <html>
     <head>

@@ -1,7 +1,6 @@
 package ua.ticket.web.controllers;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -211,6 +210,15 @@ public class GamesController extends HttpServlet {
         }
     }
 
+    
+    @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html; charset=UTF-8");
+        req.setCharacterEncoding("UTF-8");
+        super.service(req, resp); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
     protected void updateGame(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
         try(Connection conn = Database.getConnection();
@@ -231,19 +239,20 @@ public class GamesController extends HttpServlet {
             System.out.println(place);
             
             
-                String updateGame = "UPDATE games "
+                String sql = "UPDATE games "
                         + "set "
                         + "time = '" + time
-                        + "',date = '" + date
-                        + "',team1 = '" + team1
-                        + "',team2 = '" + team2
-                        + "',place = '" + place
+                        + "', date = '" + date
+                        + "', team1 = '" + team1
+                        + "', team2 = '" + team2
+                        + "', place = '" + place
                         + "' where id = " + id;
 
-                System.out.println(updateGame);
-            stmt.executeUpdate(updateGame);
+            System.out.println(sql);
+            stmt.executeUpdate(sql);
             
         }catch(SQLException ex){
+            System.out.println("Запит не виконався");
             Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -256,7 +265,7 @@ public class GamesController extends HttpServlet {
         String date   = request.getParameter("date");
         //System.out.println(date);
         String team1  = request.getParameter("owner");
-        //System.out.println(team1);
+        System.out.println(request.getParameter("owner"));
         String team2  = request.getParameter("guest"); 
         //System.out.println(team2);
         String place = request.getParameter("place");
