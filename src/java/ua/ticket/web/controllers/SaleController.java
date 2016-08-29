@@ -11,7 +11,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -157,11 +161,15 @@ public class SaleController extends HttpServlet{
         return sectorList;
     }
     
-    public Set<Integer> getListRows(int idSector){
+    public List<Integer> getListRows(int idSector){
             getRows("select * from ticket_on_game"
                 + " where id_sector = " + idSector
-                + " and id_game = " + idGame);    
-        return rowList; 
+                + " and id_game = " + idGame);
+            List<Integer> listRows = new ArrayList<Integer>(rowList);
+            if(idSector != 9 && idSector !=10){    
+            Collections.sort(listRows,Collections.reverseOrder());
+            }
+            return listRows; 
     }
     
     private void getRows(String str){
@@ -177,6 +185,7 @@ public class SaleController extends HttpServlet{
             while (rs.next()) {
                 rowList.add(rs.getInt("row"));
             }
+           
         } catch (SQLException ex) {
             Logger.getLogger(SectorController.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -372,3 +381,4 @@ public class SaleController extends HttpServlet{
         super.service(request, response); //To change body of generated methods, choose Tools | Templates.
     }
 }
+
