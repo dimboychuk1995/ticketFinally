@@ -115,8 +115,7 @@
                                 case 11: idSectorClass = "idClassL";
                                 break;
                             }
-                            
-                        
+  
                     %>
                     
                     <div id="<%=idSectorClass%>" class="sector">
@@ -124,7 +123,7 @@
                         Iterator<Integer> iterRows = placeList.getListRows(idSector).iterator();
                         while (iterRows.hasNext()){
                            int idRows = iterRows.next();
-                            placeList.setIdRow(idRows);
+                            //placeList.setIdRow(idRows);
                         %>
                         <div class = "<%=idRowClass + idRows%>">
                             <%
