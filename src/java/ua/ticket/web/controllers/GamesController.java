@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import static org.apache.tomcat.jni.File.stat;
 import ua.ticket.web.beans.GameOfTeam;
 import ua.ticket.web.db.Database;
 
@@ -155,6 +156,17 @@ public class GamesController extends HttpServlet {
         showGames(request, response);
     }
     
+    @Override
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setHeader( "Content-disposition", "inline; filename=ALVList.html" );
+        response.setHeader( "Cache-control", "" );
+        response.setHeader( "Pragma", "" );
+        request.setCharacterEncoding("UTF-8");
+        super.service(request, response); //To change body of generated methods, choose Tools | Templates.
+    }
+    
        public  ArrayList<GameOfTeam>  showFutureGame()
             throws ServletException, IOException{
         try(Connection conn = Database.getConnection();
@@ -211,12 +223,7 @@ public class GamesController extends HttpServlet {
     }
 
     
-    @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html; charset=UTF-8");
-        req.setCharacterEncoding("UTF-8");
-        super.service(req, resp); //To change body of generated methods, choose Tools | Templates.
-    }
+    
     
     
     protected void updateGame(HttpServletRequest request, HttpServletResponse response)
@@ -233,7 +240,7 @@ public class GamesController extends HttpServlet {
             System.out.println(date);
             String team1  = request.getParameter("owner");
             System.out.println(team1);
-            String team2  = request.getParameter("guest"); 
+            String team2  = request.getParameter("guest");
             System.out.println(team2);
             String place = request.getParameter("place");
             System.out.println(place);
@@ -265,7 +272,7 @@ public class GamesController extends HttpServlet {
         String date   = request.getParameter("date");
         //System.out.println(date);
         String team1  = request.getParameter("owner");
-        System.out.println(request.getParameter("owner"));
+        //System.out.println(team1);
         String team2  = request.getParameter("guest"); 
         //System.out.println(team2);
         String place = request.getParameter("place");
@@ -284,7 +291,7 @@ public class GamesController extends HttpServlet {
                     + "','" +  time
                     + "','" +  place
                     + "')";
-            stmt.executeUpdate(insertGame);
+                stmt.executeUpdate(insertGame);
             
                 String insertPlacesToMatch = "INSERT into ticket_on_game"
                     + "(id_game,row,number,id_sector,status)"
@@ -301,6 +308,7 @@ public class GamesController extends HttpServlet {
                     + " join subscription on  place.id = subscription.placeId"
                     + " set ticket_on_game.status = 2, ticket_on_game.PIP = subscription.PIP";
                 
+                System.out.println(updateSubscripInMatch);
                 stmt.executeUpdate(updateSubscripInMatch);
             
         }catch(SQLException ex){

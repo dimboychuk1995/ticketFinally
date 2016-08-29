@@ -80,6 +80,16 @@ html{
     font-size: 500%;
 }
 
+.row_printC, .row_printD, .row_printE{
+    margin-top: 275px;
+}
 
+.number_printC, .number_printD, .number_printE{
+    margin-top: 265px;
+}
+
+.price_printC, .price_printD, .price_printE{
+    margin-top: 255px;
+}
 
 

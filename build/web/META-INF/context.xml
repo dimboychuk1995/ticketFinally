@@ -2,6 +2,13 @@
 <Context path="/ticketFinally">
     <Resource name="jdbc/sample" auth="Container" type="javax.sql.DataSource"
                     maxActive="100" maxIdle="30" maxWait="10000"
-                    username="root" password="root" driverClassName="com.mysql.jdbc.Driver"
-                    url="jdbc:mysql://localhost:3306/tickets"/>
+                    username="root" password="tickets" driverClassName="com.mysql.jdbc.Driver"
+                    url="jdbc:mysql://localhost:3306/tickets?useUnicode=true&amp;characterEncoding=utf8"/>
+                    
+    <property name="connectionProperties">
+        <props>
+            <prop key="useUnicode">yes</prop>
+            <prop key="characterEncoding">utf8</prop>
+        </props>
+    </property>
 </Context>

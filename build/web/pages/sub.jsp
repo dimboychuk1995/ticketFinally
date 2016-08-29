@@ -70,6 +70,7 @@
                     </form>
                     <form  action="../SubscriptionController" method="POST">
                         <input class="delete_sub" id="id" type="text" name="id" value="<%=subscription.getId()%>" size="20" />
+                        <input id="del_sub" type="hidden" name="del_sub"  />
                         <td class = 'columnTableSub'><button id="btn_delete" value="delete" type="submit" class="btn btn-mini btn-warning" style = "display: none" >Видалити</button></td> 
                     </form>
                     </tr>

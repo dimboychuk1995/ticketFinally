@@ -69,4 +69,15 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException{
         checkLogin(request, response);
     }
+    
+    @Override
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setHeader( "Content-disposition", "inline; filename=ALVList.html" );
+        response.setHeader( "Cache-control", "" );
+        response.setHeader( "Pragma", "" );
+        request.setCharacterEncoding("UTF-8");
+        super.service(request, response); //To change body of generated methods, choose Tools | Templates.
+    }
 }

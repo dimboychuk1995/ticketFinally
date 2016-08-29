@@ -32,7 +32,6 @@
         <script src= "../js/canselOrderAjax.js" type="text/javascript"></script>
         <script src= "../js/updateL.js" type="text/javascript"></script>
         <script src="../js/jquery.min.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -177,9 +176,9 @@
                                                                        break;    
                                                                     case 8: SectorName = "E";
                                                                        break;    
-                                                                    case 9: SectorName = "Службовий сектор O";
+                                                                    case 9: SectorName = "O";
                                                                        break;    
-                                                                    case 10: SectorName = "Службовий сектор P";
+                                                                    case 10: SectorName = "P";
                                                                        break;    
                                                                     case 11: SectorName = "L";
                                                                        break;    
@@ -190,13 +189,13 @@
                                                                 sector = SectorName;
                                                                 idSectorForLabel = place.getIdSector();
                                                             %>
-                                                            <label class="form-control<%=sector%> form-controlP" id="sector" name="sector"><%=SectorName%></label>
+                                                            <label class="form-control<%=sector%> form-controlP sector_print" id="sector" name="sector"><%=SectorName%></label>
                                                             <br>
-                                                            <label class="form-control<%=sector%> form-controlP row_print" id="row" name="row"><%=place.getRow()%></label>
+                                                            <label class="form-control<%=sector%> form-controlP row_print row_print<%=sector%>" id="row" name="row"><%=place.getRow()%></label>
                                                             <br>
-                                                            <label class="form-control<%=sector%> form-controlP number_print" id="number" name="number"><%=place.getNumber()%></label>
+                                                            <label class="form-control<%=sector%> form-controlP number_print number_print<%=sector%>"  id="number" name="number"><%=place.getNumber()%></label>
                                                             <br>
-                                                            <label class="form-control<%=sector%> form-controlP price_print" id="price" name="price"><%=place.getPrice()%></label> 
+                                                            <label class="form-control<%=sector%> form-controlP price_print price_print<%=sector%>" id="price" name="price"><%=place.getPrice()%></label> 
 
                                                     </div>
                                                         <input id="orderPlace" type="hidden" name="orderPlace" value="orderPlace" />
@@ -243,8 +242,9 @@
             <div class="btn btn-success btn-lg sl_sector sector_l" data-toggle="modal" data-target="#ModalL">Сектор L - 20 грн</div>
             
             <div class="bottom_forms">
-                <form action="../SubscriptionController" method="POST" class="form_add">
-                    <p id='button_AddSub'> <button type="submit" class="btn btn-primary"> Добавити абоненмент </button> 
+                <form  action="../SubscriptionController" method="POST">
+                    <button id = 'button_AddGame' type="submit" class="btn btn-primary"> Добавити абоненмент </button>
+                    <input type="hidden" name="perSub" value="perSub"/>
                 </form>
                 <form action="../GamesController" method="POST">
                     <p id='button_InfoGame'> <button type="submit" class="btn btn-primary"> Інформація про ігри </button>
@@ -268,9 +268,10 @@
                 </div>
                 <div class="modal-body">
                     <form role="form" action="javascript:void(null);" id="formCanceled" onsubmit="orderL()">
-                        <div class="form-group">
+                        
                             <input id="updateL" type="hidden" name="updateL" value="updateL" />
-                        </div>
+                            
+                        
                         <button type="submit"  class="btn btn-success">Додати</button>
                     </form>
                 </div>

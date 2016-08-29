@@ -22,13 +22,13 @@
                     <input class="form-control" type="text" name= "date"    value="" size="20" placeholder = "дата матчу"/>
                 </div>
                 <div class="col-xs-2">
-                    <input class="form-control" type="text" name= "owner"   value="Uragan" size="20" placeholder = "господар"/>
+                    <input class="form-control" type="text" name= "owner"   value="Ураган" size="20" placeholder = "господар"/>
                 </div>
                     <div class="col-xs-2">
                 <input class="form-control" type="text" name= "guest"   value="" size="20" placeholder = "гості"/>
                 </div>
                 <div class="col-xs-2">
-                    <input class="form-control" type="text" name= "place"   value="" size="20" placeholder = "місце проведення"/>                                            
+                    <input class="form-control" type="text" name= "place"   value="Коледж фіичного виховання" size="20" placeholder = "місце проведення"/>                                            
                 </div>
                 <input id="insertGame" type="hidden" name="insertGame" value="insertGame" />
                 <button class = "btn btn-success" type="submit">зберегти</button>

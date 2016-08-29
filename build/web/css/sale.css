@@ -300,3 +300,7 @@ body {
 .form-controlD, .form-controlC, .form-controlE{
     font-size: 200%;
 }
+
+#button_AddGame{
+    float: left;
+}

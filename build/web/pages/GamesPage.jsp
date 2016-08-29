@@ -9,13 +9,14 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="ua.ticket.web.controllers.GamesController"%>
 <%@page import="ua.ticket.web.beans.GameOfTeam"%>
-<%@page contentType="text/html" pageEncoding="utf8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script src= "../js/manipulGame.js" type="text/javascript"></script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">        <script src= "../js/manipulGame.js" type="text/javascript"></script>
         
         <!-- Bootstrap -->
         <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -49,7 +50,8 @@
         <button id="editG" class="btn btn-warning" type = "submit" onclick = "edit();">редагувати матчі</button>  
           
         <form  action="../SubscriptionController" method="POST">
-             <button id = 'button_AddGame' type="submit" class="btn btn-primary"> Добавити абоненмент </button> 
+             <button id = 'button_AddGame' type="submit" class="btn btn-primary"> Добавити абоненмент </button>
+             <input type="hidden" name="perSub" value="perSub"/>
         </form>
         
         <form  action="../SaleController" method="POST">

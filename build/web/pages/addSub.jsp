@@ -55,6 +55,8 @@
                         </div>
                         <div class ="col-xs-2">
                         <input class="form-control" type="text" id="number" name="number" value="" placeholder="місце" />
+                        <input class="form-control" type="hidden" id="subscription" name="subscription" value="" />
+                        <input class="form-control" type="hidden" id="subscriptionSec" name="subscriptionSec" value="" />
                         </div>
                         <button id="btn_add" value="delete" type="submit" class="btn btn-success">Зберегти</button> 
                     </div> 

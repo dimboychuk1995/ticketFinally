@@ -214,6 +214,21 @@ public class SubscriptionController extends HttpServlet{
             Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    protected void sub(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        try(Connection conn = Database.getConnection();
+            Statement stmt = conn.createStatement();
+            ){
+            
+            response.sendRedirect("pages/sub.jsp");
+            
+        }catch(SQLException ex){
+            Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public LinkedHashSet getNameSectorsInGame(){
         LinkedHashSet<String> listSectors = new LinkedHashSet<String>();
         String result = "";
@@ -285,11 +300,24 @@ public class SubscriptionController extends HttpServlet{
             throws ServletException, IOException {
         if(request.getParameterMap().size() == 6){
             updateSubscription(request, response);
-        } else if(request.getParameterMap().size() == 1){
+        } else if(request.getParameter("del_sub") != null){
             deleteSubscription(request, response);   
-        } else{
+        } else if(request.getParameter("perSub") != null){
+            sub(request, response);
+        } else if(request.getParameter("subscription") != null){
             addSubscription(request, response);
         }
+    }
+    
+    @Override
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setHeader( "Content-disposition", "inline; filename=ALVList.html" );
+        response.setHeader( "Cache-control", "" );
+        response.setHeader( "Pragma", "" );
+        request.setCharacterEncoding("UTF-8");
+        super.service(request, response); //To change body of generated methods, choose Tools | Templates.
     }
     
     
