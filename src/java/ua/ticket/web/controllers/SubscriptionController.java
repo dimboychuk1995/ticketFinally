@@ -91,7 +91,6 @@ public class SubscriptionController extends HttpServlet{
             return getSubscription(sql);
         }
     }
-    
     public ArrayList<Subscription> getCountSubscription(){
         if (!subscriptionsList.isEmpty()) {
             return subscriptionsList;
@@ -185,6 +184,19 @@ public class SubscriptionController extends HttpServlet{
             
             stmt.executeUpdate(sqlSec);
             
+            String updateStatusSupscrip = "update tickets.ticket_on_game"
+                        + " join tickets.place"
+                        + " on  tickets.ticket_on_game.row = tickets.place.row"
+                        + " and tickets.ticket_on_game.number    = tickets.place.number"
+                        + " and tickets.ticket_on_game.id_sector = tickets.place.idSector"
+                        + " join tickets.subscription on  tickets.subscription.id = (SELECT id FROM subscription ORDER BY id DESC LIMIT 1)"
+                        + " and tickets.place.id = tickets.subscription.placeId"
+                        + " join  tickets.games on tickets.subscription.season =  tickets.games.season"
+                        + " and tickets.games.date >= curdate()"
+                        + " set tickets.ticket_on_game.status = 2, tickets.ticket_on_game.PIP = tickets.subscription.PIP";
+            
+            stmt.executeUpdate(updateStatusSupscrip);
+            //System.out.println(updateStatusSupscrip);
             response.sendRedirect("pages/sub.jsp");
             
         }catch(SQLException ex){
@@ -276,10 +288,11 @@ public class SubscriptionController extends HttpServlet{
             ResultSet rs = null;
             
 
-            String getRows = "SELECT row FROM tickets.ticket_on_game;";
+            String getRows = "SELECT tickets.ticket_on_game.row FROM tickets.ticket_on_game;";
             
             System.out.println(getRows);
             rs = stmt.executeQuery(getRows);
+
             while(rs.next()){
                 listRows.add(Integer.parseInt(rs.getString("row")));
               
