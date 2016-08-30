@@ -87,7 +87,7 @@ public class SubscriptionController extends HttpServlet{
                                     +"join tickets.place on "
                                     +"subscription.placeId = place.id "
                                     +"join sector on place.idSector = sector.id";
-            System.out.println(sql);
+            //System.out.println(sql);
             return getSubscription(sql);
         }
     }
@@ -196,17 +196,28 @@ public class SubscriptionController extends HttpServlet{
             throws ServletException, IOException {
         
         String id = request.getParameter("id");
-
-        System.out.println("method delete");
+        
+        //System.out.println("method delete");
         
         try(Connection conn = Database.getConnection();
             Statement stmt = conn.createStatement();
             ){
+            String sqlUpdateGame = "update tickets.ticket_on_game"
+                    + " join tickets.place on  tickets.ticket_on_game.row = tickets.place.row"
+                    + " and tickets.ticket_on_game.number    = tickets.place.number"
+                    + " and tickets.ticket_on_game.id_sector = tickets.place.idSector"
+                    + " join tickets.subscription on  tickets.subscription.id = " + id
+                    + " and tickets.place.id = tickets.subscription.placeId"
+                    + "	set tickets.ticket_on_game.status = 0,"
+                    + " tickets.ticket_on_game.PIP = ' '";
+            System.out.println(sqlUpdateGame);
+            stmt.executeUpdate(sqlUpdateGame);
             
             String sql = "delete from tickets.subscription "
                     + " where id=" + id;
             
             stmt.executeUpdate(sql);
+            System.out.println(sql);
             
             response.sendRedirect("pages/sub.jsp");
             
