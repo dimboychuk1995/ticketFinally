@@ -124,6 +124,7 @@ public class GamesController extends HttpServlet {
                 game.setNameTeam1(rs.getString("team1"));
                 game.setNameTeam2(rs.getString("team2"));
                 game.setPlaceGame(rs.getString("place"));
+                game.setSeason(rs.getString("season"));
                 gamesList.add(game);
             }      
             response.sendRedirect("pages/GamesPage.jsp");
@@ -188,6 +189,7 @@ public class GamesController extends HttpServlet {
                 game.setNameTeam1(rs.getString("team1"));
                 game.setNameTeam2(rs.getString("team2"));
                 game.setPlaceGame(rs.getString("place"));
+                game.setSeason(rs.getString("season"));
                 gamesList.add(game);
             } 
         }catch(SQLException ex){
@@ -233,17 +235,18 @@ public class GamesController extends HttpServlet {
             ){
             
             String id = request.getParameter("id");
-            System.out.println(id);
+            //System.out.println(id);
             String time   = request.getParameter("time");
-            System.out.println(time);
+            //System.out.println(time);
             String date   = request.getParameter("date");
-            System.out.println(date);
+            //System.out.println(date);
             String team1  = request.getParameter("owner");
-            System.out.println(team1);
+            //System.out.println(team1);
             String team2  = request.getParameter("guest");
-            System.out.println(team2);
+            //System.out.println(team2);
             String place = request.getParameter("place");
-            System.out.println(place);
+            //System.out.println(place);
+            String season = request.getParameter("season");
             
             
                 String sql = "UPDATE games "
@@ -253,6 +256,7 @@ public class GamesController extends HttpServlet {
                         + "', team1 = '" + team1
                         + "', team2 = '" + team2
                         + "', place = '" + place
+                        + "', season = '" + season
                         + "' where id = " + id;
 
             System.out.println(sql);
@@ -277,19 +281,21 @@ public class GamesController extends HttpServlet {
         //System.out.println(team2);
         String place = request.getParameter("place");
         //System.out.println(place);
+        String season = request.getParameter("season");
         
         try(Connection conn = Database.getConnection();
             Statement stmt = conn.createStatement();
             ){
             
                 String insertGame = "INSERT INTO tickets.games"
-                    + "(team1,team2,date,time,place)"
+                    + "(team1,team2,date,time,place,season)"
                     + " VALUES"
                     + "('"  +  team1
                     + "','" +  team2
                     + "','" +  date
                     + "','" +  time
                     + "','" +  place
+                    + "','" +  season
                     + "')";
                 stmt.executeUpdate(insertGame);
             
@@ -308,14 +314,14 @@ public class GamesController extends HttpServlet {
                     + " join subscription on  place.id = subscription.placeId"
                     + " set ticket_on_game.status = 2, ticket_on_game.PIP = subscription.PIP";
                 
-                System.out.println(updateSubscripInMatch);
+                //System.out.println(updateSubscripInMatch);
                 stmt.executeUpdate(updateSubscripInMatch);
-            
+                
+                
+            //stmt.executeUpdate(updateStatusSupscrip);
+            //System.out.println(updateStatusSupscrip);
         }catch(SQLException ex){
             Logger.getLogger(SubscriptionController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
-
 }

@@ -18,9 +18,18 @@ public class GameOfTeam {
     private String dateGame;
     private String timeGame;
     private String placeGame;
+    private String season;
+
+    public void setSeason(String season) {
+        this.season = season;
+    }
+
+
 
  // getters and setters
-
+    public String getSeason() {
+        return season;
+    }
     public int getId(){
         return id;
     }
@@ -66,6 +75,4 @@ public class GameOfTeam {
     public void setPlaceGame(String placeGame) {
         this.placeGame = placeGame;
     }
-    
-
 }

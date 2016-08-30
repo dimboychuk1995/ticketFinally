@@ -96,6 +96,8 @@ public class SaleController extends HttpServlet{
         
         try {
             getPlaceDB();
+            System.out.println(placeList.size());
+            
             response.sendRedirect("pages/sale.jsp");
         } catch (SQLException ex) {
             Logger.getLogger(SaleController.class.getName()).log(Level.SEVERE, null, ex);
@@ -124,6 +126,7 @@ public class SaleController extends HttpServlet{
                 
                 placeList.add(place);             
             }
+            System.out.println(placeList.size());
 
         } catch (SQLException ex) {
             Logger.getLogger(SectorController.class.getName()).log(Level.SEVERE, null, ex);
@@ -165,11 +168,12 @@ public class SaleController extends HttpServlet{
             getRows("select * from ticket_on_game"
                 + " where id_sector = " + idSector
                 + " and id_game = " + idGame);
-            List<Integer> listRows = new ArrayList<Integer>(rowList);
+            List<Integer> listRowsRewers = new ArrayList<Integer>(rowList);
+            // зворотнє сортування для рядів крім сектора O i P
             if(idSector != 9 && idSector !=10){    
-            Collections.sort(listRows,Collections.reverseOrder());
+            Collections.sort(listRowsRewers,Collections.reverseOrder());
             }
-            return listRows; 
+            return listRowsRewers; 
     }
     
     private void getRows(String str){

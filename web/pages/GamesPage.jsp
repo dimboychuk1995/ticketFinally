@@ -68,11 +68,12 @@
         <table id ='tableGame' class="table">
             <thead>
                 <tr>
+                    <th id ='headTable' bgcolor="#BDBDBD" style="width: 15%">Сезон</th>
                     <th id ='headTable' bgcolor="#BDBDBD" style="width: 8%">Час</th>
                     <th id ='headTable' bgcolor="#BDBDBD" style="width: 10%">Дата</th>
-                    <th id ='headTable' bgcolor="#BDBDBD" style="width: 25%">Господарі</th>
-                    <th id ='headTable' bgcolor="#BDBDBD" style="width: 25%">Гості</th>
-                    <th id ='headTable' bgcolor="#BDBDBD" style="width: 30%">Місце проведення</th>
+                    <th id ='headTable' bgcolor="#BDBDBD" style="width: 20%">Господарі</th>
+                    <th id ='headTable' bgcolor="#BDBDBD" style="width: 20%">Гості</th>
+                    <th id ='headTable' bgcolor="#BDBDBD" style="width: 25%">Місце проведення</th>
                     <th id ='headTable' bgcolor="#BDBDBD" style="width: 0%"></th>
                     <th id ='headTable' bgcolor="#BDBDBD" style="width: 0%"></th>
                     <th id ='headTable' bgcolor="#BDBDBD" style="width: 0%"></th>
@@ -87,7 +88,8 @@
                 <tr class="active">
                 <form id ="form1"  action="../GamesController" method="POST" >
                     
-                <input type="hidden" name="id" value="<%=game.getId()%>" />     
+                <input type="hidden" name="id" value="<%=game.getId()%>" /> 
+                <td id = 'columnTableGame'><input class="col-xs-12" type="text" name="season" value="<%=game.getSeason() %>" size="3" disabled/></td>
                 <td id = 'columnTableGame'><input class="col-xs-12" type="text" name="time" value="<%=game.getTimeGame() %>" size="3" disabled/></td>
                 <td id = 'columnTableGame'><input id ="datepicker" class="col-xs-12" type="text" name="date" value="<%=game.getDateGame()%>" size="20" disabled /></td>
                 <td id = 'columnTableGame'><input class="col-xs-12" type="text" name= "owner" value="<%=game.getNameTeam1()%>" size="20" disabled/></td>
