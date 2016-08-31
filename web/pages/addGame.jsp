@@ -15,7 +15,7 @@
         <div>
         <br>
             <form  action="../GamesController" method="POST" >
-                <div class ="col-xs-1">
+                <div class ="col-xs-2">
                         <select class="form-control" name="season">
                             <option id="season">2015-2016</option>
                             <option id="season">2016-2017</option>
@@ -23,7 +23,7 @@
                             <option id="season">2018-2019</option>
                         </select>
                 </div>
-                <div class="col-xs-2">
+                <div class="col-xs-1">
                     <input id = "inputAddTime" class="form-control" type="text" name= "time"    value="" size="3" placeholder = "час"/>
                 </div>
                 <div class="col-xs-2">

@@ -16,13 +16,15 @@
         
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">        <script src= "../js/manipulGame.js" type="text/javascript"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">        
+        <script src= "../js/manipulGame.js" type="text/javascript"></script>
         
         <!-- Bootstrap -->
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/gamePage.css" rel="stylesheet">
         <script src="../js/jquery.min.js"></script> 
-        <script src="../js/datePicker.js"></script>
+        <script src="../js/bootstrap.min.js"></script> 
+  
         <title>Перегляд матчів</title>
 
     </head>
@@ -70,7 +72,7 @@
                 <tr>
                     <th id ='headTable' bgcolor="#BDBDBD" style="width: 15%">Сезон</th>
                     <th id ='headTable' bgcolor="#BDBDBD" style="width: 8%">Час</th>
-                    <th id ='headTable' bgcolor="#BDBDBD" style="width: 10%">Дата</th>
+                    <th id ='headTable' bgcolor="#BDBDBD" style="width: 13%">Дата</th>
                     <th id ='headTable' bgcolor="#BDBDBD" style="width: 20%">Господарі</th>
                     <th id ='headTable' bgcolor="#BDBDBD" style="width: 20%">Гості</th>
                     <th id ='headTable' bgcolor="#BDBDBD" style="width: 25%">Місце проведення</th>
@@ -97,7 +99,12 @@
                 <td id = 'columnTableGame'><input class="col-xs-12" type="text" name="place" value="<%=game.getPlaceGame()%>" size="20" disabled/></td>
 
 
-                <td id = 'columnTableGame'><button class="btn btn-info btn-xs btn_zv" type="button" data-toggle="modal" data-target="#<%=game.getId()%>">ЗВІТ</button></td>
+                                           
+                <td id = 'columnTableGame'>
+                    
+                    <button id="btn_update<%=game.getId()%>" class="btn btn-info btn-xs btn_zv" type="button" data-toggle="modal" data-target="#<%=game.getId()%>">ЗВІТ</button>
+
+                </td>
                     <div id="<%=game.getId()%>" class="modal fade">
                         <div class="modal-dialog">
                         <div class="modal-content">
@@ -113,7 +120,7 @@
                                     while(iterSector.hasNext()){
                                         idSector = (Integer)iterSector.next();
                                 %>
-                                
+                                <div class="modal-body"><%=reportGame.getNameSectorForReport(idSector)%></div>
                                 <% 
                                     reportGame.getSizePlaceForReport(idSector, game.getId());
                                 %>
@@ -134,7 +141,7 @@
                                 <%}%>
                                 <br>
                                 
-                                <div class="modal-body alert alert-success">Загальна сума: <%=allSumm%> грн.</div>
+                                <div class="modal-body alert-success">Загальна сума: <%=allSumm%> грн.</div>
                                 
 
                             <div class="modal-footer"><button class="btn btn-default" type="button" data-dismiss="modal">Закрыть</button></div>

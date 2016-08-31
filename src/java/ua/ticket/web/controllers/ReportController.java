@@ -210,7 +210,7 @@ public class ReportController extends HttpServlet {
                     + " left join tickets.sector ts on tg.id_sector = ts.id "
                     + " where ts.id = " + idSector + " and "
                     + " tg.id_game = " + idGame
-                    + " and (status = 1 or status = 2)";
+                    + " and (status = 1)";
             
             rs = stmt.executeQuery(getPlace);
             while(rs.next()){
