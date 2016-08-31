@@ -307,14 +307,17 @@ public class GamesController extends HttpServlet {
                 
                 stmt.executeUpdate(insertPlacesToMatch);
            
-                String updateSubscripInMatch = "update ticket_on_game"
-                    + " join place on  ticket_on_game.row = place.row"
-                    + " and ticket_on_game.number = place.number"
-                    + " and ticket_on_game.id_sector = place.idSector"
-                    + " join subscription on  place.id = subscription.placeId"
-                    + " set ticket_on_game.status = 2, ticket_on_game.PIP = subscription.PIP";
+                String updateSubscripInMatch = "update ticket_on_game \n"
+                    + " join games on  games.id = (SELECT id FROM games ORDER BY id DESC LIMIT 1)  \n" 
+                    + " and ticket_on_game.id_game = (SELECT id FROM games ORDER BY id DESC LIMIT 1)"
+                    + " join place on  ticket_on_game.row = place.row  \n"
+                    + " and ticket_on_game.number = place.number  \n"
+                    + " and ticket_on_game.id_sector = place.idSector  \n"
+                    + " join subscription on  place.id = subscription.placeId  \n"
+                    + " and games.season = subscription.season"
+                    + " set ticket_on_game.status = 2, ticket_on_game.PIP = subscription.PIP  \n";
                 
-                //System.out.println(updateSubscripInMatch);
+                System.out.println(updateSubscripInMatch);
                 stmt.executeUpdate(updateSubscripInMatch);
                 
                 

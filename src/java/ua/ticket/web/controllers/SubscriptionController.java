@@ -189,11 +189,12 @@ public class SubscriptionController extends HttpServlet{
                         + " on  tickets.ticket_on_game.row = tickets.place.row"
                         + " and tickets.ticket_on_game.number    = tickets.place.number"
                         + " and tickets.ticket_on_game.id_sector = tickets.place.idSector"
-                        + " join tickets.subscription on  tickets.subscription.id = (SELECT id FROM subscription ORDER BY id DESC LIMIT 1)"
-                        + " and tickets.place.id = tickets.subscription.placeId"
-                        + " join  tickets.games on tickets.subscription.season =  tickets.games.season"
-                        + " and tickets.games.date >= curdate()"
-                        + " set tickets.ticket_on_game.status = 2, tickets.ticket_on_game.PIP = tickets.subscription.PIP";
+                        + " join tickets.subscription on tickets.place.id = tickets.subscription.placeId"
+                        + " join  tickets.games on tickets.games.season =  tickets.subscription.season"
+                        + " and tickets.games.id = tickets.ticket_on_game.id_game"
+                        + " set tickets.ticket_on_game.status = 2, tickets.ticket_on_game.PIP = tickets.subscription.PIP"
+                        + " where  tickets.subscription.id = (SELECT max(id) FROM subscription)"
+                        + " and tickets.games.date >= curdate()";
             
             stmt.executeUpdate(updateStatusSupscrip);
             //System.out.println(updateStatusSupscrip);
