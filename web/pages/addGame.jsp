@@ -9,7 +9,22 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      
+        <link href="../css/datePicker/jquery-ui.css" rel="stylesheet">
+        <link href="../css/datePicker/jquery-ui.min.css" rel="stylesheet">
+        <link href="../css/datePicker/jquery-ui.structure.css" rel="stylesheet">
+        <link href="../css/datePicker/jquery-ui.structure.min.css" rel="stylesheet">
+        <link href="../css/datePicker/jquery-ui.theme.css" rel="stylesheet">
+        <link href="../css/datePicker/jquery-ui.theme.min.css" rel="stylesheet">
+
+        <script src="../js/jquery.min.js"></script> 
+        <script src="../js/datePicker/jquery-ui.js"></script>
+        <script src="../js/datePicker/jquery-ui.min.js"></script>
+        <script src="../js/datePicker/datePicker.js"></script>
+      
+      
         <title>addGame</title>
+                
     </head>
     <body>
         <div>
@@ -23,11 +38,12 @@
                             <option id="season">2018-2019</option>
                         </select>
                 </div>
+                
                 <div class="col-xs-1">
                     <input id = "inputAddTime" class="form-control" type="text" name= "time"    value="" size="3" placeholder = "час"/>
                 </div>
                 <div class="col-xs-2">
-                    <input class="form-control" type="text" name= "date"    value="" size="20" placeholder = "дата матчу"/>
+                    <input class="form-control" id = "datepicker" type="text" name= "date"    value="" size="20" placeholder = "дата матчу"/>
                 </div>
                 <div class="col-xs-2">
                     <input class="form-control" type="text" name= "owner"   value="Ураган" size="20" placeholder = "господар"/>
