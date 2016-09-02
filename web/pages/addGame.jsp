@@ -16,12 +16,23 @@
         <link href="../css/datePicker/jquery-ui.structure.min.css" rel="stylesheet">
         <link href="../css/datePicker/jquery-ui.theme.css" rel="stylesheet">
         <link href="../css/datePicker/jquery-ui.theme.min.css" rel="stylesheet">
+        
+        <link rel="stylesheet" href="../css/timePicker/bootstrap.min.css">
+        <link rel="stylesheet" href="../css/timePicker/bootstrap-datetimepicker.min.css">
 
         <script src="../js/jquery.min.js"></script> 
+        <script type="text/javascript" src="../js/timePicker/moment-with-locales.min.js"></script>
+        <script src="../js/timePicker/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../js/timePicker/bootstrap-datetimepicker.min.js"></script>
+        
+        <script src="../js/timePicker/bootstrap.min.js"></script>
+          
         <script src="../js/datePicker/jquery-ui.js"></script>
         <script src="../js/datePicker/jquery-ui.min.js"></script>
+        
+        <script src="../js/timePicker/timePicker.js"></script>
         <script src="../js/datePicker/datePicker.js"></script>
-      
+        <script type="text/javascript"></script>
       
         <title>addGame</title>
                 
@@ -40,7 +51,7 @@
                 </div>
                 
                 <div class="col-xs-1">
-                    <input id = "inputAddTime" class="form-control" type="text" name= "time"    value="" size="3" placeholder = "час"/>
+                    <input data-format="HH:mm:ss" id="datetimepicker3" class="form-control input-small" type="text" name= "time"    value="" size="3" placeholder = "час"/>  
                 </div>
                 <div class="col-xs-2">
                     <input class="form-control" id = "datepicker" type="text" name= "date"    value="" size="20" placeholder = "дата матчу"/>
