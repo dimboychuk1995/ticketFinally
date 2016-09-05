@@ -44,7 +44,7 @@
                 <tr>
                     <th class ='headTable' bgcolor="#BDBDBD" style="width: 60%">ПІП</th>
                     <th class ='headTable' bgcolor="#BDBDBD" style="width: 25%">сезон</th>
-                    <th class ='headTable' bgcolor="#BDBDBD" style="width: 5%">сектор</th>
+                    <th class ='headTable' bgcolor="#BDBDBD" style="width: 7%">сектор</th>
                     <th class ='headTable' bgcolor="#BDBDBD" style="width: 5%">ряд</th>
                     <th class ='headTable' bgcolor="#BDBDBD" style="width: 5%" >місце</th>
                     <th class ='headTable' bgcolor="#BDBDBD" style="width: 0%" ></th>

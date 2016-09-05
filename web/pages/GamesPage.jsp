@@ -17,11 +17,11 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">        
-
+        
+        <script src="../js/jquery.min.js"></script>
         <link href="../css/bootstrap.min.css" rel="stylesheet"> 
         <link href="../css/gamePage.css" rel="stylesheet">
         <script src="../js/bootstrap.min.js"></script>
-        <script src="../js/jquery.min.js"></script>
         <script src= "../js/manipulGame.js" type="text/javascript"></script>
         <title>Перегляд матчів</title>
 
@@ -36,13 +36,13 @@
     <div class = "form-group">    
         <form  name="sortForm" action="../GamesController" method="POST" >
          <div id = "listMathes" class="col-sm-2">
-            <select class="form-control" name = "sortGames">
+            <select id = 'selectGameTime' class="form-control" name = "sortGames">
+                <option selected ><%=gamesInfo.showDefoultSort() %></option>
                 <option class="special" value = "showAllGame"> всі матчі</option>
                 <option style="background: #5cb85c; color: #fff;" value = "showCurrentGame"> поточний матч</option>
                 <option value = "showFutureGame"> майбутні матчі</option>
             </select>
-         </div>   
-                <input id = "button_ShowMathes" class="btn btn-info" type="submit" value="показати матчі">
+         </div>    
         </form><br>
     </div>
         <button id ="addG" class="btn btn-warning" type = "button" onclick = "addGame();">добавити матч</button> 
@@ -59,7 +59,8 @@
         </form> 
         
         <form  action="../SectorController" method="POST">
-             <button id = 'button_Sectors' type="submit" class="btn btn-primary btn_sectors"> Довідник секторів </button> 
+             <button id = 'button_Sectors' type="submit" class="btn btn-primary btn_sectors"> Довідник секторів </button>
+             <input type="hidden" name="perSectors" value="perSectors"/>
         </form>
         
         <br><br>

@@ -156,6 +156,41 @@ public class SaleController extends HttpServlet{
         }
     }
     
+    public String defoultValuesNameTeams()throws SQLException{
+        String name1 = "Виберіть ";
+        String name2 = " матч !";  
+        String defoultValues = "";
+        String sql = "SELECT team1, team2 FROM tickets.games where id = " + idGame;
+                Statement stmt = null;
+        ResultSet rs = null;
+        Connection conn = null;
+        System.out.println(sql);
+        try {
+            conn = Database.getConnection();
+
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                name1 = rs.getString("team1");
+                name2 = rs.getString("team2");
+            }
+            defoultValues = name1 + " - " + name2;
+           return defoultValues;
+        } catch (SQLException ex) {
+            Logger.getLogger(SectorController.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (stmt!=null) stmt.close();
+                if (rs!=null)rs.close();
+                if (conn!=null)conn.close();
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(SectorController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return defoultValues;
+    }
+    
     
     public Set<Integer> getListSector(){
         for (int i = 0; i< placeList.size(); i++){

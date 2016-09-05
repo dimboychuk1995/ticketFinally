@@ -65,10 +65,12 @@
                 
             <div class="list_matches">
                 <form class="form-inline" role="form" action="../SaleController" method="POST">
-                    <select id = 'games' class="form-control matches" name = "selectGame">
+                    <select id = 'games' class="form-control" name = "selectGame">
+                        <option selected  id="teams"><%=placeList.defoultValuesNameTeams()%></option>
                         <%
                             for (GameOfTeam game : gamesList.showFutureGame()){
                         %>
+                         
                         <option id="teams" value = <%=game.getId()%>><%=game.getNameTeam1()%> - <%=game.getNameTeam2()%></option>
                         <%}%>
                     </select>  

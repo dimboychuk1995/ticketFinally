@@ -22,5 +22,11 @@ function sbmit(iForm){
 function addGame(){
     $('#addGameJS').load('addGame.jsp');
 }
+$(function() {
+    $('#selectGameTime').change(function() {
+        this.form.submit();
+    });
+});
+
 
 

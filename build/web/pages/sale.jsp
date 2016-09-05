@@ -30,8 +30,9 @@
         <script src= "../js/print.js" type="text/javascript"></script>
         <script src= "../js/saleSendForms.js" type="text/javascript"></script>
         <script src= "../js/canselOrderAjax.js" type="text/javascript"></script>
-        <script src= "../js/updateL.js" type="text/javascript"></script>
+        <script src= "../js/updateL.js" type="text/javascript"></script> 
         <script src="../js/jquery.min.js"></script>
+        <script src= "../js/manipulSale.js" type="text/javascript"></script>
 
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -40,6 +41,9 @@
           <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
           <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
+        <script>
+</script>
+        
       </head>
   
   
@@ -61,15 +65,15 @@
                 
             <div class="list_matches">
                 <form class="form-inline" role="form" action="../SaleController" method="POST">
-                    <select class="form-control matches" name = "selectGame">
+                    <select id = 'games' class="form-control" name = "selectGame">
+                        <option selected  id="teams"><%=placeList.defoultValuesNameTeams()%></option>
                         <%
                             for (GameOfTeam game : gamesList.showFutureGame()){
                         %>
+                         
                         <option id="teams" value = <%=game.getId()%>><%=game.getNameTeam1()%> - <%=game.getNameTeam2()%></option>
                         <%}%>
-                    </select>
-                    <button type="submit" value="update" class="btn btn-default btn_show">Показати список квитків по даному матчі</button>
-                  
+                    </select>  
                 </form>
                 <form action="../SesionController" method="POST" class="form_out">
                     <input type="hidden" name="exitSesion" value="exitSesion" />

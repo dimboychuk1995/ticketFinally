@@ -36,6 +36,7 @@ and open the template in the editor.
 }
 
 .matches{
+    margin-top: 30px;
     margin-bottom: 15px;
     width: 250px;
 }
@@ -64,7 +65,9 @@ td {
        float: left;
    }
 #nameTeams{
-       color: #FDF2F2;
+       
+       font-size: 16pt;
+       color: #DEB887;
    }
    
 #headTableSale{
@@ -114,6 +117,7 @@ body {
   text-decoration: none;
 }
 #exitBtn{
+    margin-top: 12px;
     margin-left: 1144px; 
 }
 .btn-primary{
@@ -294,10 +298,11 @@ body {
 }
 
 .dateMatch{
+    
     color: #fff;
-    margin: 0;
     padding: 0;
-    margin-top: 5px;
+    font-size: 12pt;
+    margin-top: 30px;
 }
 
 .form-controlD, .form-controlC, .form-controlE{

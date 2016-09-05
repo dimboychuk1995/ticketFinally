@@ -30,6 +30,7 @@ import ua.ticket.web.db.Database;
 public class GamesController extends HttpServlet {
     
     private static ArrayList<GameOfTeam> gamesList = new ArrayList<GameOfTeam>();
+    static private String defoultShowGame = "Виберіть сортування";
     
     Statement stmt = null;
     ResultSet rs = null;
@@ -62,14 +63,14 @@ public class GamesController extends HttpServlet {
             deleteGame = request.getParameter("deleteGame");
         }
         
- 
-        String status1 = "showAllGame"; // all games
-        String status2 = "showCurrentGame"; // current game
-        String status3 = "showFutureGame"; // future game
-        String status4 = "insertGame"; // insert games to db
-        String status5 = "updateGame";
-        String status6 = "editGames"; // edit games
-        String status7 = "deleteGame"; // edit games
+        
+        String status1         = "showAllGame"; // all games
+        String status2         = "showCurrentGame"; // current game
+        String status3         = "showFutureGame"; // future game
+        String status4         = "insertGame"; // insert games to db
+        String status5         = "updateGame";
+        String status6         = "editGames"; // edit games
+        String status7         = "deleteGame"; // edit games
         
         
         String moreCurrDate = "SELECT * FROM tickets.games "
@@ -88,12 +89,20 @@ public class GamesController extends HttpServlet {
             for (int i = 0; i < valueParam.length; i++){  
                 if (status1.equals(valueParam[i])){
                     sql = allTime;
+                    
+                    defoultShowGame = "всі матчі";
+                    
+                    
                     }
                 if(status2.equals(valueParam[i])){
                     sql = currDate;
+                    defoultShowGame = "поточний матч";
+                    
                 }
                 if(status3.equals(valueParam[i])){
                     sql = moreCurrDate;
+                    defoultShowGame = "майбутні матчі";
+                    
                 }
             }
         }
@@ -126,7 +135,8 @@ public class GamesController extends HttpServlet {
                 game.setPlaceGame(rs.getString("place"));
                 game.setSeason(rs.getString("season"));
                 gamesList.add(game);
-            }      
+            }
+            System.out.println(defoultShowGame);
             response.sendRedirect("pages/GamesPage.jsp");
     
         }catch(Exception ex){
@@ -166,6 +176,10 @@ public class GamesController extends HttpServlet {
         response.setHeader( "Pragma", "" );
         request.setCharacterEncoding("UTF-8");
         super.service(request, response); //To change body of generated methods, choose Tools | Templates.
+    }
+    public String showDefoultSort(){
+        
+        return defoultShowGame;
     }
     
        public  ArrayList<GameOfTeam>  showFutureGame()
