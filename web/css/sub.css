@@ -57,6 +57,11 @@ input[type='text']{
     margin-left: 3px;
     float: left;
 }
+#button_Sectors{
+    margin-top: -9px;
+    margin-left: 3px;
+    float: left;
+}
 #button_SaleTickets{
     margin-top: 10px;
     margin-left: 3px;

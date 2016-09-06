@@ -15,10 +15,7 @@ function edit(){
                 }      
         };
 
-function sbmit(iForm){
-    
-    iForm.submit();
-}
+
 function addGame(){
     $('#addGameJS').load('addGame.jsp');
 }
@@ -27,6 +24,33 @@ $(function() {
         this.form.submit();
     });
 });
+
+function deleteGameAjax(id) {
+        var msg   = $('#formDeleted' + id).serialize();
+    $.ajax({
+        type: 'POST',
+        url: '../GamesController',
+        data: msg,
+    success: function(data) {
+        $('#results').html(data); 
+        var row = document.getElementById(id);
+        var table = row.parentNode;
+        while ( table && table.tagName != 'TABLE' )
+            table = table.parentNode;
+            if ( !table )
+            return;
+        table.deleteRow(row.rowIndex);
+    },
+    error:  function(xhr, str){
+        alert('Помилка видалення даних: ' + xhr.responseCode);
+    }
+  });
+}
+
+function deleteRow(r) {
+    var i = r.parentNode.parentNode.rowIndex;
+    document.getElementById("tableGame").deleteRow(i);
+}
 
 
 

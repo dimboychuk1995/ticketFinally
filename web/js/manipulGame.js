@@ -33,7 +33,6 @@ function deleteGameAjax(id) {
         data: msg,
     success: function(data) {
         $('#results').html(data); 
-        $( ".modal-backdrop" ).removeClass( "modal-backdrop" );
         var row = document.getElementById(id);
         var table = row.parentNode;
         while ( table && table.tagName != 'TABLE' )

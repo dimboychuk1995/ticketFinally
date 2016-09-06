@@ -253,7 +253,8 @@
                     <p id='button_InfoGame'> <button type="submit" class="btn btn-primary"> Інформація про ігри </button>
                 </form>
                 <form  action="../SectorController" method="POST">
-                    <button id = 'button_Sectors' type="submit" class="btn btn-primary btn_sectors"> Довідник секторів </button> 
+                    <input type="hidden" name="perSectors" value="perSectors"/>
+                    <button id = 'button_Sectors' type="submit" class="btn btn-primary btn_sectors"> Довідник секторів </button>  
                 </form>
                 
             </div>

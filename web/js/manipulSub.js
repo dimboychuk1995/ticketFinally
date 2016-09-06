@@ -18,3 +18,25 @@ function editS(){
 function addSub(){
     $('#addSub').load('addSub.jsp');
 }
+
+function deleteSubAjax(id) {
+        var msg   = $('#formDeletedSUB' + id).serialize();
+    $.ajax({
+        type: 'POST',
+        url: '../SubscriptionController',
+        data: msg,
+    success: function(data) {
+        $('#results').html(data); 
+        var row = document.getElementById(id);
+        var table = row.parentNode;
+        while ( table && table.tagName != 'TABLE' )
+            table = table.parentNode;
+            if ( !table )
+            return;
+        table.deleteRow(row.rowIndex);
+    },
+    error:  function(xhr, str){
+        alert('Помилка видалення даних: ' + xhr.responseCode);
+    }
+  });
+}

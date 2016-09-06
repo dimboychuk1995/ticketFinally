@@ -85,11 +85,13 @@
                     
         <%
             for (GameOfTeam game : gamesList.getListGame()){
+                
+                
         %>
-                <tr class="active">
+                <tr id="<%=game.getId()%>">
                 <form id ="form1"  action="../GamesController" method="POST" >
                     
-                <input type="hidden" name="id" value="<%=game.getId()%>" /> 
+                <input id ="input  <%=game.getId()%> " type="hidden" name="id" value="<%=game.getId()%>" /> 
                 <td id = 'columnTableGame'><input class="col-xs-12" type="text" name="season" value="<%=game.getSeason() %>" size="3" disabled/></td>
                 <td id = 'columnTableGame'><input class="col-xs-12" type="text" name="time" value="<%=game.getTimeGame() %>" size="3" disabled/></td>
                 <td id = 'columnTableGame'><input id ="datepicker" class="col-xs-12" type="text" name="date" value="<%=game.getDateGame()%>" size="20" disabled /></td>
@@ -101,10 +103,10 @@
                                            
                 <td id = 'columnTableGame'>
                     
-                    <button id="btn_update<%=game.getId()%>" class="btn btn-info btn-xs btn_zv" type="button" data-toggle="modal" data-target="#<%=game.getId()%>">ЗВІТ</button>
+                    <button id="btn_update<%=game.getId()%>" class="btn btn-info btn-xs btn_zv" type="button" data-toggle="modal" data-target="#<%=game.getId()%><%=game.getId()%>">ЗВІТ</button>
 
                 </td>
-                    <div id="<%=game.getId()%>" class="modal fade">
+                    <div id="<%=game.getId()%><%=game.getId()%>" class="modal fade">
                         <div class="modal-dialog">
                         <div class="modal-content">
                         <div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
@@ -143,22 +145,23 @@
                                 <div class="modal-body alert-success">Загальна сума: <%=allSumm%> грн.</div>
                                 
 
-                            <div class="modal-footer"><button class="btn btn-default" type="button" data-dismiss="modal">Закрыть</button></div>
+                            <div class="modal-footer"><button class="btn btn-default" type="button" data-dismiss="modal">Закрити</button></div>
                         </div>
                         </div>
                         </div>
                     </div> 
                         
                         <input id="updateGame" type="hidden" name="updateGame" value="updateGame" />
-                        <td id = 'columnTableGame'><input id ="s1" class="btn btn-mini btn-warning" type="button"  onclick="sbmit(this.form)" value = "обновити" style = "display: none"/></td>
+                        <td id = 'columnTableGame'><input id ="s1" class="btn btn-mini btn-warning" type="submit" value = "обновити" style = "display: none"/></td>
                 </form>
-                <form id ="form2"  action="../GamesController" method="POST" >
+                <form action="javascript:void(null);" class="cancel_of_order" id="formDeleted<%=game.getId()%>" onsubmit="deleteGameAjax(<%=game.getId()%>)">
                      <input type="hidden" name="id" value="<%=game.getId()%>" />   
                      <input id="deleteGame" type="hidden" name="deleteGame" value="deleteGame"/>
-                     <td id = 'columnTableGame'><input id ="s2" class="btn btn-mini btn-warning" type="button" onclick="sbmit(this.form)" value = "видалити" style = "display:none"/></td>      
+                     <td id = 'columnTableGame'><input id ="s2" class="btn btn-mini btn-warning" type="submit" value = "видалити" style = "display:none"/></td>      
                 </form>
                </tr>        
-            </div>        
+            </div>
+          
         <%}%>
             </tbody>
          </table> 

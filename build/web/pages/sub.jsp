@@ -35,6 +35,10 @@
              <button id = 'button_SaleTickets' type="submit" class="btn btn-primary"> Замовити квиток </button>
              <br>
         </form>
+        <form  action="../SectorController" method="POST">
+             <button id = 'button_Sectors' type="submit" class="btn btn-primary btn_sectors"> Довідник секторів </button>
+             <input type="hidden" name="perSectors" value="perSectors"/>
+        </form>
         <br>
         <div id = 'addSub'></div>
         <br>
@@ -58,7 +62,7 @@
                 %>
                     <form  action="../SubscriptionController" method="POST">
                         <div class="form-group">
-                            <tr>
+                            <tr id="<%=subscription.getId()%>">
                             <input id="id" type="hidden" name="id" value="<%=subscription.getId()%>" size="20" />
                             <td class = 'columnTableSub'><input id="PIP"   class="col-xs-12"  type="text" name="PIP" value="<%=subscription.getPIP()%>" size="20" disabled /></td>
                             <td class = 'columnTableSub'><input id="season"class="col-xs-12"  type="text" name="season" value="<%=subscription.getSeason()%>" size="20" disabled  /></td>
@@ -68,7 +72,7 @@
                         </div>
                         <td class = 'columnTableSub'><button id="btn_update" value="update" type="submit" class="btn btn-mini btn-warning" style = "display: none">Оновити</button></td>  
                     </form>
-                    <form  action="../SubscriptionController" method="POST">
+                    <form action="javascript:void(null);" class="cancel_of_order" id="formDeletedSUB<%=subscription.getId()%>" onsubmit="deleteSubAjax(<%=subscription.getId()%>)">
                         <input class="delete_sub" id="id" type="text" name="id" value="<%=subscription.getId()%>" size="20" />
                         <input id="del_sub" type="hidden" name="del_sub"  />
                         <td class = 'columnTableSub'><button id="btn_delete" value="delete" type="submit" class="btn btn-mini btn-warning" style = "display: none" >Видалити</button></td> 

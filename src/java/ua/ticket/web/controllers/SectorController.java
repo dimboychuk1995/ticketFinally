@@ -162,16 +162,47 @@ public class SectorController extends HttpServlet{
         }
     }
     
+    public void manipulSectors (HttpServletRequest request, HttpServletResponse response)
+            throws ServletException,SQLException{
+        
+        if (request.getParameter("perSectors") != null){
+            getSectorAll();
+            try {
+                response.sendRedirect("pages/sectors.jsp");
+            } catch (IOException ex) {
+                Logger.getLogger(SectorController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if (request.getParameter("UpdateSectors") != null){
+            try {
+                updateSector(request,response);
+                response.sendRedirect("pages/sectors.jsp");
+            } catch (IOException ex) {
+                Logger.getLogger(SectorController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            updateSector(request, response);
+        try {
+            manipulSectors(request, response);
+            //updateSector(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(SectorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            updateSector(request, response);
+        try {
+            manipulSectors(request, response);
+            //updateSector(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(SectorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     @Override

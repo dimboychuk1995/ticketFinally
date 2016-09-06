@@ -39,7 +39,8 @@
                 </form>
                 
                 <form  action="../SubscriptionController" method="POST">
-                    <button id='button_AddSub' type="submit" class="btn btn-primary add_sub"> Добавити абоненмент </button> 
+                    <button id='button_AddSub' type="submit" class="btn btn-primary add_sub"> Добавити абонемент </button> 
+                    <input type="hidden" name="perSub" value="perSub"/>
                 </form>
                 
                 <form  action="../GamesController" method="POST">
@@ -64,7 +65,7 @@
                                 <input class="hidden" id="id" type="text" name="id" value="<%=sector.getId()%>" size="20" />
                                 <input id="name" type="text" name="name" value="<%=sector.getName()%>" size="20" />
                                 <input id="price" type="text" name="price" value="<%=sector.getPrice()%>" size="20" />
-
+                                <input type="hidden" name="UpdateSectors" value="perSectors"/>
                                 <button id="btn_update" class="btn btn-sm btn-warning" value="update" type="submit">Оновити</button>
                             </div>
                         </form>
